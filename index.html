@@ -1,223 +1,254 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-  <!-- SEO -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Solana Ecosystem Directory | Ferramentas DeFi, RWA e DePIN</title>
-  <meta name="description" content="Diretório atualizado com os principais projetos da rede Solana: lending, DEX, liquid staking, oráculos e mais. Encontre, compare e descubra novas oportunidades." />
-  <meta name="keywords" content="Solana, DeFi, DEX, lending, staking, RWA, DePIN, NFT, ferramentas cripto" />
-  <meta name="author" content="Marcos Cleber" />
+  <meta name="description" content="Diretório atualizado com os principais projetos da rede Solana: lending, DEX, liquid staking, oráculos e mais." />
   <meta name="robots" content="index, follow" />
-  
-  <!-- Open Graph / Social -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Solana Ecosystem Directory" />
-  <meta property="og:description" content="Descubra os melhores projetos e ferramentas do ecossistema Solana" />
-  <meta property="og:image" content="https://marcoscleber10.github.io/Ferramentas-solana/assets/preview.png" />
-  <meta property="og:url" content="https://marcoscleber10.github.io/Ferramentas-solana/" />
-  <meta name="twitter:card" content="summary_large_image" />
-  
-  <!-- Canonical & PWA -->
   <link rel="canonical" href="https://marcoscleber10.github.io/Ferramentas-solana/" />
-  <link rel="manifest" href="/Ferramentas-solana/manifest.json" />
-  <meta name="theme-color" content="#9945FF" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
-  
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Solana Ecosystem Directory",
-    "url": "https://marcoscleber10.github.io/Ferramentas-solana/",
-    "description": "Diretório de projetos e ferramentas do ecossistema Solana",
-    "inLanguage": ["pt-BR", "en"],
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://marcoscleber10.github.io/Ferramentas-solana/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-  
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/styles.css" />
-  
-  <!-- Preconnect for performance -->
+  <link rel="icon" href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #fff; --bg-sec: #f8fafc; --text: #0f172a; --text-sec: #475569;
+      --primary: #9945FF; --primary-h: #7c3aed; --accent: #14F195;
+      --border: #e2e8f0; --card: #fff; --shadow: rgba(0,0,0,.08);
+      --success: #22c55e; --warning: #f59e0b; --danger: #ef4444;
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
+      --radius: 12px; --container: 1200px;
+    }
+    [data-theme="dark"] {
+      --bg: #0f172a; --bg-sec: #1e293b; --text: #f1f5f9; --text-sec: #94a3b8;
+      --primary: #a78bfa; --primary-h: #8b5cf6; --border: #334155;
+      --card: #1e293b; --shadow: rgba(0,0,0,.3);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); font-size: 1rem; line-height: 1.6; color: var(--text); background: var(--bg); transition: background .3s, color .3s; min-height: 100vh; display: flex; flex-direction: column; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; background: none; border: none; cursor: pointer; color: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
+    input, select { font: inherit; }
+    .skip-link { position: absolute; top: -40px; left: 0; background: var(--primary); color: #fff; padding: 8px 16px; z-index: 100; }
+    .skip-link:focus { top: 0; }
+    :focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+    .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+    .hidden { display: none !important; }
+    .highlight { color: var(--primary); }
+
+    .header { position: sticky; top: 0; z-index: 50; background: var(--bg); border-bottom: 1px solid var(--border); height: 72px; display: flex; align-items: center; backdrop-filter: blur(8px); }
+    .header-content { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+    .logo { display: flex; align-items: center; gap: 8px; }
+    .logo-icon { font-size: 1.5rem; }
+    .logo h1 { font-size: 1.25rem; font-weight: 700; }
+    .header-actions { display: flex; gap: 8px; }
+    .btn-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: var(--bg-sec); border: 1px solid var(--border); transition: all .15s; font-size: 1.2rem; }
+    .btn-icon:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    .hero { padding: 48px 0 32px; background: linear-gradient(135deg, var(--bg-sec), var(--bg)); border-bottom: 1px solid var(--border); }
+    .hero h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; text-align: center; }
+    .hero p { color: var(--text-sec); text-align: center; max-width: 600px; margin: 0 auto 24px; }
+
+    .search-container { max-width: 700px; margin: 0 auto 24px; }
+    .search-box { position: relative; display: flex; align-items: center; }
+    .search-icon { position: absolute; left: 16px; width: 20px; height: 20px; color: var(--text-sec); pointer-events: none; }
+    #search-input { width: 100%; padding: 12px 16px 12px 44px; padding-right: 36px; border: 2px solid var(--border); border-radius: 999px; background: var(--card); transition: border-color .15s; }
+    #search-input:focus { border-color: var(--primary); outline: none; }
+    .clear-btn { position: absolute; right: 16px; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--text-sec); opacity: 0; transition: opacity .15s; }
+    .clear-btn.visible { opacity: 1; }
+    .clear-btn:hover { background: var(--bg-sec); color: var(--text); }
+
+    .filters { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .filters select { padding: 8px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); cursor: pointer; min-width: 160px; }
+    .filters select:focus { border-color: var(--primary); outline: none; }
+
+    .active-filters { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; min-height: 24px; }
+    .filter-tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; background: var(--primary); color: #fff; border-radius: 999px; font-size: 0.875rem; }
+    .filter-tag button { margin-left: 4px; opacity: .8; font-weight: bold; }
+    .filter-tag button:hover { opacity: 1; }
+
+    .results-count { text-align: center; color: var(--text-sec); font-size: 0.875rem; margin-bottom: 16px; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; padding: 16px 0 48px; }
+    .project-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; transition: transform .15s, box-shadow .15s, border-color .15s; cursor: pointer; display: flex; flex-direction: column; gap: 16px; }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px var(--shadow); border-color: var(--primary); }
+    .card-header { display: flex; align-items: center; gap: 16px; }
+    .card-logo { width: 48px; height: 48px; border-radius: 8px; object-fit: contain; background: var(--bg-sec); padding: 4px; flex-shrink: 0; }
+    .card-title-group { flex: 1; min-width: 0; }
+    .card-title { font-size: 1.125rem; font-weight: 600; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card-badges { display: flex; gap: 4px; flex-wrap: wrap; }
+    .badge { padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 500; display: inline-flex; align-items: center; gap: 2px; position: relative; }
+    .badge::after { content: attr(data-tip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(8px); padding: 4px 8px; background: var(--text); color: var(--bg); border-radius: 4px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s; z-index: 10; }
+    .badge:hover::after { opacity: 1; transform: translateX(-50%); }
+    .badge-popular { background: color-mix(in srgb, var(--warning) 20%, transparent); color: var(--warning); }
+    .badge-new { background: color-mix(in srgb, var(--success) 20%, transparent); color: var(--success); }
+    .badge-audited { background: color-mix(in srgb, var(--success) 20%, transparent); color: var(--success); }
+    .card-description { color: var(--text-sec); font-size: 0.875rem; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--border); }
+    .card-category { font-size: 0.875rem; color: var(--text-sec); text-transform: capitalize; }
+    .card-cta { display: inline-flex; align-items: center; gap: 4px; color: var(--primary); font-weight: 500; font-size: 0.875rem; }
+
+    .loading { grid-column: 1/-1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px; gap: 16px; color: var(--text-sec); }
+    .spinner { width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .empty-state { grid-column: 1/-1; text-align: center; padding: 48px; color: var(--text-sec); }
+    .empty-state h3 { font-size: 1.25rem; margin-bottom: 8px; color: var(--text); }
+    .empty-state p { margin-bottom: 24px; }
+    .btn-primary { padding: 10px 24px; background: var(--primary); color: #fff; border-radius: 8px; font-weight: 500; transition: background .15s; }
+    .btn-primary:hover { background: var(--primary-h); }
+
+    .modal { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; }
+    .modal[aria-hidden="false"] { opacity: 1; visibility: visible; }
+    .modal-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.5); backdrop-filter: blur(4px); }
+    .modal-content { position: relative; background: var(--card); border-radius: 20px; max-width: 560px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px -12px var(--shadow); transform: translateY(20px); transition: transform .3s; }
+    .modal[aria-hidden="false"] .modal-content { transform: translateY(0); }
+    .modal-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; background: var(--bg-sec); z-index: 1; }
+    .modal-close:hover { background: var(--border); }
+    .modal-body { padding: 24px; }
+    .modal-header { display: flex; align-items: center; gap: 24px; margin-bottom: 24px; }
+    .modal-logo { width: 72px; height: 72px; border-radius: 16px; object-fit: contain; background: var(--bg-sec); padding: 8px; }
+    .modal-title-group h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+    .modal-badges { display: flex; gap: 4px; flex-wrap: wrap; }
+    .modal-description { color: var(--text-sec); margin-bottom: 24px; line-height: 1.7; }
+    .modal-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+    .stat-label { display: block; font-size: 0.75rem; color: var(--text-sec); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+    .stat-value { font-weight: 600; font-size: 0.875rem; }
+    .modal-links { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+    .btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border: 1px solid var(--border); border-radius: 8px; font-weight: 500; font-size: 0.875rem; transition: all .15s; }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+    .btn-icon-only { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); transition: all .15s; font-size: 1.25rem; background: var(--bg-sec); }
+    .btn-icon-only:hover { border-color: var(--primary); color: var(--primary); }
+    .modal-risk { display: flex; align-items: center; gap: 8px; padding: 12px; background: var(--bg-sec); border-radius: 8px; font-size: 0.875rem; }
+    .risk-badge { padding: 4px 12px; border-radius: 4px; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; }
+    .risk-badge.low { background: color-mix(in srgb, var(--success) 20%, transparent); color: var(--success); }
+    .risk-badge.medium { background: color-mix(in srgb, var(--warning) 20%, transparent); color: var(--warning); }
+    .risk-badge.high { background: color-mix(in srgb, var(--danger) 20%, transparent); color: var(--danger); }
+
+    .fab { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.75rem; box-shadow: 0 10px 15px -3px var(--shadow); z-index: 40; transition: transform .15s; }
+    .fab:hover { transform: scale(1.05); }
+
+    .footer { margin-top: auto; padding: 32px 0; border-top: 1px solid var(--border); background: var(--bg-sec); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-info p { font-size: 0.875rem; color: var(--text-sec); }
+    .last-updated { font-size: 0.75rem !important; opacity: .8; }
+    .footer-links { display: flex; gap: 24px; align-items: center; }
+    .footer-links a { display: inline-flex; align-items: center; gap: 4px; font-size: 0.875rem; color: var(--text-sec); transition: color .15s; }
+    .footer-links a:hover { color: var(--primary); }
+
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--text); color: var(--bg); padding: 12px 24px; border-radius: 8px; box-shadow: 0 10px 15px -3px var(--shadow); z-index: 1000; font-size: 0.875rem; transition: transform .3s; max-width: 90%; text-align: center; pointer-events: none; }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 768px) {
+      .hero h2 { font-size: 1.5rem; }
+      .filters { flex-direction: column; align-items: center; }
+      .filters select { width: 100%; max-width: 300px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .modal-stats { grid-template-columns: 1fr; gap: 12px; }
+      .footer-content { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      .hero { padding: 32px 0 24px; }
+      .modal-body { padding: 20px; }
+      .modal-links { justify-content: center; }
+    }
+    @media print { .header, .hero, .footer, .fab, .modal { display: none !important; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } html { scroll-behavior: auto; } }
+  </style>
 </head>
 <body>
-  <!-- Skip to content for accessibility -->
-  <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+  <a href="#main" class="skip-link">Pular para conteúdo</a>
 
-  <!-- Header -->
   <header class="header">
     <div class="container header-content">
-      <div class="logo">
-        <span class="logo-icon">⚡</span>
-        <h1>Solana<span class="highlight">Tools</span></h1>
-      </div>
-      
+      <div class="logo"><span class="logo-icon">⚡</span><h1>Solana<span class="highlight">Tools</span></h1></div>
       <div class="header-actions">
-        <!-- Language Toggle -->
-        <button id="lang-toggle" class="btn-icon" aria-label="Alternar idioma" title="Toggle language">
-          <span class="lang-current">🇧🇷</span>
-        </button>
-        
-        <!-- Theme Toggle -->
-        <button id="theme-toggle" class="btn-icon" aria-label="Alternar tema" title="Toggle theme">
-          <span class="theme-icon">🌙</span>
-        </button>
+        <button id="lang-toggle" class="btn-icon" aria-label="Alternar idioma">🇧🇷</button>
+        <button id="theme-toggle" class="btn-icon" aria-label="Alternar tema">🌙</button>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero">
     <div class="container">
       <h2 data-i18n="hero.title">Explore o Ecossistema Solana</h2>
-      <p data-i18n="hero.subtitle">Descubra, compare e conecte-se com os melhores projetos DeFi, NFT, RWA e DePIN da rede Solana.</p>
-      
-      <!-- Search & Filters -->
+      <p data-i18n="hero.subtitle">Descubra, compare e conecte-se com os melhores projetos.</p>
       <div class="search-container">
         <div class="search-box">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-          </svg>
-          <input 
-            type="search" 
-            id="search-input" 
-            placeholder="Buscar projetos..." 
-            data-i18n-placeholder="search.placeholder"
-            aria-label="Buscar projetos"
-          />
-          <button id="clear-search" class="clear-btn" aria-label="Limpar busca">&times;</button>
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="search" id="search-input" placeholder="Buscar projetos..." aria-label="Buscar" />
+          <button id="clear-search" class="clear-btn" aria-label="Limpar">&times;</button>
         </div>
-        
         <div class="filters">
-          <select id="category-filter" aria-label="Filtrar por categoria">
-            <option value="all" data-i18n="filters.all">Todas as categorias</option>
-            <option value="defi" data-i18n="filters.defi">DeFi</option>
-            <option value="dex" data-i18n="filters.dex">DEX</option>
-            <option value="lending" data-i18n="filters.lending">Lending</option>
-            <option value="staking" data-i18n="filters.staking">Liquid Staking</option>
-            <option value="nft" data-i18n="filters.nft">NFT & Marketplaces</option>
-            <option value="rwa" data-i18n="filters.rwa">RWA</option>
-            <option value="depim" data-i18n="filters.depin">DePIN</option>
-            <option value="infrastructure" data-i18n="filters.infrastructure">Infraestrutura</option>
-            <option value="wallet" data-i18n="filters.wallet">Carteiras</option>
-            <option value="analytics" data-i18n="filters.analytics">Analytics</option>
+          <select id="category-filter" aria-label="Categoria">
+            <option value="all">Todas</option>
+            <option value="defi">DeFi</option><option value="dex">DEX</option>
+            <option value="lending">Lending</option><option value="staking">Staking</option>
+            <option value="nft">NFT</option><option value="rwa">RWA</option>
+            <option value="depim">DePIN</option><option value="infrastructure">Infraestrutura</option>
+            <option value="wallet">Carteiras</option><option value="analytics">Analytics</option>
           </select>
-          
-          <select id="sort-filter" aria-label="Ordenar por">
-            <option value="featured" data-i18n="sort.featured">Em destaque</option>
-            <option value="name-asc" data-i18n="sort.name">Nome (A-Z)</option>
-            <option value="name-desc" data-i18n="sort.name-desc">Nome (Z-A)</option>
-            <option value="newest" data-i18n="sort.newest">Mais recentes</option>
+          <select id="sort-filter" aria-label="Ordenar">
+            <option value="featured">Destaque</option><option value="name-asc">Nome (A-Z)</option>
+            <option value="name-desc">Nome (Z-A)</option><option value="newest">Recentes</option>
           </select>
         </div>
       </div>
-      
-      <!-- Active Filters Tags -->
       <div id="active-filters" class="active-filters"></div>
-      
-      <!-- Results Count -->
-      <p id="results-count" class="results-count" aria-live="polite"></p>
+      <p id="results-count" class="results-count"></p>
     </div>
   </section>
 
-  <!-- Main Content -->
-  <main id="main-content" class="container">
-    <!-- Projects Grid -->
+  <main id="main" class="container">
     <div id="projects-grid" class="projects-grid" role="list">
-      <!-- Projects will be injected here by JavaScript -->
-      <div class="loading" id="loading">
-        <div class="spinner"></div>
-        <p data-i18n="loading">Carregando projetos...</p>
-      </div>
+      <div class="loading" id="loading"><div class="spinner"></div><p>Carregando...</p></div>
     </div>
-    
-    <!-- Empty State -->
     <div id="empty-state" class="empty-state hidden">
-      <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M9.75 3.125v2.25m4.5 0V3.125M6.375 20.25h11.25a1.5 1.5 0 0 0 1.5-1.5V6.375a1.5 1.5 0 0 0-1.5-1.5H6.375a1.5 1.5 0 0 0-1.5 1.5v12.375a1.5 1.5 0 0 0 1.5 1.5Z"/><path d="M9.75 9h4.5m-4.5 3h4.5m-4.5 3h2.25"/>
-      </svg>
-      <h3 data-i18n="empty.title">Nenhum projeto encontrado</h3>
-      <p data-i18n="empty.subtitle">Tente ajustar seus filtros ou termos de busca.</p>
-      <button id="reset-filters" class="btn-primary" data-i18n="empty.reset">Limpar filtros</button>
+      <h3>Nenhum projeto encontrado</h3>
+      <p>Tente ajustar seus filtros.</p>
+      <button id="reset-filters" class="btn-primary">Limpar filtros</button>
     </div>
   </main>
 
-  <!-- Project Modal -->
-  <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div id="project-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-overlay" tabindex="-1"></div>
     <div class="modal-content">
-      <button class="modal-close" aria-label="Fechar modal">&times;</button>
+      <button class="modal-close" aria-label="Fechar">&times;</button>
       <div class="modal-body">
         <div class="modal-header">
           <img id="modal-logo" class="modal-logo" src="" alt="" loading="lazy" />
-          <div class="modal-title-group">
-            <h3 id="modal-title"></h3>
+          <div>
+            <h3 id="modal-title" class="modal-title-group"></h3>
             <div id="modal-badges" class="modal-badges"></div>
           </div>
         </div>
         <p id="modal-description" class="modal-description"></p>
-        
         <div class="modal-stats">
-          <div class="stat-item">
-            <span class="stat-label" data-i18n="modal.category">Categoria</span>
-            <span id="modal-category" class="stat-value"></span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-label" data-i18n="modal.tvl">TVL</span>
-            <span id="modal-tvl" class="stat-value"></span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-label" data-i18n="modal.audited">Auditado</span>
-            <span id="modal-audited" class="stat-value"></span>
-          </div>
+          <div><span class="stat-label">Categoria</span><span id="modal-category" class="stat-value"></span></div>
+          <div><span class="stat-label">TVL</span><span id="modal-tvl" class="stat-value"></span></div>
+          <div><span class="stat-label">Auditado</span><span id="modal-audited" class="stat-value"></span></div>
         </div>
-        
         <div class="modal-links">
-          <a id="modal-website" href="#" target="_blank" rel="noopener noreferrer" class="btn-outline">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m2 12 4-4m0 0 4 4m-4-4v8"/></svg>
-            <span data-i18n="modal.website">Website</span>
-          </a>
-          <a id="modal-docs" href="#" target="_blank" rel="noopener noreferrer" class="btn-outline">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
-            <span data-i18n="modal.docs">Documentação</span>
-          </a>
-          <a id="modal-twitter" href="#" target="_blank" rel="noopener noreferrer" class="btn-icon-only" aria-label="Twitter">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a id="modal-discord" href="#" target="_blank" rel="noopener noreferrer" class="btn-icon-only" aria-label="Discord">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-          </a>
-          <a id="modal-github" href="#" target="_blank" rel="noopener noreferrer" class="btn-icon-only" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          </a>
+          <a id="modal-website" href="#" target="_blank" rel="noopener" class="btn-outline">🌐 Website</a>
+          <a id="modal-docs" href="#" target="_blank" rel="noopener" class="btn-outline">📄 Docs</a>
+          <a id="modal-twitter" href="#" target="_blank" rel="noopener" class="btn-icon-only" aria-label="Twitter">🐦</a>
+          <a id="modal-discord" href="#" target="_blank" rel="noopener" class="btn-icon-only" aria-label="Discord">💬</a>
+          <a id="modal-github" href="#" target="_blank" rel="noopener" class="btn-icon-only" aria-label="GitHub">🐙</a>
         </div>
-        
         <div class="modal-risk">
-          <span class="risk-label" data-i18n="modal.risk">Nível de risco:</span>
+          <span>Risco:</span>
           <span id="modal-risk" class="risk-badge"></span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Suggest Project Button -->
-  <button id="suggest-btn" class="fab" aria-label="Sugerir novo projeto">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M12 5v14M5 12h14"/>
-    </svg>
-  </button>
+  <button id="suggest-btn" class="fab" aria-label="Sugerir projeto">+</button>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container footer-content">
       <div class="footer-info">
@@ -225,2005 +256,148 @@
         <p id="last-updated" class="last-updated"></p>
       </div>
       <div class="footer-links">
-        <a href="https://github.com/marcoscleber10/Ferramentas-solana" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          GitHub
-        </a>
-        <a href="#" id="suggest-footer" data-i18n="footer.suggest">Sugerir projeto</a>
+        <a href="https://github.com/marcoscleber10/Ferramentas-solana" target="_blank" rel="noopener">GitHub</a>
+        <a href="#" id="suggest-footer">Sugerir</a>
       </div>
     </div>
   </footer>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+  <div id="toast" class="toast" role="alert"></div>
 
-  <!-- Scripts -->
-  <script src="js/main.js" defer></script>
-  
-  <!-- Service Worker Registration -->
   <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/Ferramentas-solana/sw.js')
-          .then(reg => console.log('SW registrado:', reg.scope))
-          .catch(err => console.log('SW falhou:', err));
+    const PROJECTS_DATA = [
+      {"id":"jupiter","name":"Jupiter","description":"Agregador de DEX líder na Solana com roteamento inteligente e melhor execução de trades.","category":"dex","logo":"https://assets.coingecko.com/coins/images/35023/large/JUP_token_logo.png?1704518030","website":"https://jup.ag","docs":"https://docs.jup.ag","twitter":"https://twitter.com/JupiterExchange","discord":"https://discord.gg/jup","github":"https://github.com/jup-ag","tvl":"$450M+","audited":true,"risk":"low","badges":["popular","audited"],"featured":true,"addedDate":"2024-01-15"},
+      {"id":"raydium","name":"Raydium","description":"AMM e DEX com liquidez compartilhada e ferramentas avançadas de mercado.","category":"dex","logo":"https://assets.coingecko.com/coins/images/13928/large/200x200_logo.png?1612403082","website":"https://raydium.io","docs":"https://docs.raydium.io","twitter":"https://twitter.com/RaydiumProtocol","discord":"https://discord.gg/raydium","github":"https://github.com/raydium-io","tvl":"$280M+","audited":true,"risk":"low","badges":["audited"],"featured":true,"addedDate":"2024-01-10"},
+      {"id":"marinade","name":"Marinade Finance","description":"Liquid staking: ganhe recompensas mantendo liquidez com mSOL.","category":"staking","logo":"https://assets.coingecko.com/coins/images/17364/large/mnde.png?1628850774","website":"https://marinade.finance","docs":"https://docs.marinade.finance","twitter":"https://twitter.com/MarinadeFinance","discord":"https://discord.gg/marinade","github":"https://github.com/marinade-finance","tvl":"$1.2B+","audited":true,"risk":"low","badges":["popular","audited"],"featured":true,"addedDate":"2024-01-08"},
+      {"id":"solend","name":"Solend","description":"Protocolo de lending e borrowing descentralizado e automatizado.","category":"lending","logo":"https://assets.coingecko.com/coins/images/20037/large/logo.png?1634050521","website":"https://solend.fi","docs":"https://docs.solend.fi","twitter":"https://twitter.com/solendprotocol","discord":"https://discord.gg/solend","github":"https://github.com/solendprotocol","tvl":"$95M+","audited":true,"risk":"medium","badges":["audited"],"featured":false,"addedDate":"2024-01-12"},
+      {"id":"phantom","name":"Phantom","description":"Carteira segura e intuitiva para enviar, trocar, stake e colecionar NFTs.","category":"wallet","logo":"https://assets.coingecko.com/asset_platforms/images/86/large/phantom-logo.png","website":"https://phantom.app","docs":"https://docs.phantom.app","twitter":"https://twitter.com/phantom","discord":"https://discord.gg/phantom","github":null,"tvl":"N/A","audited":true,"risk":"low","badges":["popular","audited"],"featured":true,"addedDate":"2024-01-05"},
+      {"id":"pyth","name":"Pyth Network","description":"Oracle descentralizado de alta frequência para dados financeiros precisos.","category":"infrastructure","logo":"https://assets.coingecko.com/coins/images/31924/large/pyth.png","website":"https://pyth.network","docs":"https://docs.pyth.network","twitter":"https://twitter.com/PythNetwork","discord":"https://discord.gg/pyth","github":"https://github.com/pyth-network","tvl":"N/A","audited":true,"risk":"low","badges":["audited"],"featured":false,"addedDate":"2024-02-01"},
+      {"id":"tensor","name":"Tensor","description":"Marketplace profissional para NFTs com ferramentas de sweep e analytics.","category":"nft","logo":"https://assets.coingecko.com/coins/images/34157/large/TNSR.png","website":"https://tensor.trade","docs":"https://docs.tensor.trade","twitter":"https://twitter.com/tensor_hq","discord":"https://discord.gg/tensor","github":null,"tvl":"N/A","audited":false,"risk":"medium","badges":["new"],"featured":false,"addedDate":"2024-03-15"},
+      {"id":"helium","name":"Helium","description":"Rede DePIN descentralizada para conectividade IoT e 5G.","category":"depim","logo":"https://assets.coingecko.com/coins/images/16344/large/49364271_586054775172237_7213696469261271040_o.png","website":"https://helium.com","docs":"https://docs.helium.com","twitter":"https://twitter.com/helium","discord":"https://discord.gg/helium","github":"https://github.com/helium","tvl":"$180M+","audited":true,"risk":"medium","badges":["popular"],"featured":true,"addedDate":"2024-02-20"},
+      {"id":"realio","name":"Realio","description":"Plataforma de emissão e gestão de ativos reais tokenizados (RWA).","category":"rwa","logo":"https://assets.coingecko.com/coins/images/11426/large/realio.png","website":"https://realio.network","docs":"https://docs.realio.network","twitter":"https://twitter.com/RealioNetwork","discord":null,"github":"https://github.com/realiotech","tvl":"$45M+","audited":true,"risk":"medium","badges":["new","audited"],"featured":false,"addedDate":"2024-03-28"},
+      {"id":"step","name":"Step Finance","description":"Dashboard completo para gerenciar portfólio, yield farming e analytics.","category":"analytics","logo":"https://assets.coingecko.com/coins/images/14792/large/200x200.png","website":"https://step.finance","docs":"https://docs.step.finance","twitter":"https://twitter.com/StepFinance_","discord":"https://discord.gg/step","github":"https://github.com/step-finance","tvl":"N/A","audited":true,"risk":"low","badges":["audited"],"featured":false,"addedDate":"2024-01-25"}
+    ];
+
+    const I18N = {
+      pt: {'hero.title':'Explore o Ecossistema Solana','hero.subtitle':'Descubra, compare e conecte-se com os melhores projetos.','search.ph':'Buscar projetos...','filters.all':'Todas','sort.featured':'Destaque','sort.name-asc':'Nome (A-Z)','sort.name-desc':'Nome (Z-A)','sort.newest':'Recentes','loading':'Carregando...','empty.title':'Nenhum projeto encontrado','empty.subtitle':'Tente ajustar seus filtros.','empty.reset':'Limpar filtros','modal.cat':'Categoria','modal.tvl':'TVL','modal.aud':'Auditado','risk.low':'Baixo','risk.medium':'Médio','risk.high':'Alto','badge.popular':'Popular','badge.new':'Novo','badge.audited':'Auditado','toast.suggest':'Obrigado pela sugestão!'},
+      en: {'hero.title':'Explore Solana Ecosystem','hero.subtitle':'Discover, compare and connect with the best projects.','search.ph':'Search projects...','filters.all':'All','sort.featured':'Featured','sort.name-asc':'Name (A-Z)','sort.name-desc':'Name (Z-A)','sort.newest':'Newest','loading':'Loading...','empty.title':'No projects found','empty.subtitle':'Try adjusting your filters.','empty.reset':'Clear filters','modal.cat':'Category','modal.tvl':'TVL','modal.aud':'Audited','risk.low':'Low','risk.medium':'Medium','risk.high':'High','badge.popular':'Popular','badge.new':'New','badge.audited':'Audited','toast.suggest':'Thanks for your suggestion!'}
+    };
+
+    const state = { projects: [], filtered: [], filters: { search: '', category: 'all', sort: 'featured' }, lang: localStorage.getItem('sol_lang') || 'pt', theme: localStorage.getItem('sol_theme') || 'light' };
+    const $ = (s, p=document) => p.querySelector(s);
+    const $$ = (s, p=document) => p.querySelectorAll(s);
+    const els = {};
+
+    function cache() {
+      els.search = $('#search-input'); els.clear = $('#clear-search'); els.cat = $('#category-filter'); els.sort = $('#sort-filter');
+      els.grid = $('#projects-grid'); els.empty = $('#empty-state'); els.count = $('#results-count'); els.tags = $('#active-filters');
+      els.load = $('#loading'); els.themeBtn = $('#theme-toggle'); els.langBtn = $('#lang-toggle'); els.suggest = $('#suggest-btn');
+      els.suggestF = $('#suggest-footer'); els.modal = $('#project-modal'); els.modalClose = $('.modal-close'); els.overlay = $('.modal-overlay');
+      els.toast = $('#toast'); els.updated = $('#last-updated'); els.year = $('#year'); els.reset = $('#reset-filters');
+    }
+
+    function tr(k) { return I18N[state.lang][k] || k; }
+    function catName(c) { return {defi:'DeFi',dex:'DEX',lending:'Lending',staking:'Staking',nft:'NFT',rwa:'RWA',depim:'DePIN',infrastructure:'Infra',wallet:'Wallet',analytics:'Analytics'}[c]||c; }
+    function badgeIcon(b) { return {popular:'⭐',new:'✨',audited:'✓'}[b]||''; }
+
+    function applyTheme() {
+      document.documentElement.setAttribute('data-theme', state.theme);
+      els.themeBtn.textContent = state.theme==='light' ? '🌙' : '☀️';
+    }
+    function applyLang() {
+      document.documentElement.lang = state.lang==='pt'?'pt-BR':'en';
+      els.langBtn.textContent = state.lang==='pt'?'🇧🇷':'🇺🇸';
+      $$('[data-i18n]').forEach(el=>{ if(I18N[state.lang][el.dataset.i18n]) el.textContent = I18N[state.lang][el.dataset.i18n]; });
+      els.search.placeholder = tr('search.ph');
+      if(state.projects.length) render();
+    }
+
+    function render() {
+      if(!state.filtered.length) { els.grid.innerHTML=''; els.empty.classList.remove('hidden'); els.count.textContent=''; return; }
+      els.empty.classList.add('hidden');
+      els.grid.innerHTML = state.filtered.map(p => `
+        <article class="project-card" data-id="${p.id}" tabindex="0">
+          <div class="card-header">
+            <img class="card-logo" src="${p.logo}" alt="${p.name}" loading="lazy" onerror="this.src='image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>'">
+            <div class="card-title-group"><h3 class="card-title">${p.name}</h3><div class="card-badges">${(p.badges||[]).map(b=>`<span class="badge badge-${b}" data-tip="${tr(`badge.${b}`)}">${badgeIcon(b)}</span>`).join('')}</div></div>
+          </div>
+          <p class="card-description">${p.description}</p>
+          <div class="card-footer"><span class="card-category">${catName(p.category)}</span><span class="card-cta">Ver →</span></div>
+        </article>
+      `).join('');
+      $$('.project-card').forEach(c=>{
+        c.addEventListener('click', ()=>openModal(c.dataset.id));
+        c.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();openModal(c.dataset.id);} });
       });
     }
+
+    function applyFilters() {
+      let r = [...state.projects];
+      if(state.filters.search) { const q=state.filters.search.toLowerCase(); r=r.filter(p=>p.name.toLowerCase().includes(q)||p.description.toLowerCase().includes(q)); }
+      if(state.filters.category!=='all') r=r.filter(p=>p.category===state.filters.category);
+      switch(state.filters.sort) {
+        case 'name-asc': r.sort((a,b)=>a.name.localeCompare(b.name)); break;
+        case 'name-desc': r.sort((a,b)=>b.name.localeCompare(a.name)); break;
+        case 'newest': r.sort((a,b)=>new Date(b.addedDate)-new Date(a.addedDate)); break;
+        default: r.sort((a,b)=>{ if(a.featured&&!b.featured)return -1; if(!a.featured&&b.featured)return 1; return 0; });
+      }
+      state.filtered = r; render(); updateCount(); updateTags();
+    }
+
+    function updateCount() { els.count.textContent = `${state.filtered.length} de ${state.projects.length} projetos`; }
+    function updateTags() {
+      const tags = [];
+      if(state.filters.search) tags.push({l:`🔍"${state.filters.search}"`,rm:()=>{state.filters.search='';els.search.value='';els.clear.classList.remove('visible');applyFilters();}});
+      if(state.filters.category!=='all') tags.push({l:catName(state.filters.category),rm:()=>{state.filters.category='all';els.cat.value='all';applyFilters();}});
+      els.tags.innerHTML = tags.map(t=>`<span class="filter-tag">${t.l}<button>&times;</button></span>`).join('');
+      els.tags.querySelectorAll('button').forEach((b,i)=>b.onclick=(e)=>{e.stopPropagation();tags[i].rm();});
+    }
+
+    function openModal(id) {
+      const p = state.projects.find(x=>x.id===id); if(!p) return;
+      $('#modal-logo').src = p.logo; $('#modal-logo').alt = p.name;
+      $('#modal-title').textContent = p.name; $('#modal-description').textContent = p.description;
+      $('#modal-category').textContent = catName(p.category); $('#modal-tvl').textContent = p.tvl;
+      $('#modal-audited').textContent = p.audited ? '✅ Sim' : '❌ Não';
+      const rb = $('#modal-risk'); rb.textContent = tr(`risk.${p.risk}`); rb.className = `risk-badge ${p.risk}`;
+      $('#modal-website').href = p.website;
+      $('#modal-docs').href = p.docs||'#'; $('#modal-docs').parentElement.style.display = p.docs?'inline-flex':'none';
+      $('#modal-twitter').href = p.twitter||'#';
+      $('#modal-discord').href = p.discord||'#'; $('#modal-discord').parentElement.style.display = p.discord?'inline-flex':'none';
+      $('#modal-github').href = p.github||'#'; $('#modal-github').parentElement.style.display = p.github?'inline-flex':'none';
+      $('#modal-badges').innerHTML = (p.badges||[]).map(b=>`<span class="badge badge-${b}">${badgeIcon(b)} ${tr(`badge.${b}`)}</span>`).join('');
+      els.modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    }
+    function closeModal() { els.modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+
+    function showToast(msg) { els.toast.textContent=msg; els.toast.classList.add('show'); setTimeout(()=>els.toast.classList.remove('show'),3000); }
+    function setupListeners() {
+      els.search?.addEventListener('input', e=>{ state.filters.search=e.target.value.trim(); els.clear.classList.toggle('visible',!!state.filters.search); applyFilters(); });
+      els.clear?.addEventListener('click', ()=>{ state.filters.search=''; els.search.value=''; els.clear.classList.remove('visible'); els.search.focus(); applyFilters(); });
+      els.cat?.addEventListener('change', e=>{ state.filters.category=e.target.value; applyFilters(); });
+      els.sort?.addEventListener('change', e=>{ state.filters.sort=e.target.value; applyFilters(); });
+      els.reset?.addEventListener('click', ()=>{ state.filters={search:'',category:'all',sort:'featured'}; els.search.value=''; els.cat.value='all'; els.sort.value='featured'; els.clear.classList.remove('visible'); applyFilters(); });
+      els.themeBtn?.addEventListener('click', ()=>{ state.theme=state.theme==='light'?'dark':'light'; localStorage.setItem('sol_theme',state.theme); applyTheme(); });
+      els.langBtn?.addEventListener('click', ()=>{ state.lang=state.lang==='pt'?'en':'pt'; localStorage.setItem('sol_lang',state.lang); applyLang(); });
+      els.modalClose?.addEventListener('click', closeModal); els.overlay?.addEventListener('click', closeModal);
+      document.addEventListener('keydown', e=>{ if(e.key==='Escape'&&els.modal?.getAttribute('aria-hidden')==='false') closeModal(); });
+      const suggest = ()=>{ showToast(tr('toast.suggest')); window.open('https://github.com/marcoscleber10/Ferramentas-solana/issues/new','_blank'); };
+      els.suggest?.addEventListener('click', suggest); els.suggestF?.addEventListener('click', e=>{e.preventDefault();suggest();});
+      document.addEventListener('keydown', e=>{ if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();els.search?.focus();} });
+    }
+
+    function updateDate() {
+      els.year.textContent = new Date().getFullYear();
+      els.updated.textContent = `Última atualização: ${new Date().toLocaleDateString(state.lang==='pt'?'pt-BR':'en-US')}`;
+    }
+
+    async function init() {
+      cache(); applyTheme(); applyLang(); setupListeners(); updateDate();
+      state.projects = PROJECTS_DATA;
+      applyFilters();
+    }
+    document.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>
 ```
-
----
-
-## 🎨 `css/styles.css` (Design Moderno, Responsivo, Dark Mode)
-
-```css
-/* ===== CSS VARIABLES ===== */
-:root {
-  /* Colors - Light Mode */
-  --color-bg: #ffffff;
-  --color-bg-secondary: #f8fafc;
-  --color-text: #0f172a;
-  --color-text-secondary: #475569;
-  --color-primary: #9945FF;
-  --color-primary-hover: #7c3aed;
-  --color-accent: #14F195;
-  --color-border: #e2e8f0;
-  --color-card: #ffffff;
-  --color-card-hover: #f8fafc;
-  --color-shadow: rgba(0, 0, 0, 0.08);
-  --color-success: #22c55e;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
-  --color-badge-low: #22c55e;
-  --color-badge-medium: #f59e0b;
-  --color-badge-high: #ef4444;
-  
-  /* Typography */
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 2rem;
-  --font-size-4xl: 2.5rem;
-  
-  /* Spacing */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  
-  /* Border Radius */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-full: 9999px;
-  
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  
-  /* Transitions */
-  --transition-fast: 150ms ease;
-  --transition-base: 300ms ease;
-  --transition-slow: 500ms ease;
-  
-  /* Layout */
-  --container-max: 1200px;
-  --header-height: 72px;
-}
-
-/* Dark Mode */
-[data-theme="dark"] {
-  --color-bg: #0f172a;
-  --color-bg-secondary: #1e293b;
-  --color-text: #f1f5f9;
-  --color-text-secondary: #94a3b8;
-  --color-primary: #a78bfa;
-  --color-primary-hover: #8b5cf6;
-  --color-accent: #34d399;
-  --color-border: #334155;
-  --color-card: #1e293b;
-  --color-card-hover: #334155;
-  --color-shadow: rgba(0, 0, 0, 0.3);
-}
-
-/* ===== RESET & BASE ===== */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  font-family: var(--font-family);
-  font-size: var(--font-size-base);
-  line-height: 1.6;
-  color: var(--color-text);
-  background: var(--color-bg);
-  transition: background var(--transition-base), color var(--transition-base);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font: inherit;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: inherit;
-}
-
-input, select {
-  font: inherit;
-  color: inherit;
-}
-
-/* Accessibility */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: var(--color-primary);
-  color: white;
-  padding: var(--space-sm) var(--space-md);
-  z-index: 100;
-  transition: top var(--transition-fast);
-}
-.skip-link:focus {
-  top: 0;
-}
-
-/* Focus visible */
-:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-/* ===== UTILITIES ===== */
-.container {
-  width: 100%;
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
-}
-
-.hidden {
-  display: none !important;
-}
-
-.highlight {
-  color: var(--color-primary);
-}
-
-/* ===== HEADER ===== */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
-  height: var(--header-height);
-  display: flex;
-  align-items: center;
-  backdrop-filter: blur(8px);
-}
-
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.logo-icon {
-  font-size: var(--font-size-2xl);
-}
-
-.logo h1 {
-  font-size: var(--font-size-xl);
-  font-weight: 700;
-}
-
-.header-actions {
-  display: flex;
-  gap: var(--space-sm);
-}
-
-.btn-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-bg-secondary);
-  border: 1px solid var(--color-border);
-  transition: all var(--transition-fast);
-}
-
-.btn-icon:hover {
-  background: var(--color-primary);
-  color: white;
-  border-color: var(--color-primary);
-}
-
-/* ===== HERO ===== */
-.hero {
-  padding: var(--space-2xl) 0 var(--space-xl);
-  background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg) 100%);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.hero h2 {
-  font-size: var(--font-size-3xl);
-  font-weight: 700;
-  margin-bottom: var(--space-sm);
-  text-align: center;
-}
-
-.hero p {
-  color: var(--color-text-secondary);
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto var(--space-xl);
-}
-
-/* Search Box */
-.search-container {
-  max-width: 700px;
-  margin: 0 auto var(--space-lg);
-}
-
-.search-box {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.search-icon {
-  position: absolute;
-  left: var(--space-md);
-  width: 20px;
-  height: 20px;
-  color: var(--color-text-secondary);
-  pointer-events: none;
-}
-
-#search-input {
-  width: 100%;
-  padding: var(--space-md) var(--space-md) var(--space-md) 44px;
-  padding-right: 40px;
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  background: var(--color-card);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-#search-input:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
-}
-
-.clear-btn {
-  position: absolute;
-  right: var(--space-md);
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
-  opacity: 0;
-  transition: opacity var(--transition-fast);
-}
-
-.clear-btn.visible {
-  opacity: 1;
-}
-
-.clear-btn:hover {
-  background: var(--color-bg-secondary);
-  color: var(--color-text);
-}
-
-/* Filters */
-.filters {
-  display: flex;
-  gap: var(--space-md);
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.filters select {
-  padding: var(--space-sm) var(--space-lg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-card);
-  cursor: pointer;
-  min-width: 180px;
-  transition: border-color var(--transition-fast);
-}
-
-.filters select:focus {
-  border-color: var(--color-primary);
-}
-
-/* Active Filters */
-.active-filters {
-  display: flex;
-  gap: var(--space-sm);
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: var(--space-md);
-}
-
-.filter-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  padding: var(--space-xs) var(--space-md);
-  background: var(--color-primary);
-  color: white;
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-sm);
-}
-
-.filter-tag button {
-  margin-left: var(--space-xs);
-  font-size: var(--font-size-sm);
-  opacity: 0.8;
-}
-
-.filter-tag button:hover {
-  opacity: 1;
-}
-
-/* Results Count */
-.results-count {
-  text-align: center;
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-}
-
-/* ===== PROJECTS GRID ===== */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--space-lg);
-  padding: var(--space-xl) 0;
-}
-
-/* Project Card */
-.project-card {
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-primary);
-}
-
-.card-header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-}
-
-.card-logo {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-md);
-  object-fit: contain;
-  background: var(--color-bg-secondary);
-  padding: var(--space-xs);
-}
-
-.card-title-group {
-  flex: 1;
-  min-width: 0;
-}
-
-.card-title {
-  font-size: var(--font-size-lg);
-  font-weight: 600;
-  margin-bottom: var(--space-xs);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.card-badges {
-  display: flex;
-  gap: var(--space-xs);
-  flex-wrap: wrap;
-}
-
-.badge {
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-xs);
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  position: relative;
-}
-
-.badge::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(8px);
-  padding: var(--space-xs) var(--space-sm);
-  background: var(--color-text);
-  color: var(--color-bg);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-xs);
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--transition-fast), transform var(--transition-fast);
-  z-index: 10;
-}
-
-.badge:hover::after {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.badge-popular {
-  background: color-mix(in srgb, var(--color-warning) 20%, transparent);
-  color: var(--color-warning);
-}
-
-.badge-new {
-  background: color-mix(in srgb, var(--color-success) 20%, transparent);
-  color: var(--color-success);
-}
-
-.badge-audited {
-  background: color-mix(in srgb, var(--color-success) 20%, transparent);
-  color: var(--color-success);
-}
-
-.card-description {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-  flex: 1;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--color-border);
-}
-
-.card-category {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  text-transform: capitalize;
-}
-
-.card-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  color: var(--color-primary);
-  font-weight: 500;
-  font-size: var(--font-size-sm);
-}
-
-.card-cta svg {
-  width: 16px;
-  height: 16px;
-  transition: transform var(--transition-fast);
-}
-
-.project-card:hover .card-cta svg {
-  transform: translateX(4px);
-}
-
-/* Loading State */
-.loading {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-2xl);
-  gap: var(--space-md);
-  color: var(--color-text-secondary);
-}
-
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid var(--color-border);
-  border-top-color: var(--color-primary);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Empty State */
-.empty-state {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: var(--space-2xl);
-  color: var(--color-text-secondary);
-}
-
-.empty-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto var(--space-lg);
-  opacity: 0.5;
-}
-
-.empty-state h3 {
-  font-size: var(--font-size-xl);
-  margin-bottom: var(--space-sm);
-  color: var(--color-text);
-}
-
-.empty-state p {
-  margin-bottom: var(--space-lg);
-}
-
-/* ===== MODAL ===== */
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-lg);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--transition-base), visibility var(--transition-base);
-}
-
-.modal[aria-hidden="false"] {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-}
-
-.modal-content {
-  position: relative;
-  background: var(--color-card);
-  border-radius: var(--radius-xl);
-  max-width: 560px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: var(--shadow-xl);
-  transform: translateY(20px);
-  transition: transform var(--transition-base);
-}
-
-.modal[aria-hidden="false"] .modal-content {
-  transform: translateY(0);
-}
-
-.modal-close {
-  position: absolute;
-  top: var(--space-md);
-  right: var(--space-md);
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--font-size-xl);
-  background: var(--color-bg-secondary);
-  z-index: 1;
-}
-
-.modal-close:hover {
-  background: var(--color-border);
-}
-
-.modal-body {
-  padding: var(--space-xl);
-}
-
-.modal-header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-lg);
-  margin-bottom: var(--space-lg);
-}
-
-.modal-logo {
-  width: 72px;
-  height: 72px;
-  border-radius: var(--radius-lg);
-  object-fit: contain;
-  background: var(--color-bg-secondary);
-  padding: var(--space-sm);
-}
-
-.modal-title-group {
-  flex: 1;
-}
-
-.modal-title-group h3 {
-  font-size: var(--font-size-2xl);
-  font-weight: 700;
-  margin-bottom: var(--space-xs);
-}
-
-.modal-badges {
-  display: flex;
-  gap: var(--space-xs);
-  flex-wrap: wrap;
-}
-
-.modal-description {
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-lg);
-  line-height: 1.7;
-}
-
-.modal-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
-  padding: var(--space-md) 0;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-  margin-bottom: var(--space-lg);
-}
-
-.stat-item {
-  text-align: center;
-}
-
-.stat-label {
-  display: block;
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: var(--space-xs);
-}
-
-.stat-value {
-  font-weight: 600;
-  font-size: var(--font-size-sm);
-}
-
-.modal-links {
-  display: flex;
-  gap: var(--space-md);
-  margin-bottom: var(--space-lg);
-  flex-wrap: wrap;
-}
-
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  padding: var(--space-sm) var(--space-lg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-weight: 500;
-  font-size: var(--font-size-sm);
-  transition: all var(--transition-fast);
-}
-
-.btn-outline:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-}
-
-.btn-outline svg {
-  width: 18px;
-  height: 18px;
-}
-
-.btn-icon-only {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--color-border);
-  transition: all var(--transition-fast);
-}
-
-.btn-icon-only:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  background: var(--color-bg-secondary);
-}
-
-.btn-icon-only svg {
-  width: 20px;
-  height: 20px;
-}
-
-.modal-risk {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-md);
-  background: var(--color-bg-secondary);
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
-}
-
-.risk-label {
-  color: var(--color-text-secondary);
-}
-
-.risk-badge {
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--radius-sm);
-  font-weight: 500;
-  font-size: var(--font-size-xs);
-  text-transform: uppercase;
-}
-
-.risk-badge.low {
-  background: color-mix(in srgb, var(--color-badge-low) 20%, transparent);
-  color: var(--color-badge-low);
-}
-
-.risk-badge.medium {
-  background: color-mix(in srgb, var(--color-badge-medium) 20%, transparent);
-  color: var(--color-badge-medium);
-}
-
-.risk-badge.high {
-  background: color-mix(in srgb, var(--color-badge-high) 20%, transparent);
-  color: var(--color-badge-high);
-}
-
-/* ===== FAB Button ===== */
-.fab {
-  position: fixed;
-  bottom: var(--space-xl);
-  right: var(--space-xl);
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-full);
-  background: var(--color-primary);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-lg);
-  z-index: 40;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.fab:hover {
-  transform: scale(1.05);
-  box-shadow: var(--shadow-xl);
-}
-
-.fab svg {
-  width: 24px;
-  height: 24px;
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  margin-top: auto;
-  padding: var(--space-xl) 0;
-  border-top: 1px solid var(--color-border);
-  background: var(--color-bg-secondary);
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-}
-
-.footer-info p {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-}
-
-.last-updated {
-  font-size: var(--font-size-xs) !important;
-  opacity: 0.8;
-}
-
-.footer-links {
-  display: flex;
-  gap: var(--space-lg);
-  align-items: center;
-}
-
-.footer-links a {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  transition: color var(--transition-fast);
-}
-
-.footer-links a:hover {
-  color: var(--color-primary);
-}
-
-.footer-links svg {
-  width: 20px;
-  height: 20px;
-}
-
-/* ===== TOAST ===== */
-.toast {
-  position: fixed;
-  bottom: var(--space-xl);
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: var(--color-text);
-  color: var(--color-bg);
-  padding: var(--space-md) var(--space-lg);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
-  z-index: 1000;
-  font-size: var(--font-size-sm);
-  transition: transform var(--transition-base);
-  max-width: 90%;
-  text-align: center;
-}
-
-.toast.show {
-  transform: translateX(-50%) translateY(0);
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .hero h2 {
-    font-size: var(--font-size-2xl);
-  }
-  
-  .filters {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .filters select {
-    width: 100%;
-    max-width: 300px;
-  }
-  
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .modal-stats {
-    grid-template-columns: 1fr;
-    gap: var(--space-sm);
-  }
-  
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .fab {
-    bottom: var(--space-lg);
-    right: var(--space-lg);
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 var(--space-md);
-  }
-  
-  .hero {
-    padding: var(--space-xl) 0 var(--space-lg);
-  }
-  
-  .search-box {
-    flex-wrap: wrap;
-  }
-  
-  #search-input {
-    width: 100%;
-  }
-  
-  .modal-body {
-    padding: var(--space-lg);
-  }
-  
-  .modal-links {
-    justify-content: center;
-  }
-}
-
-/* ===== PRINT ===== */
-@media print {
-  .header, .hero, .footer, .fab, .modal {
-    display: none !important;
-  }
-  
-  .project-card {
-    break-inside: avoid;
-    box-shadow: none;
-    border: 1px solid #ccc;
-  }
-}
-
-/* ===== REDUCED MOTION ===== */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  html {
-    scroll-behavior: auto;
-  }
-}
-```
-
----
-
-## 📊 `js/projects.json` (Dados Estruturados)
-
-```json
-{
-  "lastUpdated": "2026-04-04",
-  "projects": [
-    {
-      "id": "jupiter",
-      "name": "Jupiter",
-      "slug": "jupiter",
-      "description": "Agregador de DEX líder na Solana com roteamento inteligente e melhor execução de trades.",
-      "category": "dex",
-      "logo": "assets/icons/jupiter.svg",
-      "website": "https://jup.ag",
-      "docs": "https://docs.jup.ag",
-      "twitter": "https://twitter.com/JupiterExchange",
-      "discord": "https://discord.gg/jup",
-      "github": "https://github.com/jup-ag",
-      "tvl": "$450M+",
-      "audited": true,
-      "risk": "low",
-      "badges": ["popular", "audited"],
-      "featured": true,
-      "addedDate": "2024-01-15"
-    },
-    {
-      "id": "raydium",
-      "name": "Raydium",
-      "slug": "raydium",
-      "description": "AMM e DEX com liquidez compartilhada com o livro de ordens do Serum.",
-      "category": "dex",
-      "logo": "assets/icons/raydium.svg",
-      "website": "https://raydium.io",
-      "docs": "https://docs.raydium.io",
-      "twitter": "https://twitter.com/RaydiumProtocol",
-      "discord": "https://discord.gg/raydium",
-      "github": "https://github.com/raydium-io",
-      "tvl": "$280M+",
-      "audited": true,
-      "risk": "low",
-      "badges": ["audited"],
-      "featured": true,
-      "addedDate": "2024-01-10"
-    },
-    {
-      "id": "marinade",
-      "name": "Marinade Finance",
-      "slug": "marinade",
-      "description": "Protocolo de liquid staking que permite ganhar recompensas enquanto mantém liquidez.",
-      "category": "staking",
-      "logo": "assets/icons/marinade.svg",
-      "website": "https://marinade.finance",
-      "docs": "https://docs.marinade.finance",
-      "twitter": "https://twitter.com/MarinadeFinance",
-      "discord": "https://discord.gg/marinade",
-      "github": "https://github.com/marinade-finance",
-      "tvl": "$1.2B+",
-      "audited": true,
-      "risk": "low",
-      "badges": ["popular", "audited"],
-      "featured": true,
-      "addedDate": "2024-01-08"
-    },
-    {
-      "id": "solend",
-      "name": "Solend",
-      "slug": "solend",
-      "description": "Protocolo de lending e borrowing algorítmico e descentralizado na Solana.",
-      "category": "lending",
-      "logo": "assets/icons/solend.svg",
-      "website": "https://solend.fi",
-      "docs": "https://docs.solend.fi",
-      "twitter": "https://twitter.com/solendprotocol",
-      "discord": "https://discord.gg/solend",
-      "github": "https://github.com/solendprotocol",
-      "tvl": "$95M+",
-      "audited": true,
-      "risk": "medium",
-      "badges": ["audited"],
-      "featured": false,
-      "addedDate": "2024-01-12"
-    },
-    {
-      "id": "phantom",
-      "name": "Phantom",
-      "slug": "phantom",
-      "description": "Carteira amigável para explorar a Solana: enviar, receber, trocar e colecionar NFTs.",
-      "category": "wallet",
-      "logo": "assets/icons/phantom.svg",
-      "website": "https://phantom.app",
-      "docs": "https://docs.phantom.app",
-      "twitter": "https://twitter.com/phantom",
-      "discord": "https://discord.gg/phantom",
-      "github": null,
-      "tvl": "N/A",
-      "audited": true,
-      "risk": "low",
-      "badges": ["popular", "audited"],
-      "featured": true,
-      "addedDate": "2024-01-05"
-    },
-    {
-      "id": "pyth",
-      "name": "Pyth Network",
-      "slug": "pyth",
-      "description": "Oracle de alta fidelidade que entrega dados de mercado em tempo real para DeFi.",
-      "category": "infrastructure",
-      "logo": "assets/icons/pyth.svg",
-      "website": "https://pyth.network",
-      "docs": "https://docs.pyth.network",
-      "twitter": "https://twitter.com/PythNetwork",
-      "discord": "https://discord.gg/pyth",
-      "github": "https://github.com/pyth-network",
-      "tvl": "N/A",
-      "audited": true,
-      "risk": "low",
-      "badges": ["audited"],
-      "featured": false,
-      "addedDate": "2024-02-01"
-    },
-    {
-      "id": "tensor",
-      "name": "Tensor",
-      "slug": "tensor",
-      "description": "Marketplace profissional para NFTs na Solana com ferramentas avançadas de trading.",
-      "category": "nft",
-      "logo": "assets/icons/tensor.svg",
-      "website": "https://tensor.trade",
-      "docs": "https://docs.tensor.trade",
-      "twitter": "https://twitter.com/tensor_hq",
-      "discord": "https://discord.gg/tensor",
-      "github": null,
-      "tvl": "N/A",
-      "audited": false,
-      "risk": "medium",
-      "badges": ["new"],
-      "featured": false,
-      "addedDate": "2024-03-15"
-    },
-    {
-      "id": "helium",
-      "name": "Helium",
-      "slug": "helium",
-      "description": "Rede DePIN descentralizada para conectividade IoT e 5G.",
-      "category": "depim",
-      "logo": "assets/icons/helium.svg",
-      "website": "https://helium.com",
-      "docs": "https://docs.helium.com",
-      "twitter": "https://twitter.com/helium",
-      "discord": "https://discord.gg/helium",
-      "github": "https://github.com/helium",
-      "tvl": "$180M+",
-      "audited": true,
-      "risk": "medium",
-      "badges": ["popular"],
-      "featured": true,
-      "addedDate": "2024-02-20"
-    },
-    {
-      "id": "realio",
-      "name": "Realio",
-      "slug": "realio",
-      "description": "Plataforma de tokenização de ativos reais (RWA) com compliance integrado.",
-      "category": "rwa",
-      "logo": "assets/icons/realio.svg",
-      "website": "https://realio.network",
-      "docs": "https://docs.realio.network",
-      "twitter": "https://twitter.com/RealioNetwork",
-      "discord": null,
-      "github": "https://github.com/realiotech",
-      "tvl": "$45M+",
-      "audited": true,
-      "risk": "medium",
-      "badges": ["new", "audited"],
-      "featured": false,
-      "addedDate": "2024-03-28"
-    },
-    {
-      "id": "step-finance",
-      "name": "Step Finance",
-      "slug": "step-finance",
-      "description": "Dashboard de portfólio e analytics para gerenciar seus ativos na Solana.",
-      "category": "analytics",
-      "logo": "assets/icons/step.svg",
-      "website": "https://step.finance",
-      "docs": "https://docs.step.finance",
-      "twitter": "https://twitter.com/StepFinance_",
-      "discord": "https://discord.gg/step",
-      "github": "https://github.com/step-finance",
-      "tvl": "N/A",
-      "audited": true,
-      "risk": "low",
-      "badges": ["audited"],
-      "featured": false,
-      "addedDate": "2024-01-25"
-    }
-  ]
-}
-```
-
----
-
-## ⚙️ `js/main.js` (Toda a Lógica: Busca, Filtros, Modal, i18n, PWA)
-
-```javascript
-/**
- * Solana Ecosystem Directory - Main JavaScript
- * Funcionalidades: Busca, Filtros, Modal, Dark Mode, i18n, Analytics
- */
-
-// ===== STATE =====
-const state = {
-  projects: [],
-  filteredProjects: [],
-  filters: {
-    search: '',
-    category: 'all',
-    sort: 'featured'
-  },
-  language: localStorage.getItem('solanaTools_lang') || 'pt',
-  theme: localStorage.getItem('solanaTools_theme') || 'light',
-  analytics: JSON.parse(localStorage.getItem('solanaTools_analytics') || '{}')
-};
-
-// ===== TRANSLATIONS =====
-const i18n = {
-  pt: {
-    'hero.title': 'Explore o Ecossistema Solana',
-    'hero.subtitle': 'Descubra, compare e conecte-se com os melhores projetos DeFi, NFT, RWA e DePIN da rede Solana.',
-    'search.placeholder': 'Buscar projetos...',
-    'filters.all': 'Todas as categorias',
-    'filters.defi': 'DeFi',
-    'filters.dex': 'DEX',
-    'filters.lending': 'Lending',
-    'filters.staking': 'Liquid Staking',
-    'filters.nft': 'NFT & Marketplaces',
-    'filters.rwa': 'RWA',
-    'filters.depin': 'DePIN',
-    'filters.infrastructure': 'Infraestrutura',
-    'filters.wallet': 'Carteiras',
-    'filters.analytics': 'Analytics',
-    'sort.featured': 'Em destaque',
-    'sort.name': 'Nome (A-Z)',
-    'sort.name-desc': 'Nome (Z-A)',
-    'sort.newest': 'Mais recentes',
-    'loading': 'Carregando projetos...',
-    'empty.title': 'Nenhum projeto encontrado',
-    'empty.subtitle': 'Tente ajustar seus filtros ou termos de busca.',
-    'empty.reset': 'Limpar filtros',
-    'modal.category': 'Categoria',
-    'modal.tvl': 'TVL',
-    'modal.audited': 'Auditado',
-    'modal.website': 'Website',
-    'modal.docs': 'Documentação',
-    'modal.risk': 'Nível de risco:',
-    'risk.low': 'Baixo',
-    'risk.medium': 'Médio',
-    'risk.high': 'Alto',
-    'footer.suggest': 'Sugerir projeto',
-    'toast.copied': 'Link copiado!',
-    'toast.suggest': 'Obrigado! Sua sugestão será revisada.',
-    'badge.popular': 'Popular',
-    'badge.new': 'Novo',
-    'badge.audited': 'Auditado'
-  },
-  en: {
-    'hero.title': 'Explore the Solana Ecosystem',
-    'hero.subtitle': 'Discover, compare and connect with the best DeFi, NFT, RWA and DePIN projects on Solana.',
-    'search.placeholder': 'Search projects...',
-    'filters.all': 'All categories',
-    'filters.defi': 'DeFi',
-    'filters.dex': 'DEX',
-    'filters.lending': 'Lending',
-    'filters.staking': 'Liquid Staking',
-    'filters.nft': 'NFT & Marketplaces',
-    'filters.rwa': 'RWA',
-    'filters.depin': 'DePIN',
-    'filters.infrastructure': 'Infrastructure',
-    'filters.wallet': 'Wallets',
-    'filters.analytics': 'Analytics',
-    'sort.featured': 'Featured',
-    'sort.name': 'Name (A-Z)',
-    'sort.name-desc': 'Name (Z-A)',
-    'sort.newest': 'Newest',
-    'loading': 'Loading projects...',
-    'empty.title': 'No projects found',
-    'empty.subtitle': 'Try adjusting your filters or search terms.',
-    'empty.reset': 'Clear filters',
-    'modal.category': 'Category',
-    'modal.tvl': 'TVL',
-    'modal.audited': 'Audited',
-    'modal.website': 'Website',
-    'modal.docs': 'Documentation',
-    'modal.risk': 'Risk level:',
-    'risk.low': 'Low',
-    'risk.medium': 'Medium',
-    'risk.high': 'High',
-    'footer.suggest': 'Suggest project',
-    'toast.copied': 'Link copied!',
-    'toast.suggest': 'Thanks! Your suggestion will be reviewed.',
-    'badge.popular': 'Popular',
-    'badge.new': 'New',
-    'badge.audited': 'Audited'
-  }
-};
-
-// ===== DOM ELEMENTS =====
-const elements = {};
-
-function cacheElements() {
-  elements.searchInput = document.getElementById('search-input');
-  elements.clearSearch = document.getElementById('clear-search');
-  elements.categoryFilter = document.getElementById('category-filter');
-  elements.sortFilter = document.getElementById('sort-filter');
-  elements.projectsGrid = document.getElementById('projects-grid');
-  elements.emptyState = document.getElementById('empty-state');
-  elements.resultsCount = document.getElementById('results-count');
-  elements.activeFilters = document.getElementById('active-filters');
-  elements.loading = document.getElementById('loading');
-  elements.themeToggle = document.getElementById('theme-toggle');
-  elements.langToggle = document.getElementById('lang-toggle');
-  elements.suggestBtn = document.getElementById('suggest-btn');
-  elements.suggestFooter = document.getElementById('suggest-footer');
-  elements.modal = document.getElementById('project-modal');
-  elements.modalClose = document.querySelector('.modal-close');
-  elements.modalOverlay = document.querySelector('.modal-overlay');
-  elements.toast = document.getElementById('toast');
-  elements.lastUpdated = document.getElementById('last-updated');
-  elements.year = document.getElementById('year');
-  elements.resetFilters = document.getElementById('reset-filters');
-}
-
-// ===== INITIALIZATION =====
-async function init() {
-  cacheElements();
-  applyTheme();
-  applyLanguage();
-  setupEventListeners();
-  await loadProjects();
-  updateLastUpdated();
-  setupPWA();
-  
-  // Track page view
-  trackEvent('page_view', { page: 'directory' });
-}
-
-// ===== DATA LOADING =====
-async function loadProjects() {
-  try {
-    const response = await fetch('js/projects.json', { cache: 'no-store' });
-    const data = await response.json();
-    state.projects = data.projects;
-    
-    // Sort by featured first, then by name
-    state.projects.sort((a, b) => {
-      if (a.featured && !b.featured) return -1;
-      if (!a.featured && b.featured) return 1;
-      return a.name.localeCompare(b.name);
-    });
-    
-    applyFilters();
-  } catch (error) {
-    console.error('Error loading projects:', error);
-    showError('Erro ao carregar projetos. Tente recarregar a página.');
-  }
-}
-
-// ===== FILTERING & SEARCH =====
-function applyFilters() {
-  let results = [...state.projects];
-  
-  // Search filter
-  if (state.filters.search) {
-    const query = state.filters.search.toLowerCase();
-    results = results.filter(p => 
-      p.name.toLowerCase().includes(query) ||
-      p.description.toLowerCase().includes(query) ||
-      p.category.toLowerCase().includes(query)
-    );
-  }
-  
-  // Category filter
-  if (state.filters.category !== 'all') {
-    results = results.filter(p => p.category === state.filters.category);
-  }
-  
-  // Sort
-  switch (state.filters.sort) {
-    case 'name-asc':
-      results.sort((a, b) => a.name.localeCompare(b.name));
-      break;
-    case 'name-desc':
-      results.sort((a, b) => b.name.localeCompare(a.name));
-      break;
-    case 'newest':
-      results.sort((a, b) => new Date(b.addedDate) - new Date(a.addedDate));
-      break;
-    case 'featured':
-    default:
-      results.sort((a, b) => {
-        if (a.featured && !b.featured) return -1;
-        if (!a.featured && b.featured) return 1;
-        return 0;
-      });
-  }
-  
-  state.filteredProjects = results;
-  renderProjects();
-  updateResultsCount();
-  updateActiveFilters();
-}
-
-function renderProjects() {
-  if (state.filteredProjects.length === 0) {
-    elements.projectsGrid.innerHTML = '';
-    elements.emptyState.classList.remove('hidden');
-    return;
-  }
-  
-  elements.emptyState.classList.add('hidden');
-  
-  const html = state.filteredProjects.map(project => {
-    const badges = project.badges?.map(badge => {
-      const tooltip = i18n[state.language][`badge.${badge}`] || badge;
-      return `<span class="badge badge-${badge}" data-tooltip="${tooltip}">${getBadgeIcon(badge)}</span>`;
-    }).join('') || '';
-    
-    // Track click for analytics
-    const clickHandler = `trackEvent('project_click', { project: '${project.id}' })`;
-    
-    return `
-      <article class="project-card" role="listitem" data-id="${project.id}" onclick="${clickHandler}" tabindex="0">
-        <div class="card-header">
-          <img class="card-logo" src="${project.logo}" alt="${project.name}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>'">
-          <div class="card-title-group">
-            <h3 class="card-title">${project.name}</h3>
-            <div class="card-badges">${badges}</div>
-          </div>
-        </div>
-        <p class="card-description">${project.description}</p>
-        <div class="card-footer">
-          <span class="card-category">${translateCategory(project.category)}</span>
-          <span class="card-cta">
-            Ver detalhes
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-          </span>
-        </div>
-      </article>
-    `;
-  }).join('');
-  
-  elements.projectsGrid.innerHTML = html;
-  
-  // Add click listeners to cards
-  document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      if (!e.target.closest('a')) {
-        openModal(card.dataset.id);
-      }
-    });
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openModal(card.dataset.id);
-      }
-    });
-  });
-}
-
-function getBadgeIcon(badge) {
-  const icons = {
-    popular: '⭐',
-    new: '✨',
-    audited: '✓'
-  };
-  return icons[badge] || '';
-}
-
-function translateCategory(category) {
-  const categories = {
-    defi: 'DeFi',
-    dex: 'DEX',
-    lending: 'Lending',
-    staking: 'Liquid Staking',
-    nft: 'NFT',
-    rwa: 'RWA',
-    depim: 'DePIN',
-    infrastructure: 'Infra',
-    wallet: 'Wallet',
-    analytics: 'Analytics'
-  };
-  return categories[category] || category;
-}
-
-function updateResultsCount() {
-  const count = state.filteredProjects.length;
-  const total = state.projects.length;
-  const key = count === 1 ? 'result' : 'results';
-  elements.resultsCount.textContent = `${count} de ${total} projetos`;
-}
-
-function updateActiveFilters() {
-  const tags = [];
-  
-  if (state.filters.search) {
-    tags.push({
-      label: `🔍 "${state.filters.search}"`,
-      onRemove: () => {
-        state.filters.search = '';
-        elements.searchInput.value = '';
-        elements.clearSearch.classList.remove('visible');
-        applyFilters();
-      }
-    });
-  }
-  
-  if (state.filters.category !== 'all') {
-    tags.push({
-      label: `${translateCategory(state.filters.category)}`,
-      onRemove: () => {
-        state.filters.category = 'all';
-        elements.categoryFilter.value = 'all';
-        applyFilters();
-      }
-    });
-  }
-  
-  elements.activeFilters.innerHTML = tags.map(tag => `
-    <span class="filter-tag">
-      ${tag.label}
-      <button type="button" aria-label="Remover filtro">&times;</button>
-    </span>
-  `).join('');
-  
-  elements.activeFilters.querySelectorAll('.filter-tag button').forEach((btn, i) => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      tags[i].onRemove();
-    });
-  });
-}
-
-// ===== MODAL =====
-function openModal(projectId) {
-  const project = state.projects.find(p => p.id === projectId);
-  if (!project) return;
-  
-  // Populate modal
-  document.getElementById('modal-logo').src = project.logo;
-  document.getElementById('modal-logo').alt = project.name;
-  document.getElementById('modal-title').textContent = project.name;
-  document.getElementById('modal-description').textContent = project.description;
-  document.getElementById('modal-category').textContent = translateCategory(project.category);
-  document.getElementById('modal-tvl').textContent = project.tvl;
-  document.getElementById('modal-audited').textContent = project.audited ? '✅ Sim' : '❌ Não';
-  
-  // Risk badge
-  const riskEl = document.getElementById('modal-risk');
-  riskEl.textContent = t(`risk.${project.risk}`);
-  riskEl.className = `risk-badge ${project.risk}`;
-  
-  // Links
-  document.getElementById('modal-website').href = project.website;
-  document.getElementById('modal-docs').href = project.docs || '#';
-  document.getElementById('modal-docs').parentElement.style.display = project.docs ? 'flex' : 'none';
-  document.getElementById('modal-twitter').href = project.twitter || '#';
-  document.getElementById('modal-discord').href = project.discord || '#';
-  document.getElementById('modal-discord').parentElement.style.display = project.discord ? 'flex' : 'none';
-  document.getElementById('modal-github').href = project.github || '#';
-  document.getElementById('modal-github').parentElement.style.display = project.github ? 'flex' : 'none';
-  
-  // Badges
-  const badgesContainer = document.getElementById('modal-badges');
-  badgesContainer.innerHTML = project.badges?.map(badge => 
-    `<span class="badge badge-${badge}">${getBadgeIcon(badge)} ${t(`badge.${badge}`)}</span>`
-  ).join('') || '';
-  
-  // Show modal
-  elements.modal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-  
-  // Focus trap
-  const focusable = elements.modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-  const firstFocusable = focusable[0];
-  const lastFocusable = focusable[focusable.length - 1];
-  
-  elements.modal.addEventListener('keydown', function trapFocus(e) {
-    if (e.key !== 'Tab') return;
-    
-    if (e.shiftKey) {
-      if (document.activeElement === firstFocusable) {
-        e.preventDefault();
-        lastFocusable.focus();
-      }
-    } else {
-      if (document.activeElement === lastFocusable) {
-        e.preventDefault();
-        firstFocusable.focus();
-      }
-    }
-  }, { once: true });
-  
-  firstFocusable?.focus();
-}
-
-function closeModal() {
-  elements.modal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-}
-
-// ===== EVENT LISTENERS =====
-function setupEventListeners() {
-  // Search
-  elements.searchInput.addEventListener('input', (e) => {
-    state.filters.search = e.target.value.trim();
-    elements.clearSearch.classList.toggle('visible', state.filters.search.length > 0);
-    applyFilters();
-  });
-  
-  elements.clearSearch.addEventListener('click', () => {
-    state.filters.search = '';
-    elements.searchInput.value = '';
-    elements.clearSearch.classList.remove('visible');
-    elements.searchInput.focus();
-    applyFilters();
-  });
-  
-  // Filters
-  elements.categoryFilter.addEventListener('change', (e) => {
-    state.filters.category = e.target.value;
-    applyFilters();
-  });
-  
-  elements.sortFilter.addEventListener('change', (e) => {
-    state.filters.sort = e.target.value;
-    applyFilters();
-  });
-  
-  // Reset filters
-  elements.resetFilters?.addEventListener('click', () => {
-    state.filters = { search: '', category: 'all', sort: 'featured' };
-    elements.searchInput.value = '';
-    elements.categoryFilter.value = 'all';
-    elements.sortFilter.value = 'featured';
-    elements.clearSearch.classList.remove('visible');
-    applyFilters();
-  });
-  
-  // Theme toggle
-  elements.themeToggle.addEventListener('click', () => {
-    state.theme = state.theme === 'light' ? 'dark' : 'light';
-    localStorage.setItem('solanaTools_theme', state.theme);
-    applyTheme();
-    trackEvent('theme_change', { theme: state.theme });
-  });
-  
-  // Language toggle
-  elements.langToggle.addEventListener('click', () => {
-    state.language = state.language === 'pt' ? 'en' : 'pt';
-    localStorage.setItem('solanaTools_lang', state.language);
-    applyLanguage();
-    trackEvent('language_change', { language: state.language });
-  });
-  
-  // Modal
-  elements.modalClose.addEventListener('click', closeModal);
-  elements.modalOverlay.addEventListener('click', closeModal);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && elements.modal.getAttribute('aria-hidden') === 'false') {
-      closeModal();
-    }
-  });
-  
-  // Suggest project
-  const handleSuggest = () => {
-    showToast(t('toast.suggest'));
-    trackEvent('suggest_project');
-    // Could open a form modal or link to GitHub Issues
-    window.open('https://github.com/marcoscleber10/Ferramentas-solana/issues/new', '_blank');
-  };
-  
-  elements.suggestBtn?.addEventListener('click', handleSuggest);
-  elements.suggestFooter?.addEventListener('click', (e) => {
-    e.preventDefault();
-    handleSuggest();
-  });
-  
-  // Keyboard navigation for cards (delegated)
-  elements.projectsGrid.addEventListener('keydown', (e) => {
-    if (e.target.classList.contains('project-card') && (e.key === 'Enter' || e.key === ' ')) {
-      e.preventDefault();
-      openModal(e.target.dataset.id);
-    }
-  });
-}
-
-// ===== THEME & LANGUAGE =====
-function applyTheme() {
-  document.documentElement.setAttribute('data-theme', state.theme);
-  const icon = elements.themeToggle?.querySelector('.theme-icon');
-  if (icon) {
-    icon.textContent = state.theme === 'light' ? '🌙' : '☀️';
-  }
-}
-
-function applyLanguage() {
-  // Update lang attribute
-  document.documentElement.lang = state.language === 'pt' ? 'pt-BR' : 'en';
-  
-  // Update toggle button
-  const langSpan = elements.langToggle?.querySelector('.lang-current');
-  if (langSpan) {
-    langSpan.textContent = state.language === 'pt' ? '🇧🇷' : '🇺🇸';
-  }
-  
-  // Translate all elements with data-i18n
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.dataset.i18n;
-    if (i18n[state.language][key]) {
-      el.textContent = i18n[state.language][key];
-    }
-  });
-  
-  // Translate placeholders
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    const key = el.dataset.i18nPlaceholder;
-    if (i18n[state.language][key]) {
-      el.placeholder = i18n[state.language][key];
-    }
-  });
-  
-  // Re-render to apply translations
-  if (state.projects.length > 0) {
-    renderProjects();
-    updateActiveFilters();
-  }
-}
-
-function t(key) {
-  return i18n[state.language][key] || key;
-}
-
-// ===== UTILITIES =====
-function showToast(message, duration = 3000) {
-  elements.toast.textContent = message;
-  elements.toast.classList.add('show');
-  
-  setTimeout(() => {
-    elements.toast.classList.remove('show');
-  }, duration);
-}
-
-function showError(message) {
-  showToast(message);
-  // Could add error logging here
-}
-
-function updateLastUpdated() {
-  // Try to get from JSON first, fallback to build date
-  fetch('js/projects.json')
-    .then(res => res.json())
-    .then(data => {
-      if (data.lastUpdated) {
-        const date = new Date(data.lastUpdated);
-        elements.lastUpdated.textContent = `Atualizado em: ${date.toLocaleDateString(state.language === 'pt' ? 'pt-BR' : 'en-US')}`;
-      }
-    })
-    .catch(() => {
-      elements.lastUpdated.textContent = 'Atualizado recentemente';
-    });
-  
-  elements.year.textContent = new Date().getFullYear();
-}
-
-// ===== ANALYTICS (Simple, Privacy-Friendly) =====
-function trackEvent(eventName, params = {}) {
-  const entry = {
-    event: eventName,
-    params,
-    timestamp: new Date().toISOString(),
-    url: window.location.pathname
-  };
-  
-  // Store locally (could send to backend in production)
-  const analytics = JSON.parse(localStorage.getItem('solanaTools_analytics') || '[]');
-  analytics.push(entry);
-  
-  // Keep last 100 events
-  if (analytics.length > 100) analytics.shift();
-  
-  localStorage.setItem('solanaTools_analytics', JSON.stringify(analytics));
-  
-  // Console log for debugging
-  console.log(`📊 Event: ${eventName}`, params);
-}
-
-// ===== PWA SETUP =====
-function setupPWA() {
-  // Check if installed
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    // Could show install button here
-    console.log('PWA: Install prompt available');
-  });
-  
-  // Track app usage
-  if (window.matchMedia('(display-mode: standalone)').matches) {
-    trackEvent('pwa_launched');
-  }
-}
-
-// ===== KEYBOARD SHORTCUTS =====
-document.addEventListener('keydown', (e) => {
-  // Ctrl/Cmd + K to focus search
-  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-    e.preventDefault();
-    elements.searchInput?.focus();
-  }
-  
-  // Escape to close modal
-  if (e.key === 'Escape' && elements.modal?.getAttribute('aria-hidden') === 'false') {
-    closeModal();
-  }
-});
-
-// ===== START =====
-document.addEventListener('DOMContentLoaded', init);
-
-// Export for testing
-if (typeof module !== 'undefined') {
-  module.exports = { state, applyFilters, openModal, t };
-}
-```
-
----
-
-## 📱 `manifest.json` (PWA)
-
-```json
-{
-  "name": "Solana Ecosystem Directory",
-  "short_name": "SolanaTools",
-  "description": "Descubra os melhores projetos e ferramentas do ecossistema Solana",
-  "start_url": "/Ferramentas-solana/",
-  "scope": "/Ferramentas-solana/",
-  "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#9945FF",
-  "orientation": "portrait-primary",
-  "icons": [
-    {
-      "src": "assets/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "assets/icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "categories": ["finance", "utilities", "productivity"],
-  "lang": "pt-BR",
-  "dir": "ltr"
-}
-```
-
----
-
-## 🔧 `sw.js` (Service Worker Básico)
-
-```javascript
-// Service Worker para cache offline básico
-const CACHE_NAME = 'solana-tools-v1';
-const STATIC_ASSETS = [
-  '/Ferramentas-solana/',
-  '/Ferramentas-solana/index.html',
-  '/Ferramentas-solana/css/styles.css',
-  '/Ferramentas-solana/js/main.js',
-  '/Ferramentas-solana/js/projects.json'
-];
-
-// Install: cache static assets
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(STATIC_ASSETS))
-      .then(() => self.skipWaiting())
-  );
-});
-
-// Activate: clean old caches
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) => 
-      Promise.all(
-        keys.filter((key) => key !== CACHE_NAME)
-            .map((key) => caches.delete(key))
-      )
-    ).then(() => self.clients.claim())
-  );
-});
-
-// Fetch: network-first, fallback to cache
-self.addEventListener('fetch', (event) => {
-  // Skip non-GET requests
-  if (event.request.method !== 'GET') return;
-  
-  // Skip external requests
-  if (!event.request.url.startsWith(self.location.origin)) return;
-  
-  event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        // Clone and cache successful responses
-        if (response.ok) {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, clone);
-          });
-        }
-        return response;
-      })
-      .catch(() => caches.match(event.request))
-  );
-});
-
-// Background sync for suggestions (future enhancement)
-self.addEventListener('sync', (event) => {
-  if (event.tag === 'sync-suggestions') {
-    event.waitUntil(
-      // Send pending suggestions to backend
-      console.log('Background sync: sending suggestions')
-    );
-  }
-});
-```
-
----
-
-## 📝 `README.md` (Documentação)
-
-```markdown
-# ⚡ Solana Ecosystem Directory
-
-Diretório moderno e responsivo de projetos e ferramentas do ecossistema Solana.
-
-## ✨ Funcionalidades
-
-- 🔍 Busca em tempo real com filtros avançados
-- 🌓 Modo escuro/claro com persistência
-- 🌐 Suporte a português e inglês
-- 📱 Design responsivo mobile-first
-- 🗂️ Cards clicáveis com modal de detalhes
-- 🏷️ Badges interativas com tooltips
-- 📊 Dados estruturados em JSON (fácil manutenção)
-- 🔒 PWA: instalável e funcional offline
-- ♿ Acessível (ARIA, navegação por teclado)
-- 📈 Analytics simples e privacy-friendly
-
-## 🚀 Deploy (GitHub Pages)
-
-1. Fork/Clone este repositório
-2. Ative o GitHub Pages em `Settings > Pages`
-3. Selecione a branch `main` e pasta `/root`
-4. Acesse: `https://seu-usuario.github.io/Ferramentas-solana/`
-
-## 🛠️ Como Adicionar um Novo Projeto
-
-Edite `js/projects.json` e adicione um objeto:
-
-```json
-{
-  "id": "meu-projeto",
-  "name": "Nome do Projeto",
-  "description": "Breve descrição...",
-  "category": "defi",
-  "logo": "assets/icons/meu-projeto.svg",
-  "website": "https://...",
-  "docs": "https://...",
-  "twitter": "https://...",
-  "discord": "https://...",
-  "github": "https://...",
-  "tvl": "$XXM+",
-  "audited": true,
-  "risk": "low|medium|high",
-  "badges": ["popular", "new", "audited"],
-  "featured": false,
-  "addedDate": "2024-XX-XX"
-}
