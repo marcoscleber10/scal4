@@ -3,23 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Scalp3+ | Tracker DeFi + DCA Club</title>
+  <title>Scalp3 | Tracker DCA + Bitcoin + Clube</title>
   <style>
     :root {
-      --bg-primary: #0f172a;
-      --bg-secondary: #1e293b;
-      --bg-card: #334155;
-      --text-primary: #f1f5f9;
-      --text-secondary: #94a3b8;
+      --bg-primary: #0a0e17;
+      --bg-secondary: #111827;
+      --bg-card: #1f2937;
+      --bg-input: #374151;
+      --text-primary: #f9fafb;
+      --text-secondary: #9ca3af;
+      --text-muted: #6b7280;
       --accent: #3b82f6;
       --accent-hover: #2563eb;
-      --success: #22c55e;
+      --success: #10b981;
       --danger: #ef4444;
       --warning: #f59e0b;
-      --border: #475569;
-      --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
-      --radius: 12px;
-      --font: 'Segoe UI', system-ui, sans-serif;
+      --border: #374151;
+      --border-light: #4b5563;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.4);
+      --radius: 8px;
+      --radius-sm: 6px;
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,291 +32,249 @@
       font-family: var(--font);
       background: var(--bg-primary);
       color: var(--text-primary);
-      line-height: 1.6;
+      line-height: 1.5;
       min-height: 100vh;
+      font-size: 14px;
     }
     
-    /* Header & Navigation */
+    /* Header */
     header {
       background: var(--bg-secondary);
-      padding: 1rem 2rem;
       border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1rem;
       position: sticky;
       top: 0;
       z-index: 100;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.5rem;
     }
     
     .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent);
+      font-weight: 600;
+      font-size: 1.1rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
     
-    .logo span { color: var(--text-primary); }
+    .logo span { color: var(--accent); }
     
-    nav {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
+    nav { display: flex; gap: 0.25rem; flex-wrap: wrap; }
     
     .tab-btn {
-      padding: 0.75rem 1.25rem;
+      padding: 0.5rem 0.875rem;
       background: transparent;
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
       color: var(--text-secondary);
       cursor: pointer;
-      font-weight: 500;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      font-size: 0.875rem;
+      transition: all 0.15s;
+      white-space: nowrap;
     }
     
-    .tab-btn:hover, .tab-btn.active {
+    .tab-btn:hover { background: var(--bg-card); color: var(--text-primary); }
+    .tab-btn.active {
       background: var(--accent);
       border-color: var(--accent);
       color: white;
     }
     
-    .tab-btn.active { box-shadow: 0 0 0 3px rgba(59,130,246,0.3); }
+    /* Main */
+    main { padding: 1rem; max-width: 1200px; margin: 0 auto; }
     
-    /* Main Content */
-    main { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fade 0.2s; }
     
-    .tab-content { display: none; animation: fadeIn 0.3s ease; }
-    .tab-content.active { display: block; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
     
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0 0 1rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
     }
     
     /* Cards Grid */
-    .cards-grid {
+    .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
     }
     
     .card {
       background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      box-shadow: var(--shadow);
       border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.875rem;
     }
     
-    .card-title {
-      font-size: 0.875rem;
+    .card-label {
+      font-size: 0.75rem;
       color: var(--text-secondary);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
     }
     
     .card-value {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text-primary);
+      font-size: 1.1rem;
+      font-weight: 600;
     }
     
-    .card-value.positive { color: var(--success); }
-    .card-value.negative { color: var(--danger); }
+    .card-value.pos { color: var(--success); }
+    .card-value.neg { color: var(--danger); }
     
-    .card-subtitle {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      margin-top: 0.25rem;
+    .card-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 0.125rem;
     }
     
-    /* Price Display */
-    .price-section {
+    /* Price Section */
+    .price-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
     }
     
     .price-card {
       background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 1.5rem;
       border: 1px solid var(--border);
-      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 1rem;
     }
     
-    .price-header {
+    .price-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      margin-bottom: 0.75rem;
     }
     
-    .price-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .price-title { font-weight: 600; font-size: 0.95rem; }
     
     .price-badge {
-      padding: 0.25rem 0.75rem;
+      padding: 0.125rem 0.5rem;
       border-radius: 999px;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 600;
     }
     
-    .price-badge.up { background: rgba(34,197,94,0.2); color: var(--success); }
-    .price-badge.down { background: rgba(239,68,68,0.2); color: var(--danger); }
+    .price-badge.up { background: rgba(16,185,129,0.15); color: var(--success); }
+    .price-badge.down { background: rgba(239,68,68,0.15); color: var(--danger); }
     
     .price-main {
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      margin: 0.5rem 0;
+      margin: 0.25rem 0;
     }
     
     .price-changes {
       display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 1rem;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
     }
     
-    .change-item {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      font-size: 0.875rem;
-    }
-    
-    .change-item.up { color: var(--success); }
-    .change-item.down { color: var(--danger); }
+    .change { display: flex; align-items: center; gap: 0.25rem; }
+    .change.up { color: var(--success); }
+    .change.down { color: var(--danger); }
     
     .sparkline {
-      height: 40px;
-      margin: 1rem 0;
+      height: 32px;
+      margin: 0.75rem 0;
       display: flex;
       align-items: flex-end;
-      gap: 2px;
+      gap: 1px;
     }
     
-    .sparkline-bar {
+    .spark {
       flex: 1;
       background: var(--accent);
-      border-radius: 2px 2px 0 0;
-      min-height: 5px;
-      transition: height 0.3s;
+      border-radius: 1px 1px 0 0;
+      min-height: 3px;
+      opacity: 0.7;
     }
     
-    .status-indicator {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.875rem;
-      color: var(--text-secondary);
+    .price-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
       margin-top: 0.5rem;
     }
     
-    .status-dot {
-      width: 8px;
-      height: 8px;
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+    
+    .dot {
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--success);
       animation: pulse 2s infinite;
     }
     
-    .status-dot.error { background: var(--danger); animation: none; }
+    .dot.err { background: var(--danger); animation: none; }
     
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
     
-    /* Table Styles */
-    .table-container {
+    /* Table */
+    .table-wrap {
       background: var(--bg-card);
-      border-radius: var(--radius);
       border: 1px solid var(--border);
+      border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: var(--shadow);
     }
     
-    .table-header {
-      padding: 1rem 1.5rem;
+    .table-head {
+      padding: 0.75rem 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
       border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
     
-    .table-actions {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
+    .table-actions { display: flex; gap: 0.375rem; flex-wrap: wrap; }
     
     .btn {
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      border: none;
-      font-weight: 500;
+      padding: 0.375rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-input);
+      color: var(--text-primary);
+      font-size: 0.8rem;
       cursor: pointer;
+      transition: all 0.15s;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      transition: all 0.2s;
-      font-size: 0.875rem;
+      gap: 0.375rem;
     }
     
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-    }
+    .btn:hover { background: var(--border); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); }
+    .btn.primary:hover { background: var(--accent-hover); }
+    .btn.danger { background: rgba(239,68,68,0.15); border-color: var(--danger); color: var(--danger); }
+    .btn.danger:hover { background: var(--danger); color: white; }
+    .btn.sm { padding: 0.25rem 0.5rem; font-size: 0.75rem; }
     
-    .btn-primary:hover { background: var(--accent-hover); }
-    
-    .btn-secondary {
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-      border: 1px solid var(--border);
-    }
-    
-    .btn-secondary:hover { background: var(--border); }
-    
-    .btn-danger {
-      background: rgba(239,68,68,0.2);
-      color: var(--danger);
-      border: 1px solid var(--danger);
-    }
-    
-    .btn-danger:hover { background: var(--danger); color: white; }
-    
-    .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.75rem; }
-    
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.875rem;
-    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
     
     th, td {
-      padding: 1rem 1.5rem;
+      padding: 0.75rem 1rem;
       text-align: left;
       border-bottom: 1px solid var(--border);
     }
@@ -321,20 +283,33 @@
       background: var(--bg-secondary);
       font-weight: 600;
       color: var(--text-secondary);
-      text-transform: uppercase;
       font-size: 0.75rem;
-      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
     }
     
-    tr:hover { background: rgba(59,130,246,0.05); }
+    tr:hover { background: rgba(59,130,246,0.08); }
     
-    .action-btns { display: flex; gap: 0.5rem; }
+    .actions { display: flex; gap: 0.375rem; }
+    
+    /* Empty State */
+    .empty {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-muted);
+    }
+    
+    .empty-icon { font-size: 2rem; margin-bottom: 0.5rem; opacity: 0.6; }
+    .empty h3 { margin: 0.25rem 0 0.5rem; color: var(--text-primary); font-size: 1rem; }
+    .empty p { margin-bottom: 1rem; font-size: 0.85rem; }
+    .empty ol { text-align: left; max-width: 320px; margin: 0 auto 1rem; padding-left: 1.25rem; font-size: 0.8rem; }
+    .empty li { margin: 0.375rem 0; }
     
     /* Modal */
     .modal-overlay {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.7);
+      inset: 0;
+      background: rgba(0,0,0,0.75);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -342,645 +317,616 @@
       padding: 1rem;
       opacity: 0;
       visibility: hidden;
-      transition: all 0.3s;
+      transition: all 0.2s;
     }
     
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
     
     .modal {
       background: var(--bg-secondary);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       width: 100%;
-      max-width: 500px;
+      max-width: 480px;
       max-height: 90vh;
       overflow-y: auto;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
     }
     
-    .modal-header {
-      padding: 1.25rem 1.5rem;
+    .modal-head {
+      padding: 0.875rem 1rem;
       border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     
-    .modal-title { font-size: 1.25rem; font-weight: 600; }
-    
+    .modal-title { font-weight: 600; font-size: 1rem; }
     .modal-close {
       background: none;
       border: none;
       color: var(--text-secondary);
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       cursor: pointer;
       line-height: 1;
     }
-    
     .modal-close:hover { color: var(--text-primary); }
     
-    .modal-body { padding: 1.5rem; }
+    .modal-body { padding: 1rem; }
     
-    .form-group {
-      margin-bottom: 1rem;
-    }
-    
+    .form-row { margin-bottom: 0.875rem; }
     .form-label {
       display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.375rem;
       font-weight: 500;
       color: var(--text-secondary);
-      font-size: 0.875rem;
+      font-size: 0.8rem;
     }
     
     .form-input, .form-select {
       width: 100%;
-      padding: 0.75rem;
-      background: var(--bg-primary);
+      padding: 0.625rem 0.75rem;
+      background: var(--bg-input);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: var(--radius-sm);
       color: var(--text-primary);
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
     
     .form-input:focus, .form-select:focus {
       outline: none;
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+      box-shadow: 0 0 0 2px rgba(59,130,246,0.3);
     }
     
-    .modal-footer {
-      padding: 1rem 1.5rem;
+    .modal-foot {
+      padding: 0.75rem 1rem;
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: flex-end;
       gap: 0.5rem;
     }
     
-    /* Wallets Section */
-    .wallets-grid {
+    /* Wallets */
+    .wallets {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.75rem;
     }
     
-    .wallet-card {
+    .wallet {
       background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 1.25rem;
       border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.875rem;
     }
     
     .wallet-title {
       font-weight: 600;
-      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.375rem;
     }
     
-    .wallet-address {
+    .wallet-addr {
       font-family: monospace;
-      font-size: 0.875rem;
-      background: var(--bg-primary);
-      padding: 0.75rem;
-      border-radius: 6px;
+      font-size: 0.8rem;
+      background: var(--bg-input);
+      padding: 0.5rem 0.625rem;
+      border-radius: 4px;
       word-break: break-all;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
     }
     
-    .wallet-actions {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
+    .wallet-acts { display: flex; gap: 0.375rem; flex-wrap: wrap; }
     
-    /* Backup Section */
-    .backup-section {
+    /* Backup */
+    .backup {
       background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 1.5rem;
       border: 1px solid var(--border);
-      margin-top: 1.5rem;
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin-top: 1rem;
     }
+    
+    .backup h4 { margin-bottom: 0.5rem; font-size: 0.95rem; }
+    .backup p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; line-height: 1.5; }
     
     .backup-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.75rem;
     }
     
     .backup-card {
       background: var(--bg-secondary);
-      border-radius: 8px;
-      padding: 1rem;
       border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem;
     }
     
-    .backup-card h4 {
-      margin-bottom: 0.5rem;
+    .backup-card h5 { margin-bottom: 0.375rem; font-size: 0.85rem; }
+    .backup-card p { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+    
+    .backup-card label {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.375rem;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      cursor: pointer;
     }
     
-    .backup-card p {
-      font-size: 0.875rem;
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-    }
-    
-    /* Education Section */
-    .education-section {
-      margin-top: 2rem;
-      padding-top: 2rem;
+    /* Education */
+    .edu {
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
       border-top: 1px solid var(--border);
     }
     
-    .education-card {
+    .edu-card {
       background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 1.5rem;
       border: 1px solid var(--border);
-      margin-bottom: 1rem;
-    }
-    
-    .education-card h4 {
+      border-radius: var(--radius);
+      padding: 0.875rem;
       margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
     }
     
-    .education-card p {
-      color: var(--text-secondary);
-      font-size: 0.875rem;
-      line-height: 1.7;
-    }
+    .edu-card h4 { margin-bottom: 0.375rem; font-size: 0.9rem; }
+    .edu-card p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
     
     .disclaimer {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      margin-top: 2rem;
-      padding: 1rem;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      padding: 0.75rem;
       background: rgba(245,158,11,0.1);
-      border-radius: 8px;
-      border-left: 3px solid var(--warning);
+      border-radius: var(--radius-sm);
+      border-left: 2px solid var(--warning);
+      line-height: 1.5;
+    }
+    
+    /* Settings */
+    .settings-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      max-width: 400px;
     }
     
     /* Responsive */
-    @media (max-width: 768px) {
-      header { padding: 1rem; }
-      main { padding: 1rem; }
-      .tab-btn { padding: 0.5rem 0.75rem; font-size: 0.875rem; }
-      th, td { padding: 0.75rem; font-size: 0.75rem; }
-      .price-main { font-size: 1.5rem; }
-    }
-    
-    /* Empty State */
-    .empty-state {
-      text-align: center;
-      padding: 3rem 2rem;
-      color: var(--text-secondary);
-    }
-    
-    .empty-state-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      opacity: 0.5;
-    }
-    
-    .empty-state h3 {
-      margin-bottom: 0.5rem;
-      color: var(--text-primary);
-    }
-    
-    .empty-state ol {
-      text-align: left;
-      max-width: 400px;
-      margin: 1rem auto;
-      padding-left: 1.5rem;
-    }
-    
-    .empty-state li { margin: 0.5rem 0; }
-    
-    /* Loading */
-    .loading {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    @media (max-width: 640px) {
+      header { padding: 0.5rem; }
+      nav { gap: 0.125rem; }
+      .tab-btn { padding: 0.375rem 0.625rem; font-size: 0.8rem; }
+      main { padding: 0.75rem; }
+      th, td { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
+      .price-main { font-size: 1.25rem; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
     }
     
     .hidden { display: none !important; }
+    input[type="file"] { display: none; }
   </style>
 </head>
 <body>
   <!-- Header -->
   <header>
-    <div class="logo">🔍 <span>Scalp3</span><span style="color:var(--accent)">+</span></div>
+    <div class="logo">📊 Scalp<span>3</span></div>
     <nav>
-      <button class="tab-btn active" data-tab="defi">📊 DeFi Tracker</button>
-      <button class="tab-btn" data-tab="bitcoin">₿ Cotação Bitcoin</button>
-      <button class="tab-btn" data-tab="dca">💰 Clube DCA</button>
-      <button class="tab-btn" data-tab="settings">⚙️ Configurações</button>
+      <button class="tab-btn active" data-tab="portfolio">Portfolio</button>
+      <button class="tab-btn" data-tab="bitcoin">₿ Bitcoin</button>
+      <button class="tab-btn" data-tab="clube">💰 Clube DCA</button>
+      <button class="tab-btn" data-tab="settings">⚙️</button>
     </nav>
   </header>
 
-  <!-- Main Content -->
+  <!-- Main -->
   <main>
-    <!-- Tab: DeFi Tracker (Original Scalp3) -->
-    <section id="defi" class="tab-content active">
-      <h2 style="margin-bottom:1.5rem">🎯 Opportunity Scanner</h2>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-title">Pools Ativas</div>
-          <div class="card-value">24</div>
-          <div class="card-subtitle">Analisadas hoje</div>
-        </div>
-        <div class="card">
-          <div class="card-title">Melhor APY</div>
-          <div class="card-value positive">127.5%</div>
-          <div class="card-subtitle">Curve/ETH-USDC</div>
-        </div>
-        <div class="card">
-          <div class="card-title">Risco Médio</div>
-          <div class="card-value">Baixo</div>
-          <div class="card-subtitle">Score: 8.2/10</div>
-        </div>
-        <div class="card">
-          <div class="card-title">Watchlist</div>
-          <div class="card-value">7</div>
-          <div class="card-subtitle">Pools monitoradas</div>
-        </div>
-      </div>
-      
-      <div class="table-container">
-        <div class="table-header">
-          <h3>Pools Recomendadas</h3>
-          <div class="table-actions">
-            <button class="btn btn-secondary btn-sm">🔄 Atualizar</button>
-            <button class="btn btn-primary btn-sm">➕ Nova Pool</button>
-          </div>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Pool</th>
-              <th>APY</th>
-              <th>Risco</th>
-              <th>Liquidez</th>
-              <th>Score</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Curve/ETH-USDC</td>
-              <td class="positive">127.5%</td>
-              <td><span style="color:var(--success)">Baixo</span></td>
-              <td>$45.2M</td>
-              <td>9.1</td>
-              <td class="action-btns">
-                <button class="btn btn-sm btn-secondary">👁️</button>
-                <button class="btn btn-sm btn-primary">➕</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Aave/USDT</td>
-              <td class="positive">18.3%</td>
-              <td><span style="color:var(--success)">Baixo</span></td>
-              <td>$892M</td>
-              <td>9.5</td>
-              <td class="action-btns">
-                <button class="btn btn-sm btn-secondary">👁️</button>
-                <button class="btn btn-sm btn-primary">➕</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Uniswap/BTC-ETH</td>
-              <td class="positive">42.1%</td>
-              <td><span style="color:var(--warning)">Médio</span></td>
-              <td>$156M</td>
-              <td>7.8</td>
-              <td class="action-btns">
-                <button class="btn btn-sm btn-secondary">👁️</button>
-                <button class="btn btn-sm btn-primary">➕</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Tab: Bitcoin Quotation (ENHANCED) -->
-    <section id="bitcoin" class="tab-content">
-      <h2 style="margin-bottom:1.5rem">₿ Cotação Bitcoin</h2>
-      
-      <div class="price-section">
-        <div class="price-card">
-          <div class="price-header">
-            <div class="price-title">₿ Bitcoin / BRL</div>
-            <span class="price-badge up" id="btc-badge">▲ Atualizado</span>
-          </div>
-          <div class="price-main" id="btc-price-brl">R$ --</div>
-          <div class="sparkline" id="sparkline-brl"></div>
-          <div class="price-changes">
-            <span class="change-item up" id="btc-24h">24h: --</span>
-            <span class="change-item" id="btc-7d">7d: --</span>
-          </div>
-          <div class="status-indicator">
-            <span class="status-dot" id="status-dot"></span>
-            <span id="status-text">Conectado à API</span>
-          </div>
-        </div>
-        
-        <div class="price-card">
-          <div class="price-header">
-            <div class="price-title">₿ Bitcoin / USD</div>
-            <span class="price-badge" style="background:var(--bg-primary)">Live</span>
-          </div>
-          <div class="price-main" id="btc-price-usd">$ --</div>
-          <div class="sparkline" id="sparkline-usd"></div>
-          <div class="price-changes">
-            <span class="change-item up" id="usd-24h">24h: --</span>
-            <span class="change-item" id="usd-7d">7d: --</span>
-          </div>
-          <div style="margin-top:1rem;font-size:0.875rem;color:var(--text-secondary)">
-            <div>Volume 24h: <strong id="btc-volume">--</strong></div>
-            <div>Market Cap: <strong id="btc-mcap">--</strong></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">📈 Últimas Atualizações</div>
-        <table style="margin-top:0.5rem">
-          <thead>
-            <tr>
-              <th>Horário</th>
-              <th>Preço BRL</th>
-              <th>Variação</th>
-              <th>Fonte</th>
-            </tr>
-          </thead>
-          <tbody id="price-history">
-            <tr><td colspan="4" style="text-align:center;color:var(--text-secondary)">Aguardando dados...</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Tab: DCA Club (NEW - Cloned from clube-dca2) -->
-    <section id="dca" class="tab-content">
-      <h2 style="margin-bottom:1.5rem">💰 Clube DCA - Registro de Compras</h2>
+    <!-- Portfolio Tab (scalp3 original) -->
+    <section id="portfolio" class="tab-content active">
+      <h2 class="section-title">Portfolio DCA</h2>
       
       <!-- Summary Cards -->
-      <div class="cards-grid">
+      <div class="cards">
         <div class="card">
-          <div class="card-title">Total Investido</div>
-          <div class="card-value" id="dca-total-invested">R$ 0,00</div>
+          <div class="card-label">Total Investido</div>
+          <div class="card-value" id="p-total">R$ 0,00</div>
         </div>
         <div class="card">
-          <div class="card-title">Valor Atual</div>
-          <div class="card-value" id="dca-current-value">R$ 0,00</div>
+          <div class="card-label">Valor Atual</div>
+          <div class="card-value" id="p-current">R$ 0,00</div>
         </div>
         <div class="card">
-          <div class="card-title">Lucro/Prejuízo</div>
-          <div class="card-value" id="dca-profit">R$ 0,00</div>
+          <div class="card-label">Lucro/Prejuízo</div>
+          <div class="card-value" id="p-profit">R$ 0,00</div>
         </div>
         <div class="card">
-          <div class="card-title">Preço Médio BTC</div>
-          <div class="card-value" id="dca-avg-price">R$ 350.000,00</div>
+          <div class="card-label">Preço Médio BTC</div>
+          <div class="card-value" id="p-avg">R$ 0,00</div>
         </div>
       </div>
 
-      <!-- Purchase History Table -->
-      <div class="table-container">
-        <div class="table-header">
-          <h3>Histórico de Compras</h3>
+      <!-- Purchases Table -->
+      <div class="table-wrap">
+        <div class="table-head">
+          <strong>Histórico de Compras</strong>
           <div class="table-actions">
-            <button class="btn btn-secondary" onclick="importCSV()">📥 CSV</button>
-            <button class="btn btn-secondary" onclick="exportCSV()">📤 CSV</button>
-            <button class="btn btn-primary" onclick="openModal()">+ Nova Compra</button>
+            <button class="btn sm" onclick="exportCSV('p')">📤 CSV</button>
+            <button class="btn sm primary" onclick="openModal('p')">+ Nova</button>
           </div>
         </div>
         
-        <div id="empty-state" class="empty-state">
-          <div class="empty-state-icon">🎯</div>
-          <h3>Nenhuma compra registrada ainda</h3>
-          <p>Comece seu plano DCA em 3 passos simples:</p>
+        <div id="p-empty" class="empty">
+          <div class="empty-icon">🎯</div>
+          <h3>Nenhuma compra registrada</h3>
+          <p>Comece seu DCA em 3 passos:</p>
           <ol>
-            <li>Clique em <strong>"Nova Compra"</strong></li>
-            <li>Informe data, valor e ativo (BTC, ETH, SOL)</li>
-            <li>Acompanhe sua evolução nos cards acima</li>
+            <li>Clique em <strong>"+ Nova"</strong></li>
+            <li>Preencha data, valor e ativo</li>
+            <li>Acompanhe nos cards acima</li>
           </ol>
-          <button class="btn btn-primary" onclick="openModal()">💡 Registrar Primeira Compra</button>
+          <button class="btn primary" onclick="openModal('p')">Registrar Primeira Compra</button>
         </div>
         
-        <table id="purchases-table" class="hidden">
+        <table id="p-table" class="hidden">
           <thead>
             <tr>
-              <th>Data</th>
-              <th>Ativo</th>
-              <th>Valor (BRL)</th>
-              <th>Quantidade</th>
-              <th>Preço Unitário</th>
-              <th>Plataforma</th>
-              <th>Ações</th>
+              <th>Data</th><th>Ativo</th><th>Valor</th><th>Qtd</th><th>Preço Unit.</th><th>Plataforma</th><th></th>
             </tr>
           </thead>
-          <tbody id="purchases-body"></tbody>
+          <tbody id="p-body"></tbody>
         </table>
       </div>
 
-      <!-- Wallets Section -->
-      <div style="margin-top:2rem">
-        <h3 style="margin-bottom:1rem">🔐 Minhas Carteiras</h3>
-        <p style="color:var(--text-secondary);font-size:0.875rem;margin-bottom:1rem">
-          Clique em "Copiar" para revelar o endereço completo. 
-          <strong>Nunca compartilhe suas chaves privadas.</strong>
-        </p>
-        
-        <div class="wallets-grid">
-          <div class="wallet-card">
-            <div class="wallet-title">₿ Bitcoin (BTC)</div>
-            <div class="wallet-address">bc1q3zf09xtensa5kag3nz6jsvqyle3sgnmns0j9n5</div>
-            <div class="wallet-actions">
-              <button class="btn btn-sm btn-secondary" onclick="copyToClipboard('bc1q3zf09xtensa5kag3nz6jsvqyle3sgnmns0j9n5')">📋 Copiar</button>
-              <button class="btn btn-sm btn-secondary">🔲 QR</button>
-            </div>
+      <!-- Wallets -->
+      <h3 class="section-title" style="margin-top:1.5rem">Minhas Carteiras</h3>
+      <p style="color:var(--text-muted);font-size:0.8rem;margin-bottom:0.75rem">
+        Clique em "Copiar" para revelar. <strong>Nunca compartilhe chaves privadas.</strong>
+      </p>
+      <div class="wallets">
+        <div class="wallet">
+          <div class="wallet-title">₿ BTC</div>
+          <div class="wallet-addr">bc1q3zf09xtensa5kag3nz6jsvqyle3sgnmns0j9n5</div>
+          <div class="wallet-acts">
+            <button class="btn sm" onclick="copyAddr('bc1q3zf09xtensa5kag3nz6jsvqyle3sgnmns0j9n5')">📋 Copiar</button>
           </div>
-          <div class="wallet-card">
-            <div class="wallet-title">⚡ Lightning Network</div>
-            <div class="wallet-address">cloggedparrot01@walletofsatoshi.com</div>
-            <div class="wallet-actions">
-              <button class="btn btn-sm btn-secondary" onclick="copyToClipboard('cloggedparrot01@walletofsatoshi.com')">📋 Copiar</button>
-            </div>
+        </div>
+        <div class="wallet">
+          <div class="wallet-title">⚡ Lightning</div>
+          <div class="wallet-addr">cloggedparrot01@walletofsatoshi.com</div>
+          <div class="wallet-acts">
+            <button class="btn sm" onclick="copyAddr('cloggedparrot01@walletofsatoshi.com')">📋 Copiar</button>
           </div>
-          <div class="wallet-card">
-            <div class="wallet-title">Ξ Ethereum (ETH)</div>
-            <div class="wallet-address">0xAd944bA180610F1Fe43151eD81c0084C918c68e1</div>
-            <div class="wallet-actions">
-              <button class="btn btn-sm btn-secondary" onclick="copyToClipboard('0xAd944bA180610F1Fe43151eD81c0084C918c68e1')">📋 Copiar</button>
-              <button class="btn btn-sm btn-secondary">🔲 QR</button>
-            </div>
+        </div>
+        <div class="wallet">
+          <div class="wallet-title">Ξ ETH</div>
+          <div class="wallet-addr">0xAd944bA180610F1Fe43151eD81c0084C918c68e1</div>
+          <div class="wallet-acts">
+            <button class="btn sm" onclick="copyAddr('0xAd944bA180610F1Fe43151eD81c0084C918c68e1')">📋 Copiar</button>
           </div>
-          <div class="wallet-card">
-            <div class="wallet-title">◎ Solana (SOL)</div>
-            <div class="wallet-address">EtSD7W7YG36ZuMAAX6bwJYJ9keciRK7cP7rJiadiZdmm</div>
-            <div class="wallet-actions">
-              <button class="btn btn-sm btn-secondary" onclick="copyToClipboard('EtSD7W7YG36ZuMAAX6bwJYJ9keciRK7cP7rJiadiZdmm')">📋 Copiar</button>
-            </div>
+        </div>
+        <div class="wallet">
+          <div class="wallet-title">◎ SOL</div>
+          <div class="wallet-addr">EtSD7W7YG36ZuMAAX6bwJYJ9keciRK7cP7rJiadiZdmm</div>
+          <div class="wallet-acts">
+            <button class="btn sm" onclick="copyAddr('EtSD7W7YG36ZuMAAX6bwJYJ9keciRK7cP7rJiadiZdmm')">📋 Copiar</button>
           </div>
-          <div class="wallet-card">
-            <div class="wallet-title">💠 PIX (UUID)</div>
-            <div class="wallet-address">127d59fc-1f37-4e8e-9fd4-295e1883727b</div>
-            <div class="wallet-actions">
-              <button class="btn btn-sm btn-secondary" onclick="copyToClipboard('127d59fc-1f37-4e8e-9fd4-295e1883727b')">📋 Copiar</button>
-            </div>
+        </div>
+        <div class="wallet">
+          <div class="wallet-title">💠 PIX</div>
+          <div class="wallet-addr">127d59fc-1f37-4e8e-9fd4-295e1883727b</div>
+          <div class="wallet-acts">
+            <button class="btn sm" onclick="copyAddr('127d59fc-1f37-4e8e-9fd4-295e1883727b')">📋 Copiar</button>
           </div>
         </div>
       </div>
 
-      <!-- Backup Section -->
-      <div class="backup-section">
-        <h3 style="margin-bottom:0.5rem">🗄️ Backup & Sincronização</h3>
-        <p style="color:var(--text-secondary);font-size:0.875rem;margin-bottom:1rem">
-          <strong>⚠️ Importante:</strong> Seus dados são armazenados localmente no navegador. 
-          Use o backup para evitar perda de informações. <strong>Nunca compartilhe seu arquivo de backup.</strong>
-        </p>
-        
+      <!-- Backup -->
+      <div class="backup">
+        <h4>🗄️ Backup</h4>
+        <p>Seus dados ficam no navegador. Use backup para não perder informações. <strong>Nunca compartilhe o arquivo.</strong></p>
         <div class="backup-grid">
           <div class="backup-card">
-            <h4>📁 Arquivo JSON</h4>
-            <p>Exporte ou importe seus dados manualmente. Opcional: criptografe com senha antes de salvar.</p>
-            <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
-              <button class="btn btn-sm btn-secondary" onclick="downloadJSON()">📥 Baixar JSON</button>
-              <button class="btn btn-sm btn-secondary" onclick="document.getElementById('json-input').click()">📤 Restaurar JSON</button>
-              <input type="file" id="json-input" accept=".json" class="hidden" onchange="restoreJSON(event)">
-            </div>
-            <label style="display:flex;align-items:center;gap:0.5rem;margin-top:0.75rem;font-size:0.75rem;color:var(--text-secondary)">
-              <input type="checkbox" id="encrypt-backup"> Criptografar com senha (AES-256)
-            </label>
+            <h5>📁 JSON</h5>
+            <p>Exporte/importe manualmente. Opcional: senha para ofuscar.</p>
+            <button class="btn sm" onclick="downloadJSON('p')">📥 Baixar</button>
+            <button class="btn sm" style="margin-left:0.375rem" onclick="document.getElementById('p-json').click()">📤 Restaurar</button>
+            <input type="file" id="p-json" accept=".json" onchange="restoreJSON(event,'p')">
+            <label style="margin-top:0.5rem"><input type="checkbox" id="p-encrypt"> Ofuscar com senha</label>
           </div>
           <div class="backup-card">
-            <h4>☁️ Google Drive</h4>
-            <p>Salve seus dados de forma segura na nuvem. Escopo: apenas arquivos criados por este app.</p>
-            <button class="btn btn-sm btn-secondary" disabled>🔗 Conectar ao Drive</button>
-            <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:0.5rem">
-              Status: <span style="color:var(--danger)">Não conectado</span>
-            </div>
+            <h5>☁️ Google Drive</h5>
+            <p>Salve na nuvem com segurança. Escopo: apenas arquivos deste app.</p>
+            <button class="btn sm" disabled>🔗 Conectar</button>
+            <div style="font-size:0.7rem;color:var(--text-muted);margin-top:0.375rem">Status: <span style="color:var(--danger)">Não conectado</span></div>
           </div>
         </div>
       </div>
 
-      <!-- Education Section -->
-      <div class="education-section">
-        <h3 style="margin-bottom:1rem">📚 Educação & Megatendências</h3>
-        
-        <div class="education-card">
-          <h4>💡 O que é Dollar Cost Averaging (DCA)?</h4>
-          <p>Estratégia de investir valores fixos em intervalos regulares, independentemente do preço do ativo. 
-          Reduz o impacto da volatilidade e elimina a necessidade de "acertar o timing" do mercado.</p>
+      <!-- Education -->
+      <div class="edu">
+        <h3 class="section-title">📚 Educação</h3>
+        <div class="edu-card">
+          <h4>💡 O que é DCA?</h4>
+          <p>Investir valores fixos em intervalos regulares, independente do preço. Reduz impacto da volatilidade e elimina a necessidade de "acertar o timing".</p>
         </div>
-        
-        <div class="education-card">
-          <h4>🚀 Carteira Promissora 2030 (Hipotética)</h4>
+        <div class="edu-card">
+          <h4>🚀 Carteira 2030 (Hipotética)</h4>
           <p><strong>Composição ilustrativa:</strong> 50% BTC, 30% ETH, 20% SOL.</p>
-          <p>Projeção baseada em análise de relatórios públicos (ARK Invest, 2024). 
-          Potencial de valorização: 3x-6x (cenário otimista). <strong>Risco: Alto.</strong></p>
+          <p>Projeção baseada em relatórios públicos (ARK Invest, 2024). Potencial: 3x-6x (otimista). <strong>Risco: Alto.</strong></p>
         </div>
-        
         <div class="disclaimer">
-          <strong>⚠️ Aviso Legal:</strong> As informações acima são para fins informativos e educacionais. 
-          Não constituem recomendação de investimento. Rentabilidade passada não garante resultados futuros. 
-          Consulte um profissional certificado para orientação personalizada.
+          <strong>⚠️ Aviso:</strong> Informações para fins educativos. Não são recomendação de investimento. Rentabilidade passada não garante resultados futuros. Consulte profissional certificado.
         </div>
       </div>
     </section>
 
-    <!-- Tab: Settings -->
+    <!-- Bitcoin Tab (ENHANCED) -->
+    <section id="bitcoin" class="tab-content">
+      <h2 class="section-title">₿ Cotação Bitcoin</h2>
+      
+      <div class="price-grid">
+        <div class="price-card">
+          <div class="price-head">
+            <div class="price-title">₿ Bitcoin / BRL</div>
+            <span class="price-badge up" id="btc-badge-brl">▲</span>
+          </div>
+          <div class="price-main" id="btc-brl">R$ --</div>
+          <div class="sparkline" id="spark-brl"></div>
+          <div class="price-changes">
+            <span class="change up" id="brl-24h">24h: --</span>
+            <span class="change" id="brl-7d">7d: --</span>
+          </div>
+          <div class="status">
+            <span class="dot" id="dot-brl"></span>
+            <span id="stat-brl">Aguardando...</span>
+          </div>
+        </div>
+        
+        <div class="price-card">
+          <div class="price-head">
+            <div class="price-title">₿ Bitcoin / USD</div>
+            <span class="price-badge" style="background:var(--bg-input)">Live</span>
+          </div>
+          <div class="price-main" id="btc-usd">$ --</div>
+          <div class="sparkline" id="spark-usd"></div>
+          <div class="price-changes">
+            <span class="change up" id="usd-24h">24h: --</span>
+            <span class="change" id="usd-7d">7d: --</span>
+          </div>
+          <div class="price-meta">
+            <div>Volume 24h: <strong id="btc-vol">--</strong></div>
+            <div>Market Cap: <strong id="btc-mcap">--</strong></div>
+          </div>
+          <div class="status">
+            <span class="dot" id="dot-usd"></span>
+            <span id="stat-usd">Aguardando...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="table-head"><strong>Últimas Atualizações</strong></div>
+        <table>
+          <thead><tr><th>Horário</th><th>Preço BRL</th><th>Variação</th><th>Fonte</th></tr></thead>
+          <tbody id="btc-history">
+            <tr><td colspan="4" style="text-align:center;color:var(--text-muted)">Aguardando dados...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Clube DCA Tab (CLONE EXATO do clube-dca2) -->
+    <section id="clube" class="tab-content">
+      <h2 class="section-title">💰 Clube DCA - Compras</h2>
+      
+      <!-- Summary Cards (IDÊNTICO ao original) -->
+      <div class="cards">
+        <div class="card">
+          <div class="card-label">Total Investido</div>
+          <div class="card-value" id="c-total">R$ 0,00</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Valor Atual</div>
+          <div class="card-value" id="c-current">R$ 0,00</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Lucro/Prejuízo</div>
+          <div class="card-value" id="c-profit">R$ 0,00</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Preço Médio BTC</div>
+          <div class="card-value" id="c-avg">R$ 0,00</div>
+        </div>
+      </div>
+
+      <!-- Purchases Table (IDÊNTICO ao original) -->
+      <div class="table-wrap">
+        <div class="table-head">
+          <strong>Histórico de Compras</strong>
+          <div class="table-actions">
+            <button class="btn sm" onclick="exportCSV('c')">📤 CSV</button>
+            <button class="btn sm primary" onclick="openModal('c')">+ Nova</button>
+          </div>
+        </div>
+        
+        <div id="c-empty" class="empty">
+          <div class="empty-icon">🎯</div>
+          <h3>Nenhuma compra registrada</h3>
+          <p>Comece seu DCA em 3 passos:</p>
+          <ol>
+            <li>Clique em <strong>"+ Nova"</strong></li>
+            <li>Preencha data, valor e ativo</li>
+            <li>Acompanhe nos cards acima</li>
+          </ol>
+          <button class="btn primary" onclick="openModal('c')">Registrar Primeira Compra</button>
+        </div>
+        
+        <table id="c-table" class="hidden">
+          <thead>
+            <tr>
+              <th>Data</th><th>Ativo</th><th>Valor</th><th>Qtd</th><th>Preço Unit.</th><th>Plataforma</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="c-body"></tbody>
+        </table>
+      </div>
+
+      <!-- Wallets (IDÊNTICO ao original) -->
+      <h3 class="section-title" style="margin-top:1.5rem">Minhas Carteiras</h3>
+      <p style="color:var(--text-muted);font-size:0.8rem;margin-bottom:0.75rem">
+        Clique em "Copiar" para revelar. <strong>Nunca compartilhe chaves privadas.</strong>
+      </p>
+      <div class="wallets">
+        <div class="wallet">
+          <div class="wallet-title">₿ BTC</div>
+          <div class="wallet-addr">bc1q3zf09xtensa5kag3nz6jsvqyle3sgnmns0j9n5</div>
+          <div class="wallet-acts">
+            <button class="btn sm" onclick="copyAddr('bc1q3zf09xtensa5kag3nz6jsvqyle3sgnmns0j9n5')">📋 Copiar</button>
+          </div>
+        </div>
+        <div class="wallet">
+          <div class="wallet-title">⚡ Lightning</div>
+          <div class="wallet-addr">cloggedparrot01@walletofsatoshi.com</div>
+          <div class="wallet-acts">
+            <button class="btn sm" onclick="copyAddr('cloggedparrot01@walletofsatoshi.com')">📋 Copiar</button>
+          </div>
+        </div>
+        <div class="wallet">
+          <div class="wallet-title">Ξ ETH</div>
+          <div class="wallet-addr">0xAd944bA180610F1Fe43151eD81c0084C918c68e1</div>
+          <div class="wallet-acts">
+            <button class="btn sm" onclick="copyAddr('0xAd944bA180610F1Fe43151eD81c0084C918c68e1')">📋 Copiar</button>
+          </div>
+        </div>
+        <div class="wallet">
+          <div class="wallet-title">◎ SOL</div>
+          <div class="wallet-addr">EtSD7W7YG36ZuMAAX6bwJYJ9keciRK7cP7rJiadiZdmm</div>
+          <div class="wallet-acts">
+            <button class="btn sm" onclick="copyAddr('EtSD7W7YG36ZuMAAX6bwJYJ9keciRK7cP7rJiadiZdmm')">📋 Copiar</button>
+          </div>
+        </div>
+        <div class="wallet">
+          <div class="wallet-title">💠 PIX</div>
+          <div class="wallet-addr">127d59fc-1f37-4e8e-9fd4-295e1883727b</div>
+          <div class="wallet-acts">
+            <button class="btn sm" onclick="copyAddr('127d59fc-1f37-4e8e-9fd4-295e1883727b')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Backup (IDÊNTICO ao original) -->
+      <div class="backup">
+        <h4>🗄️ Backup</h4>
+        <p>Seus dados ficam no navegador. Use backup para não perder informações. <strong>Nunca compartilhe o arquivo.</strong></p>
+        <div class="backup-grid">
+          <div class="backup-card">
+            <h5>📁 JSON</h5>
+            <p>Exporte/importe manualmente. Opcional: senha para ofuscar.</p>
+            <button class="btn sm" onclick="downloadJSON('c')">📥 Baixar</button>
+            <button class="btn sm" style="margin-left:0.375rem" onclick="document.getElementById('c-json').click()">📤 Restaurar</button>
+            <input type="file" id="c-json" accept=".json" onchange="restoreJSON(event,'c')">
+            <label style="margin-top:0.5rem"><input type="checkbox" id="c-encrypt"> Ofuscar com senha</label>
+          </div>
+          <div class="backup-card">
+            <h5>☁️ Google Drive</h5>
+            <p>Salve na nuvem com segurança. Escopo: apenas arquivos deste app.</p>
+            <button class="btn sm" disabled>🔗 Conectar</button>
+            <div style="font-size:0.7rem;color:var(--text-muted);margin-top:0.375rem">Status: <span style="color:var(--danger)">Não conectado</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education (IDÊNTICO ao original) -->
+      <div class="edu">
+        <h3 class="section-title">📚 Educação</h3>
+        <div class="edu-card">
+          <h4>💡 O que é DCA?</h4>
+          <p>Investir valores fixos em intervalos regulares, independente do preço. Reduz impacto da volatilidade e elimina a necessidade de "acertar o timing".</p>
+        </div>
+        <div class="edu-card">
+          <h4>🚀 Carteira 2030 (Hipotética)</h4>
+          <p><strong>Composição ilustrativa:</strong> 50% BTC, 30% ETH, 20% SOL.</p>
+          <p>Projeção baseada em relatórios públicos (ARK Invest, 2024). Potencial: 3x-6x (otimista). <strong>Risco: Alto.</strong></p>
+        </div>
+        <div class="disclaimer">
+          <strong>⚠️ Aviso:</strong> Informações para fins educativos. Não são recomendação de investimento. Rentabilidade passada não garante resultados futuros. Consulte profissional certificado.
+        </div>
+      </div>
+    </section>
+
+    <!-- Settings Tab -->
     <section id="settings" class="tab-content">
-      <h2 style="margin-bottom:1.5rem">⚙️ Configurações</h2>
-      <div class="card">
-        <div class="form-group">
-          <label class="form-label">Moeda Principal</label>
-          <select class="form-select" id="currency-select">
-            <option value="BRL">Real Brasileiro (BRL)</option>
-            <option value="USD">Dólar Americano (USD)</option>
-            <option value="EUR">Euro (EUR)</option>
+      <h2 class="section-title">⚙️ Configurações</h2>
+      <div class="settings-card">
+        <div class="form-row">
+          <label class="form-label">Moeda</label>
+          <select class="form-select" id="cfg-currency">
+            <option value="BRL">BRL (Real)</option>
+            <option value="USD">USD (Dólar)</option>
           </select>
         </div>
-        <div class="form-group">
-          <label class="form-label">Atualização Automática (segundos)</label>
-          <select class="form-select" id="refresh-interval">
+        <div class="form-row">
+          <label class="form-label">Atualização Bitcoin</label>
+          <select class="form-select" id="cfg-refresh">
             <option value="30">30 segundos</option>
             <option value="60" selected>1 minuto</option>
             <option value="300">5 minutos</option>
             <option value="0">Desativado</option>
           </select>
         </div>
-        <div class="form-group">
-          <label class="form-label">
-            <input type="checkbox" id="notifications-toggle" checked> 
-            Ativar notificações de preço
-          </label>
+        <div class="form-row">
+          <label class="form-label"><input type="checkbox" id="cfg-notify" checked> Notificações de preço</label>
         </div>
-        <button class="btn btn-primary" onclick="saveSettings()">💾 Salvar Configurações</button>
+        <button class="btn primary" onclick="saveSettings()">💾 Salvar</button>
       </div>
     </section>
   </main>
 
-  <!-- Modal: Nova Compra -->
-  <div class="modal-overlay" id="purchase-modal">
+  <!-- Modal Nova Compra -->
+  <div class="modal-overlay" id="modal">
     <div class="modal">
-      <div class="modal-header">
-        <div class="modal-title">➕ Nova Compra DCA</div>
+      <div class="modal-head">
+        <div class="modal-title" id="modal-title">+ Nova Compra</div>
         <button class="modal-close" onclick="closeModal()">&times;</button>
       </div>
       <div class="modal-body">
-        <form id="purchase-form">
-          <div class="form-group">
-            <label class="form-label">Data da Compra *</label>
-            <input type="date" class="form-input" id="purchase-date" required>
+        <form id="form">
+          <input type="hidden" id="edit-id">
+          <div class="form-row">
+            <label class="form-label">Data *</label>
+            <input type="date" class="form-input" id="f-date" required>
           </div>
-          <div class="form-group">
+          <div class="form-row">
             <label class="form-label">Ativo *</label>
-            <select class="form-select" id="purchase-asset" required>
-              <option value="BTC">₿ Bitcoin (BTC)</option>
-              <option value="ETH">Ξ Ethereum (ETH)</option>
-              <option value="SOL">◎ Solana (SOL)</option>
+            <select class="form-select" id="f-asset" required>
+              <option value="BTC">₿ Bitcoin</option>
+              <option value="ETH">Ξ Ethereum</option>
+              <option value="SOL">◎ Solana</option>
               <option value="OUTRO">Outro</option>
             </select>
           </div>
-          <div class="form-group">
-            <label class="form-label">Valor Investido (BRL) *</label>
-            <input type="number" step="0.01" class="form-input" id="purchase-value" placeholder="Ex: 100.00" required>
+          <div class="form-row">
+            <label class="form-label">Valor (BRL) *</label>
+            <input type="number" step="0.01" class="form-input" id="f-value" placeholder="100.00" required>
           </div>
-          <div class="form-group">
-            <label class="form-label">Quantidade Comprada *</label>
-            <input type="number" step="0.00000001" class="form-input" id="purchase-quantity" placeholder="Ex: 0.00123456" required>
+          <div class="form-row">
+            <label class="form-label">Quantidade *</label>
+            <input type="number" step="0.00000001" class="form-input" id="f-qty" placeholder="0.00123456" required>
           </div>
-          <div class="form-group">
+          <div class="form-row">
             <label class="form-label">Preço Unitário (BRL)</label>
-            <input type="number" step="0.01" class="form-input" id="purchase-price" placeholder="Calculado automaticamente">
+            <input type="number" step="0.01" class="form-input" id="f-price" placeholder="Calculado automático">
           </div>
-          <div class="form-group">
+          <div class="form-row">
             <label class="form-label">Plataforma</label>
-            <select class="form-select" id="purchase-platform">
+            <select class="form-select" id="f-platform">
               <option value="Binance">Binance</option>
               <option value="Mercado Bitcoin">Mercado Bitcoin</option>
               <option value="Foxbit">Foxbit</option>
@@ -988,457 +934,324 @@
               <option value="Outra">Outra</option>
             </select>
           </div>
-          <div class="form-group">
+          <div class="form-row">
             <label class="form-label">Observações</label>
-            <input type="text" class="form-input" id="purchase-notes" placeholder="Opcional">
+            <input type="text" class="form-input" id="f-notes" placeholder="Opcional">
           </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
-        <button class="btn btn-primary" onclick="savePurchase()">💾 Salvar Compra</button>
+      <div class="modal-foot">
+        <button class="btn" onclick="closeModal()">Cancelar</button>
+        <button class="btn primary" onclick="savePurchase()">💾 Salvar</button>
       </div>
     </div>
   </div>
 
   <!-- Scripts -->
   <script>
-    // ==================== CONFIG & STATE ====================
-    const API_BASE = 'https://api.coingecko.com/api/v3';
+    // ===== CONFIG =====
+    const API = 'https://api.coingecko.com/api/v3';
     let btcData = null;
-    let purchases = JSON.parse(localStorage.getItem('dca_purchases') || '[]');
-    let refreshInterval = null;
+    let refreshTimer = null;
+    let currentTab = 'p'; // 'p'=portfolio, 'c'=clube
     
-    // ==================== TAB NAVIGATION ====================
+    // ===== TABS =====
     document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.onclick = () => {
+        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
         btn.classList.add('active');
         document.getElementById(btn.dataset.tab).classList.add('active');
-        
-        if(btn.dataset.tab === 'bitcoin') fetchBitcoinPrice();
-        if(btn.dataset.tab === 'dca') renderPurchases();
-      });
+        if(btn.dataset.tab==='bitcoin') fetchBTC();
+        if(btn.dataset.tab==='clube') { currentTab='c'; render('c'); }
+        if(btn.dataset.tab==='portfolio') { currentTab='p'; render('p'); }
+      };
     });
     
-    // ==================== BITCOIN PRICE FETCHER ====================
-    async function fetchBitcoinPrice() {
-      const statusDot = document.getElementById('status-dot');
-      const statusText = document.getElementById('status-text');
+    // ===== BITCOIN =====
+    async function fetchBTC() {
+      const updateStatus = (id, dotId, statId, ok, msg) => {
+        document.getElementById(dotId).className = `dot${ok?'':' err'}`;
+        document.getElementById(statId).textContent = msg;
+      };
       
       try {
-        statusDot.classList.remove('error');
-        statusText.textContent = 'Atualizando...';
+        updateStatus('brl','dot-brl','stat-brl',true,'Atualizando...');
+        updateStatus('usd','dot-usd','stat-usd',true,'Atualizando...');
         
-        const response = await fetch(`${API_BASE}/simple/price?ids=bitcoin&vs_currencies=brl,usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true`);
-        if(!response.ok) throw new Error('API error');
+        const res = await fetch(`${API}/simple/price?ids=bitcoin&vs_currencies=brl,usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true`);
+        if(!res.ok) throw new Error('API');
+        const d = await res.json();
+        btcData = d.bitcoin;
         
-        const data = await response.json();
-        btcData = data.bitcoin;
+        // BRL
+        const brl = btcData.brl;
+        document.getElementById('btc-brl').textContent = `R$ ${brl.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+        const ch24 = btcData.brl_24h_change;
+        document.getElementById('brl-24h').textContent = `24h: ${ch24>=0?'+':''}${ch24.toFixed(2)}%`;
+        document.getElementById('brl-24h').className = `change ${ch24>=0?'up':'down'}`;
+        document.getElementById('btc-badge-brl').textContent = ch24>=0?'▲ Alta':'▼ Baixa';
+        document.getElementById('btc-badge-brl').className = `price-badge ${ch24>=0?'up':'down'}`;
+        spark('spark-brl', ch24);
+        addHistory(brl, ch24);
+        updateStatus('brl','dot-brl','stat-brl',true,`Atualizado: ${new Date().toLocaleTimeString('pt-BR')}`);
         
-        // Update BRL
-        document.getElementById('btc-price-brl').textContent = 
-          `R$ ${btcData.brl.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
-        document.getElementById('btc-24h').textContent = 
-          `24h: ${btcData.brl_24h_change >= 0 ? '+' : ''}${btcData.brl_24h_change.toFixed(2)}%`;
-        document.getElementById('btc-24h').className = `change-item ${btcData.brl_24h_change >= 0 ? 'up' : 'down'}`;
+        // USD
+        const usd = btcData.usd;
+        document.getElementById('btc-usd').textContent = `$ ${usd.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+        const ch24u = btcData.usd_24h_change;
+        document.getElementById('usd-24h').textContent = `24h: ${ch24u>=0?'+':''}${ch24u.toFixed(2)}%`;
+        document.getElementById('usd-24h').className = `change ${ch24u>=0?'up':'down'}`;
+        spark('spark-usd', ch24u);
+        document.getElementById('btc-vol').textContent = `$ ${(btcData.usd_24h_vol/1e9).toFixed(2)}B`;
+        document.getElementById('btc-mcap').textContent = `$ ${(btcData.usd_market_cap/1e9).toFixed(2)}B`;
+        updateStatus('usd','dot-usd','stat-usd',true,`Atualizado: ${new Date().toLocaleTimeString('pt-BR')}`);
         
-        // Update USD
-        document.getElementById('btc-price-usd').textContent = 
-          `$ ${btcData.usd.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
-        document.getElementById('usd-24h').textContent = 
-          `24h: ${btcData.usd_24h_change >= 0 ? '+' : ''}${btcData.usd_24h_change.toFixed(2)}%`;
-        document.getElementById('usd-24h').className = `change-item ${btcData.usd_24h_change >= 0 ? 'up' : 'down'}`;
-        
-        // Volume & Market Cap
-        document.getElementById('btc-volume').textContent = 
-          `$ ${(btcData.usd_24h_vol / 1e9).toFixed(2)}B`;
-        document.getElementById('btc-mcap').textContent = 
-          `$ ${(btcData.usd_market_cap / 1e9).toFixed(2)}B`;
-        
-        // Badge
-        const badge = document.getElementById('btc-badge');
-        badge.textContent = btcData.brl_24h_change >= 0 ? '▲ Alta' : '▼ Baixa';
-        badge.className = `price-badge ${btcData.brl_24h_change >= 0 ? 'up' : 'down'}`;
-        
-        // Sparkline (simulated)
-        generateSparkline('sparkline-brl', btcData.brl_24h_change);
-        generateSparkline('sparkline-usd', btcData.usd_24h_change);
-        
-        // History table
-        addToPriceHistory(btcData.brl, btcData.brl_24h_change);
-        
-        // Status
-        statusDot.classList.add('success');
-        statusText.textContent = `Atualizado: ${new Date().toLocaleTimeString('pt-BR')}`;
-        
-      } catch(error) {
-        console.error('Erro ao buscar preço:', error);
-        statusDot.classList.add('error');
-        statusText.textContent = 'Erro na conexão';
-        document.getElementById('btc-badge').textContent = '⚠️ Offline';
-        document.getElementById('btc-badge').className = 'price-badge';
+      } catch(e) {
+        console.error(e);
+        updateStatus('brl','dot-brl','stat-brl',false,'Erro na conexão');
+        updateStatus('usd','dot-usd','stat-usd',false,'Erro na conexão');
+        document.getElementById('btc-badge-brl').textContent = '⚠️ Offline';
+        document.getElementById('btc-badge-brl').className = 'price-badge';
       }
     }
     
-    function generateSparkline(elementId, change) {
-      const container = document.getElementById(elementId);
-      container.innerHTML = '';
-      // Generate 20 random bars with trend based on change
-      const trend = change >= 0 ? 0.6 : 0.4;
-      for(let i=0; i<20; i++) {
-        const bar = document.createElement('div');
-        bar.className = 'sparkline-bar';
-        const height = 10 + Math.random() * 70 + (change >= 0 ? i*1.5 : -i*1.5);
-        bar.style.height = `${Math.max(5, Math.min(100, height))}%`;
-        bar.style.opacity = 0.3 + (i/20)*0.7;
-        container.appendChild(bar);
+    function spark(id, change) {
+      const el = document.getElementById(id);
+      el.innerHTML = '';
+      const trend = change>=0 ? 0.65 : 0.35;
+      for(let i=0;i<16;i++){
+        const b = document.createElement('div');
+        b.className = 'spark';
+        const h = 8 + Math.random()*70 + (change>=0 ? i*2 : -i*2);
+        b.style.height = `${Math.max(4,Math.min(100,h))}%`;
+        b.style.opacity = 0.4 + (i/16)*0.6;
+        el.appendChild(b);
       }
     }
     
-    function addToPriceHistory(price, change) {
-      const tbody = document.getElementById('price-history');
-      const row = document.createElement('tr');
-      const time = new Date().toLocaleTimeString('pt-BR');
-      row.innerHTML = `
-        <td>${time}</td>
-        <td>R$ ${price.toLocaleString('pt-BR', {minimumFractionDigits:2})}</td>
-        <td class="${change >= 0 ? 'up' : 'down'}">${change >= 0 ? '+' : ''}${change.toFixed(2)}%</td>
-        <td>CoinGecko</td>
-      `;
-      tbody.insertBefore(row, tbody.firstChild);
-      // Keep only last 5
-      while(tbody.children.length > 5) tbody.removeChild(tbody.lastChild);
+    function addHistory(price, change) {
+      const tb = document.getElementById('btc-history');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${new Date().toLocaleTimeString('pt-BR')}</td><td>R$ ${price.toLocaleString('pt-BR',{minimumFractionDigits:2})}</td><td class="${change>=0?'up':'down'}">${change>=0?'+':''}${change.toFixed(2)}%</td><td>CoinGecko</td>`;
+      tb.insertBefore(tr, tb.firstChild);
+      while(tb.children.length>5) tb.removeChild(tb.lastChild);
     }
     
-    // ==================== DCA PURCHASES ====================
-    function renderPurchases() {
-      const tbody = document.getElementById('purchases-body');
-      const emptyState = document.getElementById('empty-state');
-      const table = document.getElementById('purchases-table');
+    // ===== PURCHASES =====
+    function getData(key) { return JSON.parse(localStorage.getItem(`dca_${key}`)||'[]'); }
+    function setData(key, data) { localStorage.setItem(`dca_${key}`, JSON.stringify(data)); }
+    
+    function render(tab) {
+      const data = getData(tab);
+      const empty = document.getElementById(`${tab}-empty`);
+      const table = document.getElementById(`${tab}-table`);
+      const tbody = document.getElementById(`${tab}-body`);
       
-      if(purchases.length === 0) {
-        emptyState.classList.remove('hidden');
+      if(data.length===0) {
+        empty.classList.remove('hidden');
         table.classList.add('hidden');
-        updateSummary();
+        updateSummary(tab, data);
         return;
       }
-      
-      emptyState.classList.add('hidden');
+      empty.classList.add('hidden');
       table.classList.remove('hidden');
       tbody.innerHTML = '';
       
-      purchases.forEach((p, index) => {
-        const row = document.createElement('tr');
-        const unitPrice = p.value / p.quantity;
-        row.innerHTML = `
-          <td>${new Date(p.date).toLocaleDateString('pt-BR')}</td>
-          <td><strong>${p.asset}</strong></td>
-          <td>R$ ${p.value.toLocaleString('pt-BR', {minimumFractionDigits:2})}</td>
-          <td>${p.quantity.toFixed(8)}</td>
-          <td>R$ ${unitPrice.toLocaleString('pt-BR', {minimumFractionDigits:2})}</td>
-          <td>${p.platform}</td>
-          <td class="action-btns">
-            <button class="btn btn-sm btn-secondary" onclick="editPurchase(${index})">✏️</button>
-            <button class="btn btn-sm btn-danger" onclick="deletePurchase(${index})">🗑️</button>
-          </td>
-        `;
-        tbody.appendChild(row);
+      data.forEach((p,i) => {
+        const unit = p.value/p.qty;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${new Date(p.date).toLocaleDateString('pt-BR')}</td><td><strong>${p.asset}</strong></td><td>R$ ${p.value.toLocaleString('pt-BR',{minimumFractionDigits:2})}</td><td>${p.qty.toFixed(8)}</td><td>R$ ${unit.toLocaleString('pt-BR',{minimumFractionDigits:2})}</td><td>${p.platform}</td><td class="actions"><button class="btn sm" onclick="edit('${tab}',${i})">✏️</button><button class="btn sm danger" onclick="del('${tab}',${i})">🗑️</button></td>`;
+        tbody.appendChild(tr);
       });
-      
-      updateSummary();
+      updateSummary(tab, data);
     }
     
-    function updateSummary() {
-      const totalInvested = purchases.reduce((sum, p) => sum + p.value, 0);
-      const totalBTC = purchases.filter(p => p.asset === 'BTC').reduce((sum, p) => sum + p.quantity, 0);
-      const avgPrice = totalBTC > 0 ? totalInvested / totalBTC : 350000;
+    function updateSummary(tab, data) {
+      const total = data.reduce((s,p)=>s+p.value,0);
+      const btcQty = data.filter(p=>p.asset==='BTC').reduce((s,p)=>s+p.qty,0);
+      const avg = btcQty>0 ? total/btcQty : 350000;
+      const current = total * 1.15; // simulado
+      const profit = current - total;
       
-      // Simulate current value (in real app, fetch live prices)
-      const currentValue = totalInvested * 1.15; // +15% simulated
-      const profit = currentValue - totalInvested;
-      
-      document.getElementById('dca-total-invested').textContent = 
-        `R$ ${totalInvested.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
-      document.getElementById('dca-current-value').textContent = 
-        `R$ ${currentValue.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
-      
-      const profitEl = document.getElementById('dca-profit');
-      profitEl.textContent = `R$ ${profit.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
-      profitEl.className = `card-value ${profit >= 0 ? 'positive' : 'negative'}`;
-      
-      document.getElementById('dca-avg-price').textContent = 
-        `R$ ${avgPrice.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+      document.getElementById(`${tab}-total`).textContent = `R$ ${total.toLocaleString('pt-BR',{minimumFractionDigits:2})}`;
+      document.getElementById(`${tab}-current`).textContent = `R$ ${current.toLocaleString('pt-BR',{minimumFractionDigits:2})}`;
+      const elP = document.getElementById(`${tab}-profit`);
+      elP.textContent = `R$ ${profit.toLocaleString('pt-BR',{minimumFractionDigits:2})}`;
+      elP.className = `card-value ${profit>=0?'pos':'neg'}`;
+      document.getElementById(`${tab}-avg`).textContent = `R$ ${avg.toLocaleString('pt-BR',{minimumFractionDigits:2})}`;
     }
     
-    function openModal() {
-      document.getElementById('purchase-date').valueAsDate = new Date();
-      document.getElementById('purchase-form').reset();
-      document.getElementById('purchase-modal').classList.add('active');
+    function openModal(tab) {
+      currentTab = tab;
+      document.getElementById('modal-title').textContent = '+ Nova Compra';
+      document.getElementById('edit-id').value = '';
+      document.getElementById('form').reset();
+      document.getElementById('f-date').valueAsDate = new Date();
+      document.getElementById('modal').classList.add('active');
     }
     
-    function closeModal() {
-      document.getElementById('purchase-modal').classList.remove('active');
-    }
+    function closeModal() { document.getElementById('modal').classList.remove('active'); }
     
     function savePurchase() {
-      const form = document.getElementById('purchase-form');
-      if(!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
+      const f = document.getElementById('form');
+      if(!f.checkValidity()) { f.reportValidity(); return; }
       
-      const purchase = {
-        id: Date.now(),
-        date: document.getElementById('purchase-date').value,
-        asset: document.getElementById('purchase-asset').value,
-        value: parseFloat(document.getElementById('purchase-value').value),
-        quantity: parseFloat(document.getElementById('purchase-quantity').value),
-        price: parseFloat(document.getElementById('purchase-price').value) || 
-               (parseFloat(document.getElementById('purchase-value').value) / 
-                parseFloat(document.getElementById('purchase-quantity').value)),
-        platform: document.getElementById('purchase-platform').value,
-        notes: document.getElementById('purchase-notes').value
+      const editId = document.getElementById('edit-id').value;
+      const item = {
+        id: editId || Date.now(),
+        date: document.getElementById('f-date').value,
+        asset: document.getElementById('f-asset').value,
+        value: parseFloat(document.getElementById('f-value').value),
+        qty: parseFloat(document.getElementById('f-qty').value),
+        price: parseFloat(document.getElementById('f-price').value) || 
+               (parseFloat(document.getElementById('f-value').value)/parseFloat(document.getElementById('f-qty').value)),
+        platform: document.getElementById('f-platform').value,
+        notes: document.getElementById('f-notes').value
       };
       
-      purchases.unshift(purchase);
-      localStorage.setItem('dca_purchases', JSON.stringify(purchases));
-      
+      let data = getData(currentTab);
+      if(editId) {
+        const idx = data.findIndex(p=>p.id==editId);
+        if(idx>=0) data[idx] = item;
+      } else {
+        data.unshift(item);
+      }
+      setData(currentTab, data);
       closeModal();
-      renderPurchases();
-      
-      // Show feedback
-      alert('✅ Compra registrada com sucesso!');
+      render(currentTab);
     }
     
-    function editPurchase(index) {
-      const p = purchases[index];
-      document.getElementById('purchase-date').value = p.date;
-      document.getElementById('purchase-asset').value = p.asset;
-      document.getElementById('purchase-value').value = p.value;
-      document.getElementById('purchase-quantity').value = p.quantity;
-      document.getElementById('purchase-price').value = p.price;
-      document.getElementById('purchase-platform').value = p.platform;
-      document.getElementById('purchase-notes').value = p.notes || '';
-      
-      // Remove old and let user save as new (simplified)
-      purchases.splice(index, 1);
-      localStorage.setItem('dca_purchases', JSON.stringify(purchases));
-      openModal();
+    function edit(tab, idx) {
+      currentTab = tab;
+      const data = getData(tab);
+      const p = data[idx];
+      document.getElementById('modal-title').textContent = '✏️ Editar Compra';
+      document.getElementById('edit-id').value = p.id;
+      document.getElementById('f-date').value = p.date;
+      document.getElementById('f-asset').value = p.asset;
+      document.getElementById('f-value').value = p.value;
+      document.getElementById('f-qty').value = p.qty;
+      document.getElementById('f-price').value = p.price;
+      document.getElementById('f-platform').value = p.platform;
+      document.getElementById('f-notes').value = p.notes || '';
+      document.getElementById('modal').classList.add('active');
     }
     
-    function deletePurchase(index) {
-      if(confirm('Tem certeza que deseja excluir esta compra?')) {
-        purchases.splice(index, 1);
-        localStorage.setItem('dca_purchases', JSON.stringify(purchases));
-        renderPurchases();
+    function del(tab, idx) {
+      if(confirm('Excluir esta compra?')) {
+        const data = getData(tab);
+        data.splice(idx,1);
+        setData(tab, data);
+        render(tab);
       }
     }
     
-    // ==================== CSV IMPORT/EXPORT ====================
-    function exportCSV() {
-      if(purchases.length === 0) {
-        alert('Nenhuma compra para exportar.');
-        return;
-      }
-      
-      const headers = ['Data','Ativo','Valor_BRL','Quantidade','Preco_Unitario','Plataforma','Observacoes'];
-      const rows = purchases.map(p => [
-        p.date, p.asset, p.value.toFixed(2), p.quantity.toFixed(8), 
-        p.price.toFixed(2), p.platform, p.notes || ''
-      ]);
-      
-      const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
-      const blob = new Blob([csv], {type: 'text/csv'});
+    // ===== CSV =====
+    function exportCSV(tab) {
+      const data = getData(tab);
+      if(!data.length) return alert('Nada para exportar');
+      const head = ['Data','Ativo','Valor_BRL','Quantidade','Preco_Unitario','Plataforma','Observacoes'];
+      const rows = data.map(p=>[p.date,p.asset,p.value.toFixed(2),p.qty.toFixed(8),p.price.toFixed(2),p.platform,p.notes||'']);
+      const csv = [head.join(','),...rows.map(r=>r.join(','))].join('\n');
+      const blob = new Blob([csv],{type:'text/csv'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url;
-      a.download = `dca_compras_${new Date().toISOString().split('T')[0]}.csv`;
-      a.click();
-      URL.revokeObjectURL(url);
+      a.href = url; a.download = `dca_${tab}_${new Date().toISOString().split('T')[0]}.csv`;
+      a.click(); URL.revokeObjectURL(url);
     }
     
-    function importCSV() {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = '.csv';
-      input.onchange = (e) => {
-        const file = e.target.files[0];
-        if(!file) return;
-        
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          try {
-            const lines = event.target.result.split('\n').slice(1); // Skip header
-            let imported = 0;
-            
-            lines.forEach(line => {
-              if(!line.trim()) return;
-              const [date, asset, value, quantity, price, platform, notes] = line.split(',');
-              if(date && asset && value && quantity) {
-                purchases.push({
-                  id: Date.now() + Math.random(),
-                  date, asset,
-                  value: parseFloat(value),
-                  quantity: parseFloat(quantity),
-                  price: parseFloat(price) || 0,
-                  platform: platform || 'Importado',
-                  notes: notes || ''
-                });
-                imported++;
-              }
-            });
-            
-            localStorage.setItem('dca_purchases', JSON.stringify(purchases));
-            renderPurchases();
-            alert(`✅ ${imported} compras importadas com sucesso!`);
-          } catch(err) {
-            alert('❌ Erro ao importar CSV: ' + err.message);
-          }
-        };
-        reader.readAsText(file);
-      };
-      input.click();
-    }
-    
-    // ==================== JSON BACKUP ====================
-    function downloadJSON() {
-      const data = {
-        purchases,
-        exportedAt: new Date().toISOString(),
-        version: '1.0'
-      };
-      
-      const encrypt = document.getElementById('encrypt-backup').checked;
-      let content = JSON.stringify(data, null, 2);
-      
-      if(encrypt) {
-        const password = prompt('Digite uma senha para criptografar:');
-        if(!password) return;
-        // Simple obfuscation (NOT real encryption - for demo only)
-        content = btoa(unescape(encodeURIComponent(content + '|CRYPT:' + password)));
+    // ===== JSON BACKUP =====
+    function downloadJSON(tab) {
+      const data = { purchases: getData(tab), exportedAt: new Date().toISOString(), version: '1.0' };
+      let content = JSON.stringify(data,null,2);
+      if(document.getElementById(`${tab}-encrypt`).checked) {
+        const pwd = prompt('Senha para ofuscar:');
+        if(!pwd) return;
+        content = btoa(unescape(encodeURIComponent(content+'|SEC:'+pwd)));
       }
-      
-      const blob = new Blob([content], {type: 'application/json'});
+      const blob = new Blob([content],{type:'application/json'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url;
-      a.download = `scalp3_backup_${new Date().toISOString().split('T')[0]}.json`;
-      a.click();
-      URL.revokeObjectURL(url);
+      a.href = url; a.download = `scalp3_${tab}_backup_${new Date().toISOString().split('T')[0]}.json`;
+      a.click(); URL.revokeObjectURL(url);
     }
     
-    function restoreJSON(event) {
-      const file = event.target.files[0];
-      if(!file) return;
-      
+    function restoreJSON(e, tab) {
+      const file = e.target.files[0]; if(!file) return;
       const reader = new FileReader();
-      reader.onload = (e) => {
+      reader.onload = ev => {
         try {
-          let content = e.target.result;
-          
-          // Check if encrypted
-          if(content.includes('|CRYPT:')) {
-            const password = prompt('Digite a senha para descriptografar:');
-            const decoded = decodeURIComponent(escape(atob(content.split('|CRYPT:')[0])));
-            if(!decoded.endsWith('|CRYPT:' + password)) {
-              alert('❌ Senha incorreta!');
-              return;
-            }
-            content = decoded.replace('|CRYPT:' + password, '');
+          let content = ev.target.result;
+          if(content.includes('|SEC:')) {
+            const pwd = prompt('Senha para desofuscar:');
+            const dec = decodeURIComponent(escape(atob(content.split('|SEC:')[0])));
+            if(!dec.endsWith('|SEC:'+pwd)) return alert('Senha incorreta');
+            content = dec.replace('|SEC:'+pwd,'');
           }
-          
           const data = JSON.parse(content);
           if(data.purchases) {
-            purchases = data.purchases;
-            localStorage.setItem('dca_purchases', JSON.stringify(purchases));
-            renderPurchases();
-            alert('✅ Backup restaurado com sucesso!');
-          } else {
-            throw new Error('Formato inválido');
-          }
-        } catch(err) {
-          alert('❌ Erro ao restaurar backup: ' + err.message);
-        }
-        event.target.value = ''; // Reset input
+            setData(tab, data.purchases);
+            render(tab);
+            alert('✅ Backup restaurado');
+          } else throw new Error('Formato inválido');
+        } catch(err) { alert('❌ Erro: '+err.message); }
+        e.target.value = '';
       };
       reader.readAsText(file);
     }
     
-    // ==================== UTILITIES ====================
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('📋 Endereço copiado para a área de transferência!');
-      }).catch(() => {
-        // Fallback
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-        alert('📋 Endereço copiado!');
+    // ===== UTILS =====
+    function copyAddr(addr) {
+      navigator.clipboard.writeText(addr).then(()=>alert('📋 Copiado!')).catch(()=>{
+        const ta = document.createElement('textarea'); ta.value=addr; document.body.appendChild(ta);
+        ta.select(); document.execCommand('copy'); document.body.removeChild(ta); alert('📋 Copiado!');
       });
     }
     
     function saveSettings() {
-      const settings = {
-        currency: document.getElementById('currency-select').value,
-        refreshInterval: parseInt(document.getElementById('refresh-interval').value),
-        notifications: document.getElementById('notifications-toggle').checked
+      const cfg = {
+        currency: document.getElementById('cfg-currency').value,
+        refresh: parseInt(document.getElementById('cfg-refresh').value),
+        notify: document.getElementById('cfg-notify').checked
       };
-      localStorage.setItem('scalp3_settings', JSON.stringify(settings));
-      
-      // Apply refresh interval
-      if(refreshInterval) clearInterval(refreshInterval);
-      if(settings.refreshInterval > 0) {
-        refreshInterval = setInterval(fetchBitcoinPrice, settings.refreshInterval * 1000);
-      }
-      
-      alert('✅ Configurações salvas!');
+      localStorage.setItem('scalp3_cfg', JSON.stringify(cfg));
+      applyRefresh(cfg.refresh);
+      alert('✅ Salvo');
     }
     
-    // ==================== INIT ====================
+    function applyRefresh(sec) {
+      if(refreshTimer) clearInterval(refreshTimer);
+      if(sec>0) refreshTimer = setInterval(fetchBTC, sec*1000);
+    }
+    
+    // Auto-calc unit price
+    document.getElementById('f-value').oninput = calcUnit;
+    document.getElementById('f-qty').oninput = calcUnit;
+    function calcUnit() {
+      const v = parseFloat(document.getElementById('f-value').value);
+      const q = parseFloat(document.getElementById('f-qty').value);
+      if(v && q && !isNaN(v/q)) document.getElementById('f-price').value = (v/q).toFixed(2);
+    }
+    
+    // Close modal
+    document.getElementById('modal').onclick = e => { if(e.target.id==='modal') closeModal(); };
+    document.onkeydown = e => { if(e.key==='Escape') closeModal(); };
+    
+    // Init
     document.addEventListener('DOMContentLoaded', () => {
       // Load settings
-      const settings = JSON.parse(localStorage.getItem('scalp3_settings') || '{}');
-      if(settings.currency) document.getElementById('currency-select').value = settings.currency;
-      if(settings.refreshInterval) document.getElementById('refresh-interval').value = settings.refreshInterval;
-      if(settings.notifications !== undefined) document.getElementById('notifications-toggle').checked = settings.notifications;
+      const cfg = JSON.parse(localStorage.getItem('scalp3_cfg')||'{}');
+      if(cfg.currency) document.getElementById('cfg-currency').value = cfg.currency;
+      if(cfg.refresh) document.getElementById('cfg-refresh').value = cfg.refresh;
+      if(cfg.notify!==undefined) document.getElementById('cfg-notify').checked = cfg.notify;
+      applyRefresh(cfg.refresh||60);
       
-      // Auto-fetch Bitcoin price if on that tab
-      if(document.querySelector('[data-tab="bitcoin"].active')) {
-        fetchBitcoinPrice();
-        if(!settings.refreshInterval || settings.refreshInterval > 0) {
-          refreshInterval = setInterval(fetchBitcoinPrice, (settings.refreshInterval || 60) * 1000);
-        }
-      }
+      // Initial render
+      render('p');
       
-      // Render DCA purchases
-      renderPurchases();
-      
-      // Close modal on outside click
-      document.getElementById('purchase-modal').addEventListener('click', (e) => {
-        if(e.target.id === 'purchase-modal') closeModal();
-      });
-      
-      // Auto-calculate unit price
-      document.getElementById('purchase-value').addEventListener('input', calculateUnitPrice);
-      document.getElementById('purchase-quantity').addEventListener('input', calculateUnitPrice);
-    });
-    
-    function calculateUnitPrice() {
-      const value = parseFloat(document.getElementById('purchase-value').value);
-      const quantity = parseFloat(document.getElementById('purchase-quantity').value);
-      if(value && quantity && !isNaN(value/quantity)) {
-        document.getElementById('purchase-price').value = (value/quantity).toFixed(2);
-      }
-    }
-    
-    // Close modal with Escape key
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape') closeModal();
+      // Auto-fetch BTC if tab active
+      if(document.querySelector('[data-tab="bitcoin"].active')) fetchBTC();
     });
   </script>
 </body>
