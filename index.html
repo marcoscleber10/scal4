@@ -1,2185 +1,1445 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Solana Ecosystem Directory | Mapping the Financial Layer</title>
-    <meta name="description" content="Diretório profissional de projetos Solana: DeFi, RWA, DePIN, infraestrutura e mais. Busca, filtros e métricas em tempo real via DeFiLlama.">
-    <meta name="theme-color" content="#14F195">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scalp3+ | Tracker DeFi + DCA Club</title>
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-card: #334155;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --border: #475569;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+      --radius: 12px;
+      --font: 'Segoe UI', system-ui, sans-serif;
+    }
     
-    <!-- Preconnect para performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://api.llama.fi">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    body {
+      font-family: var(--font);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟢</text></svg>">
-
-    <style>
-        /* ==================== CSS VARIABLES ==================== */
-        :root {
-            /* Solana Brand */
-            --solana-primary: #14F195;
-            --solana-secondary: #9945FF;
-            --solana-gradient: linear-gradient(135deg, var(--solana-primary), var(--solana-secondary));
-            
-            /* Light Theme */
-            --bg: #FAF8F5;
-            --bg-secondary: #F5F2EF;
-            --card-bg: #FFFFFF;
-            --border: #F0E4D4;
-            --text-primary: #1A2C2E;
-            --text-secondary: #5B6E6E;
-            --text-muted: #8A9A9A;
-            
-            /* Badges */
-            --badge-defi: #E0F2FE; --badge-defi-text: #0E6B6B;
-            --badge-rwa: #E8F0E8; --badge-rwa-text: #3A6B2A;
-            --badge-depin: #FEF3C7; --badge-depin-text: #B97F10;
-            --badge-infra: #E6F4EA; --badge-infra-text: #2C6E3C;
-            --badge-oracle: #F3E5F5; --badge-oracle-text: #6B2E6B;
-            --badge-derivatives: #FFE4E6; --badge-derivatives-text: #B91C1C;
-            --badge-launchpad: #EDE9FE; --badge-launchpad-text: #5B21B6;
-            --badge-popular: #FEF3C7; --badge-popular-text: #92400E;
-            --badge-new: #D1FAE5; --badge-new-text: #065F46;
-            --badge-solana: #E0FFE6; --badge-solana-text: #00A86B;
-            
-            /* UI */
-            --shadow-sm: 0 4px 12px rgba(0,0,0,0.04), 0 0 0 1px rgba(20,241,149,0.1);
-            --shadow-md: 0 8px 24px rgba(0,0,0,0.06), 0 0 0 1px rgba(20,241,149,0.15);
-            --shadow-lg: 0 16px 40px rgba(0,0,0,0.08), 0 0 0 1px rgba(20,241,149,0.2);
-            --radius-sm: 16px; --radius-md: 24px; --radius-lg: 32px; --radius-xl: 48px;
-            --transition: all 0.2s ease;
-            
-            /* Filters */
-            --filter-bg: var(--bg-secondary);
-            --filter-active-bg: var(--solana-primary);
-            --filter-active-text: var(--text-primary);
-            --search-bg: var(--bg-secondary);
-            
-            /* Charts */
-            --chart-up: #10B981; --chart-down: #EF4444; --chart-neutral: #6B7280;
-        }
-
-        body.dark {
-            /* Dark Theme */
-            --bg: #0F1419;
-            --bg-secondary: #1A2629;
-            --card-bg: #1E2A2D;
-            --border: #2C3E3B;
-            --text-primary: #EDF2F0;
-            --text-secondary: #A0B3B0;
-            --text-muted: #6B7E7A;
-            
-            /* Badges Dark */
-            --badge-defi: #1A2C3A; --badge-defi-text: #81D4FA;
-            --badge-rwa: #2A3A2A; --badge-rwa-text: #8BC34A;
-            --badge-depin: #3A2A1A; --badge-depin-text: #FFAA66;
-            --badge-infra: #1E3A2A; --badge-infra-text: #8BC34A;
-            --badge-oracle: #2A2A3A; --badge-oracle-text: #B39DDB;
-            --badge-derivatives: #3A1A1A; --badge-derivatives-text: #FCA5A5;
-            --badge-launchpad: #2A1A3A; --badge-launchpad-text: #C4B5FD;
-            --badge-popular: #3A2A1A; --badge-popular-text: #FCD34D;
-            --badge-new: #1A3A2A; --badge-new-text: #6EE7B7;
-            --badge-solana: #1E3A2A; --badge-solana-text: #00FFA3;
-            
-            /* UI Dark */
-            --shadow-sm: 0 4px 12px rgba(0,0,0,0.3), 0 0 0 1px rgba(20,241,149,0.15);
-            --shadow-md: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(20,241,149,0.2);
-            --shadow-lg: 0 16px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(20,241,149,0.25);
-            
-            /* Filters Dark */
-            --filter-bg: #2A3538;
-            --filter-active-bg: var(--solana-primary);
-            --filter-active-text: var(--text-primary);
-            --search-bg: #1F2A2C;
-        }
-
-        /* ==================== BASE ==================== */
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        html { scroll-behavior: smooth; }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text-primary);
-            line-height: 1.5;
-            transition: var(--transition);
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* ==================== LAYOUT ==================== */
-        .container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 1rem 1.5rem 3rem;
-        }
-
-        /* ==================== HEADER ==================== */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-weight: 700;
-            font-size: 1.2rem;
-            text-decoration: none;
-            color: var(--text-primary);
-        }
-
-        .logo-icon {
-            font-size: 1.5rem;
-            background: var(--solana-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        /* ==================== BUTTONS ==================== */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1.25rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 40px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            border-color: var(--solana-primary);
-            transform: translateY(-1px);
-        }
-
-        .btn-primary {
-            background: var(--solana-gradient);
-            border: none;
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.95;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-icon {
-            padding: 0.5rem;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            justify-content: center;
-        }
-
-        /* ==================== HERO ==================== */
-        .hero {
-            text-align: center;
-            padding: 2.5rem 1.5rem 2rem;
-            background: linear-gradient(135deg, rgba(20,241,149,0.08), rgba(153,69,255,0.08));
-            border-radius: var(--radius-xl);
-            margin: 1rem 0 2rem;
-            border: 1px solid var(--border);
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 800;
-            background: var(--solana-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.75rem;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 650px;
-            margin: 0 auto 1.5rem;
-        }
-
-        /* ==================== STATS BAR ==================== */
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .stat-card {
-            background: var(--card-bg);
-            padding: 0.6rem 1.4rem;
-            border-radius: 60px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .stat-card .value {
-            font-weight: 700;
-            color: var(--solana-primary);
-            font-size: 1.1rem;
-        }
-
-        .stat-card .label {
-            color: var(--text-secondary);
-        }
-
-        .last-updated {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 0.75rem;
-        }
-
-        /* ==================== CONTROLS ==================== */
-        .controls {
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            padding: 1rem 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border);
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-        }
-
-        .search-wrapper {
-            flex: 2;
-            min-width: 240px;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: var(--search-bg);
-            border-radius: 40px;
-            padding: 0.4rem 1.2rem;
-            border: 1px solid transparent;
-            transition: var(--transition);
-        }
-
-        .search-wrapper:focus-within {
-            border-color: var(--solana-primary);
-            box-shadow: 0 0 0 3px rgba(20,241,149,0.15);
-        }
-
-        .search-wrapper input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            font-size: 0.95rem;
-            padding: 0.4rem 0;
-            outline: none;
-            color: var(--text-primary);
-            font-family: inherit;
-        }
-
-        .search-wrapper input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .filters-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .filter-chip {
-            background: var(--filter-bg);
-            border: 1px solid var(--border);
-            padding: 0.4rem 1rem;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--text-secondary);
-            white-space: nowrap;
-        }
-
-        .filter-chip:hover {
-            border-color: var(--solana-primary);
-            color: var(--text-primary);
-        }
-
-        .filter-chip.active {
-            background: var(--filter-active-bg);
-            border-color: var(--solana-primary);
-            color: var(--filter-active-text);
-            font-weight: 600;
-        }
-
-        .filter-select {
-            background: var(--filter-bg);
-            border: 1px solid var(--border);
-            padding: 0.4rem 2rem 0.4rem 1rem;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            color: var(--text-primary);
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235B6E6E' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            background-size: 16px;
-        }
-
-        .filter-select:focus {
-            outline: none;
-            border-color: var(--solana-primary);
-        }
-
-        /* ==================== GRID & CARDS ==================== */
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border);
-            overflow: hidden;
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(12px);
-            animation: fadeInUp 0.4s ease forwards;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--solana-primary);
-        }
-
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .card-header {
-            padding: 1rem 1.25rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--card-bg);
-        }
-
-        .card-header h2 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .card-header .count {
-            background: var(--solana-primary);
-            color: var(--text-primary);
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 0.2rem 0.7rem;
-            border-radius: 30px;
-        }
-
-        .tools-list {
-            padding: 0.75rem 1.25rem 1.25rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-        }
-
-        .tool-chip {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 0.5rem 0.85rem;
-            border-radius: 24px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tool-chip:hover {
-            border-color: var(--solana-primary);
-            background: var(--bg-secondary);
-            transform: translateX(2px);
-        }
-
-        .tool-chip .logo {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            object-fit: cover;
-            background: var(--bg-secondary);
-            flex-shrink: 0;
-        }
-
-        .tool-chip .info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            min-width: 0;
-        }
-
-        .tool-chip .name {
-            font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .tool-chip .meta {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        .tool-chip .tvl {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .tool-chip .change {
-            font-weight: 500;
-        }
-
-        .tool-chip .change.positive { color: var(--chart-up); }
-        .tool-chip .change.negative { color: var(--chart-down); }
-
-        .tool-chip .badges {
-            display: flex;
-            gap: 3px;
-            margin-left: auto;
-            flex-shrink: 0;
-        }
-
-        /* ==================== BADGES ==================== */
-        .badge {
-            font-size: 0.65rem;
-            font-weight: 600;
-            padding: 0.15rem 0.5rem;
-            border-radius: 20px;
-            white-space: nowrap;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-
-        .badge.defi { background: var(--badge-defi); color: var(--badge-defi-text); }
-        .badge.rwa { background: var(--badge-rwa); color: var(--badge-rwa-text); }
-        .badge.depin { background: var(--badge-depin); color: var(--badge-depin-text); }
-        .badge.infra { background: var(--badge-infra); color: var(--badge-infra-text); }
-        .badge.oracle { background: var(--badge-oracle); color: var(--badge-oracle-text); }
-        .badge.derivatives { background: var(--badge-derivatives); color: var(--badge-derivatives-text); }
-        .badge.launchpad { background: var(--badge-launchpad); color: var(--badge-launchpad-text); }
-        .badge.popular { background: var(--badge-popular); color: var(--badge-popular-text); }
-        .badge.new { background: var(--badge-new); color: var(--badge-new-text); }
-        .badge.solana { background: var(--badge-solana); color: var(--badge-solana-text); }
-        .badge.audited { background: #D1FAE5; color: #065F46; }
-        .badge.unaudited { background: #FEE2E2; color: #991B1B; }
-
-        body.dark .badge.audited { background: #1E3A2A; color: #6EE7B7; }
-        body.dark .badge.unaudited { background: #3A1A1A; color: #FCA5A5; }
-
-        /* ==================== SPARKLINE ==================== */
-        .sparkline {
-            display: flex;
-            align-items: flex-end;
-            gap: 1px;
-            height: 20px;
-            width: 50px;
-        }
-
-        .sparkline span {
-            flex: 1;
-            background: var(--chart-neutral);
-            border-radius: 2px 2px 0 0;
-            min-height: 3px;
-            transition: height 0.1s;
-        }
-
-        .sparkline.up span { background: var(--chart-up); }
-        .sparkline.down span { background: var(--chart-down); }
-
-        /* ==================== MODAL ==================== */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            backdrop-filter: blur(4px);
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal {
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            width: 100%;
-            max-width: 720px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border);
-            transform: scale(0.95);
-            transition: transform 0.2s ease;
-        }
-
-        .modal-overlay.active .modal {
-            transform: scale(1);
-        }
-
-        .modal-header {
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 1rem;
-            position: sticky;
-            top: 0;
-            background: var(--card-bg);
-            z-index: 1;
-        }
-
-        .modal-title {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .modal-logo {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            object-fit: cover;
-            background: var(--bg-secondary);
-            border: 2px solid var(--border);
-        }
-
-        .modal-title h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .modal-title .badges {
-            display: flex;
-            gap: 0.4rem;
-            margin-top: 0.4rem;
-        }
-
-        .modal-close {
-            background: var(--bg-secondary);
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            transition: var(--transition);
-        }
-
-        .modal-close:hover {
-            background: var(--solana-primary);
-            color: var(--text-primary);
-        }
-
-        .modal-body {
-            padding: 1.5rem;
-        }
-
-        .modal-section {
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-section h4 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.75rem;
-        }
-
-        .modal-description {
-            color: var(--text-primary);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .modal-metrics {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-        }
-
-        .metric-card {
-            background: var(--bg-secondary);
-            padding: 0.85rem 1rem;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border);
-        }
-
-        .metric-card .label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 0.25rem;
-        }
-
-        .metric-card .value {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .metric-card .change {
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .chart-container {
-            background: var(--bg-secondary);
-            border-radius: var(--radius-sm);
-            padding: 1rem;
-            border: 1px solid var(--border);
-            margin: 1rem 0;
-        }
-
-        .chart-placeholder {
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .modal-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .modal-links a {
-            flex: 1;
-            min-width: 120px;
-        }
-
-        .modal-footer {
-            padding: 1rem 1.5rem 1.5rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .contract-address {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: monospace;
-            font-size: 0.8rem;
-            background: var(--bg-secondary);
-            padding: 0.4rem 0.8rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .copy-btn {
-            background: none;
-            border: none;
-            color: var(--solana-primary);
-            cursor: pointer;
-            font-size: 0.9rem;
-            padding: 0.2rem;
-        }
-
-        /* ==================== SKELETON LOADING ==================== */
-        .skeleton {
-            background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--border) 50%, var(--bg-secondary) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-            border-radius: 8px;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        .skeleton-card {
-            height: 280px;
-            border-radius: var(--radius-lg);
-            margin-bottom: 1.5rem;
-        }
-
-        .skeleton-header {
-            height: 48px;
-            margin: 1rem 1.25rem;
-            border-radius: var(--radius-sm);
-        }
-
-        .skeleton-list {
-            padding: 0 1.25rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .skeleton-item {
-            height: 44px;
-            border-radius: 24px;
-        }
-
-        /* ==================== NO RESULTS ==================== */
-        .no-results {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--text-secondary);
-            grid-column: 1 / -1;
-        }
-
-        .no-results .icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.6;
-        }
-
-        .no-results p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* ==================== FOOTER ==================== */
-        footer {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        footer a {
-            color: var(--solana-primary);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1rem 0;
-            flex-wrap: wrap;
-        }
-
-        /* ==================== TOAST NOTIFICATIONS ==================== */
-        .toast-container {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .toast {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--solana-primary);
-            padding: 0.85rem 1.25rem;
-            border-radius: var(--radius-sm);
-            box-shadow: var(--shadow-md);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            animation: slideIn 0.3s ease;
-            max-width: 320px;
-        }
-
-        .toast.success { border-left-color: var(--chart-up); }
-        .toast.error { border-left-color: var(--chart-down); }
-
-        @keyframes slideIn {
-            from { transform: translateX(120%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        /* ==================== RESPONSIVE ==================== */
-        @media (max-width: 1024px) {
-            .categories-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container { padding: 0.75rem 1rem 2rem; }
-            
-            .controls {
-                flex-direction: column;
-                align-items: stretch;
-                border-radius: var(--radius-md);
-            }
-            
-            .search-wrapper { min-width: 100%; }
-            
-            .filters-wrapper {
-                justify-content: center;
-                overflow-x: auto;
-                padding-bottom: 0.5rem;
-                -webkit-overflow-scrolling: touch;
-            }
-            
-            .filter-chip { padding: 0.35rem 0.85rem; font-size: 0.8rem; }
-            
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero {
-                padding: 2rem 1rem 1.5rem;
-                border-radius: var(--radius-lg);
-            }
-            
-            .hero h1 { font-size: 1.75rem; }
-            .hero p { font-size: 1rem; }
-            
-            .modal { max-height: 95vh; margin: 0.5rem; }
-            .modal-metrics { grid-template-columns: 1fr; }
-            
-            .stats-bar { gap: 0.5rem; }
-            .stat-card { padding: 0.5rem 1rem; font-size: 0.85rem; }
-        }
-
-        @media (max-width: 480px) {
-            .header { flex-direction: column; align-items: stretch; }
-            .header-actions { justify-content: center; }
-            
-            .tool-chip {
-                padding: 0.45rem 0.75rem;
-                font-size: 0.8rem;
-            }
-            
-            .tool-chip .logo { width: 20px; height: 20px; }
-            .tool-chip .badges { display: none; }
-            
-            .modal-header { padding: 1rem; }
-            .modal-body { padding: 1rem; }
-            .modal-footer { padding: 1rem; }
-        }
-
-        /* ==================== ACCESSIBILITY ==================== */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        .sr-only {
-            position: absolute;
-            width: 1px; height: 1px;
-            padding: 0; margin: -1px;
-            overflow: hidden; clip: rect(0,0,0,0);
-            white-space: nowrap; border: 0;
-        }
-
-        /* Focus visible for keyboard navigation */
-        :focus-visible {
-            outline: 2px solid var(--solana-primary);
-            outline-offset: 2px;
-        }
-
-        button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
-            outline: 2px solid var(--solana-primary);
-            outline-offset: 2px;
-        }
-    </style>
+    /* Header & Navigation */
+    header {
+      background: var(--bg-secondary);
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .logo span { color: var(--text-primary); }
+    
+    nav {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+      padding: 0.75rem 1.25rem;
+      background: transparent;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    
+    .tab-btn.active { box-shadow: 0 0 0 3px rgba(59,130,246,0.3); }
+    
+    /* Main Content */
+    main { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+    
+    .tab-content { display: none; animation: fadeIn 0.3s ease; }
+    .tab-content.active { display: block; }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    
+    .card-title {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .card-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    
+    .card-value.positive { color: var(--success); }
+    .card-value.negative { color: var(--danger); }
+    
+    .card-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+    
+    /* Price Display */
+    .price-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .price-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    
+    .price-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .price-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .price-badge {
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    .price-badge.up { background: rgba(34,197,94,0.2); color: var(--success); }
+    .price-badge.down { background: rgba(239,68,68,0.2); color: var(--danger); }
+    
+    .price-main {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0.5rem 0;
+    }
+    
+    .price-changes {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    
+    .change-item {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.875rem;
+    }
+    
+    .change-item.up { color: var(--success); }
+    .change-item.down { color: var(--danger); }
+    
+    .sparkline {
+      height: 40px;
+      margin: 1rem 0;
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+    }
+    
+    .sparkline-bar {
+      flex: 1;
+      background: var(--accent);
+      border-radius: 2px 2px 0 0;
+      min-height: 5px;
+      transition: height 0.3s;
+    }
+    
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+    
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      animation: pulse 2s infinite;
+    }
+    
+    .status-dot.error { background: var(--danger); animation: none; }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    /* Table Styles */
+    .table-container {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    
+    .table-header {
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .table-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: none;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+      font-size: 0.875rem;
+    }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    
+    .btn-primary:hover { background: var(--accent-hover); }
+    
+    .btn-secondary {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    
+    .btn-secondary:hover { background: var(--border); }
+    
+    .btn-danger {
+      background: rgba(239,68,68,0.2);
+      color: var(--danger);
+      border: 1px solid var(--danger);
+    }
+    
+    .btn-danger:hover { background: var(--danger); color: white; }
+    
+    .btn-sm { padding: 0.375rem 0.75rem; font-size: 0.75rem; }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    
+    th, td {
+      padding: 1rem 1.5rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    th {
+      background: var(--bg-secondary);
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+    
+    tr:hover { background: rgba(59,130,246,0.05); }
+    
+    .action-btns { display: flex; gap: 0.5rem; }
+    
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal {
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    
+    .modal-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .modal-title { font-size: 1.25rem; font-weight: 600; }
+    
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+    
+    .modal-close:hover { color: var(--text-primary); }
+    
+    .modal-body { padding: 1.5rem; }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+    
+    .form-input, .form-select {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+    
+    .form-input:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+    }
+    
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+    }
+    
+    /* Wallets Section */
+    .wallets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .wallet-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+    }
+    
+    .wallet-title {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .wallet-address {
+      font-family: monospace;
+      font-size: 0.875rem;
+      background: var(--bg-primary);
+      padding: 0.75rem;
+      border-radius: 6px;
+      word-break: break-all;
+      margin-bottom: 0.75rem;
+    }
+    
+    .wallet-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    /* Backup Section */
+    .backup-section {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      margin-top: 1.5rem;
+    }
+    
+    .backup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .backup-card {
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      padding: 1rem;
+      border: 1px solid var(--border);
+    }
+    
+    .backup-card h4 {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .backup-card p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+    
+    /* Education Section */
+    .education-section {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    
+    .education-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    
+    .education-card h4 {
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .education-card p {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
+    
+    .disclaimer {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 2rem;
+      padding: 1rem;
+      background: rgba(245,158,11,0.1);
+      border-radius: 8px;
+      border-left: 3px solid var(--warning);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      header { padding: 1rem; }
+      main { padding: 1rem; }
+      .tab-btn { padding: 0.5rem 0.75rem; font-size: 0.875rem; }
+      th, td { padding: 0.75rem; font-size: 0.75rem; }
+      .price-main { font-size: 1.5rem; }
+    }
+    
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--text-secondary);
+    }
+    
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+    
+    .empty-state h3 {
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    
+    .empty-state ol {
+      text-align: left;
+      max-width: 400px;
+      margin: 1rem auto;
+      padding-left: 1.5rem;
+    }
+    
+    .empty-state li { margin: 0.5rem 0; }
+    
+    /* Loading */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .hidden { display: none !important; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <a href="#" class="logo">
-                <span class="logo-icon">◎</span>
-                <span data-i18n="logo">Solana Directory</span>
-            </a>
-            <div class="header-actions">
-                <button class="btn" id="exportBtn" title="Exportar lista">
-                    📥 <span data-i18n="export">Export</span>
-                </button>
-                <button class="btn btn-icon" id="langToggle" title="Idioma">
-                    🌐
-                </button>
-                <button class="btn btn-icon" id="darkModeToggle" title="Modo Escuro">
-                    🌙
-                </button>
-            </div>
-        </header>
+  <!-- Header -->
+  <header>
+    <div class="logo">🔍 <span>Scalp3</span><span style="color:var(--accent)">+</span></div>
+    <nav>
+      <button class="tab-btn active" data-tab="defi">📊 DeFi Tracker</button>
+      <button class="tab-btn" data-tab="bitcoin">₿ Cotação Bitcoin</button>
+      <button class="tab-btn" data-tab="dca">💰 Clube DCA</button>
+      <button class="tab-btn" data-tab="settings">⚙️ Configurações</button>
+    </nav>
+  </header>
 
-        <!-- Hero -->
-        <section class="hero">
-            <h1 data-i18n="heroTitle">SOLANA ECOSYSTEM DIRECTORY</h1>
-            <p data-i18n="heroSubtitle">Mapping the financial infrastructure built on Solana with real-time TVL data from DeFiLlama.</p>
-            
-            <div class="stats-bar" id="statsBar">
-                <div class="stat-card">
-                    <span class="value" id="totalProjects">—</span>
-                    <span class="label" data-i18n="projects">Projects</span>
-                </div>
-                <div class="stat-card">
-                    <span class="value" id="totalTvl">—</span>
-                    <span class="label" data-i18n="totalTvl">Total TVL</span>
-                </div>
-                <div class="stat-card">
-                    <span class="value" id="defiCount">—</span>
-                    <span class="label" data-i18n="defiProtocols">DeFi</span>
-                </div>
-                <div class="stat-card">
-                    <span class="value" id="categoriesCount">—</span>
-                    <span class="label" data-i18n="categories">Categories</span>
-                </div>
-            </div>
-            <div class="last-updated" id="lastUpdated"></div>
-        </section>
-
-        <!-- Controls -->
-        <section class="controls">
-            <div class="search-wrapper">
-                <span aria-hidden="true">🔍</span>
-                <input 
-                    type="text" 
-                    id="searchInput" 
-                    placeholder="Search projects by name..." 
-                    data-i18n-placeholder="searchPlaceholder"
-                    aria-label="Search projects"
-                >
-            </div>
-            
-            <div class="filters-wrapper">
-                <div class="filter-group" id="categoryFilters">
-                    <button class="filter-chip active" data-filter="all" data-i18n="filterAll">All</button>
-                    <button class="filter-chip" data-filter="defi" data-i18n="filterDefi">📈 DeFi</button>
-                    <button class="filter-chip" data-filter="rwa" data-i18n="filterRwa">🏭 RWA</button>
-                    <button class="filter-chip" data-filter="depin" data-i18n="filterDepin">📡 DePIN</button>
-                    <button class="filter-chip" data-filter="derivatives" data-i18n="filterDerivatives">📊 Derivatives</button>
-                    <button class="filter-chip" data-filter="infra" data-i18n="filterInfra">🖧 Infra</button>
-                </div>
-                
-                <select class="filter-select" id="tvlFilter" aria-label="Filter by TVL">
-                    <option value="all" data-i18n="tvlAll">Any TVL</option>
-                    <option value="100m+" data-i18n="tvl100m">>$100M</option>
-                    <option value="10m-100m" data-i18n="tvl10m100m">$10M - $100M</option>
-                    <option value="1m-10m" data-i18n="tvl1m10m">$1M - $10M</option>
-                    <option value="<1m" data-i18n="tvl1m"><$1M</option>
-                </select>
-                
-                <select class="filter-select" id="sortSelect" aria-label="Sort by">
-                    <option value="tvl-desc" data-i18n="sortTvlDesc">TVL ↓</option>
-                    <option value="tvl-asc" data-i18n="sortTvlAsc">TVL ↑</option>
-                    <option value="name-asc" data-i18n="sortNameAsc">Name A-Z</option>
-                    <option value="name-desc" data-i18n="sortNameDesc">Name Z-A</option>
-                    <option value="change-desc" data-i18n="sortChangeDesc">24h Change ↓</option>
-                </select>
-            </div>
-        </section>
-
-        <!-- Loading State -->
-        <div id="loadingState" class="categories-grid" style="display: none;">
-            <div class="card skeleton-card">
-                <div class="skeleton skeleton-header"></div>
-                <div class="skeleton-list">
-                    <div class="skeleton skeleton-item"></div>
-                    <div class="skeleton skeleton-item"></div>
-                    <div class="skeleton skeleton-item"></div>
-                    <div class="skeleton skeleton-item"></div>
-                </div>
-            </div>
-            <div class="card skeleton-card">
-                <div class="skeleton skeleton-header"></div>
-                <div class="skeleton-list">
-                    <div class="skeleton skeleton-item"></div>
-                    <div class="skeleton skeleton-item"></div>
-                    <div class="skeleton skeleton-item"></div>
-                </div>
-            </div>
+  <!-- Main Content -->
+  <main>
+    <!-- Tab: DeFi Tracker (Original Scalp3) -->
+    <section id="defi" class="tab-content active">
+      <h2 style="margin-bottom:1.5rem">🎯 Opportunity Scanner</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">Pools Ativas</div>
+          <div class="card-value">24</div>
+          <div class="card-subtitle">Analisadas hoje</div>
         </div>
-
-        <!-- Projects Grid -->
-        <main class="categories-grid" id="toolsGrid" aria-live="polite"></main>
-
-        <!-- No Results -->
-        <div id="noResults" class="no-results" style="display: none;">
-            <div class="icon">🔍</div>
-            <p data-i18n="noResults">No projects found matching your criteria.</p>
-            <button class="btn" id="clearFiltersBtn" data-i18n="clearFilters">Clear Filters</button>
+        <div class="card">
+          <div class="card-title">Melhor APY</div>
+          <div class="card-value positive">127.5%</div>
+          <div class="card-subtitle">Curve/ETH-USDC</div>
         </div>
+        <div class="card">
+          <div class="card-title">Risco Médio</div>
+          <div class="card-value">Baixo</div>
+          <div class="card-subtitle">Score: 8.2/10</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Watchlist</div>
+          <div class="card-value">7</div>
+          <div class="card-subtitle">Pools monitoradas</div>
+        </div>
+      </div>
+      
+      <div class="table-container">
+        <div class="table-header">
+          <h3>Pools Recomendadas</h3>
+          <div class="table-actions">
+            <button class="btn btn-secondary btn-sm">🔄 Atualizar</button>
+            <button class="btn btn-primary btn-sm">➕ Nova Pool</button>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Pool</th>
+              <th>APY</th>
+              <th>Risco</th>
+              <th>Liquidez</th>
+              <th>Score</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Curve/ETH-USDC</td>
+              <td class="positive">127.5%</td>
+              <td><span style="color:var(--success)">Baixo</span></td>
+              <td>$45.2M</td>
+              <td>9.1</td>
+              <td class="action-btns">
+                <button class="btn btn-sm btn-secondary">👁️</button>
+                <button class="btn btn-sm btn-primary">➕</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Aave/USDT</td>
+              <td class="positive">18.3%</td>
+              <td><span style="color:var(--success)">Baixo</span></td>
+              <td>$892M</td>
+              <td>9.5</td>
+              <td class="action-btns">
+                <button class="btn btn-sm btn-secondary">👁️</button>
+                <button class="btn btn-sm btn-primary">➕</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Uniswap/BTC-ETH</td>
+              <td class="positive">42.1%</td>
+              <td><span style="color:var(--warning)">Médio</span></td>
+              <td>$156M</td>
+              <td>7.8</td>
+              <td class="action-btns">
+                <button class="btn btn-sm btn-secondary">👁️</button>
+                <button class="btn btn-sm btn-primary">➕</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-        <!-- Footer -->
-        <footer>
-            <div class="footer-links">
-                <a href="https://defillama.com" target="_blank" rel="noopener">DeFiLlama API</a>
-                <a href="https://solana.com" target="_blank" rel="noopener">Solana Foundation</a>
-                <a href="#" id="submitProject" data-i18n="submitProject">Submit Project</a>
-                <a href="#" id="githubLink" target="_blank" rel="noopener">GitHub</a>
+    <!-- Tab: Bitcoin Quotation (ENHANCED) -->
+    <section id="bitcoin" class="tab-content">
+      <h2 style="margin-bottom:1.5rem">₿ Cotação Bitcoin</h2>
+      
+      <div class="price-section">
+        <div class="price-card">
+          <div class="price-header">
+            <div class="price-title">₿ Bitcoin / BRL</div>
+            <span class="price-badge up" id="btc-badge">▲ Atualizado</span>
+          </div>
+          <div class="price-main" id="btc-price-brl">R$ --</div>
+          <div class="sparkline" id="sparkline-brl"></div>
+          <div class="price-changes">
+            <span class="change-item up" id="btc-24h">24h: --</span>
+            <span class="change-item" id="btc-7d">7d: --</span>
+          </div>
+          <div class="status-indicator">
+            <span class="status-dot" id="status-dot"></span>
+            <span id="status-text">Conectado à API</span>
+          </div>
+        </div>
+        
+        <div class="price-card">
+          <div class="price-header">
+            <div class="price-title">₿ Bitcoin / USD</div>
+            <span class="price-badge" style="background:var(--bg-primary)">Live</span>
+          </div>
+          <div class="price-main" id="btc-price-usd">$ --</div>
+          <div class="sparkline" id="sparkline-usd"></div>
+          <div class="price-changes">
+            <span class="change-item up" id="usd-24h">24h: --</span>
+            <span class="change-item" id="usd-7d">7d: --</span>
+          </div>
+          <div style="margin-top:1rem;font-size:0.875rem;color:var(--text-secondary)">
+            <div>Volume 24h: <strong id="btc-volume">--</strong></div>
+            <div>Market Cap: <strong id="btc-mcap">--</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📈 Últimas Atualizações</div>
+        <table style="margin-top:0.5rem">
+          <thead>
+            <tr>
+              <th>Horário</th>
+              <th>Preço BRL</th>
+              <th>Variação</th>
+              <th>Fonte</th>
+            </tr>
+          </thead>
+          <tbody id="price-history">
+            <tr><td colspan="4" style="text-align:center;color:var(--text-secondary)">Aguardando dados...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Tab: DCA Club (NEW - Cloned from clube-dca2) -->
+    <section id="dca" class="tab-content">
+      <h2 style="margin-bottom:1.5rem">💰 Clube DCA - Registro de Compras</h2>
+      
+      <!-- Summary Cards -->
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">Total Investido</div>
+          <div class="card-value" id="dca-total-invested">R$ 0,00</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Valor Atual</div>
+          <div class="card-value" id="dca-current-value">R$ 0,00</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Lucro/Prejuízo</div>
+          <div class="card-value" id="dca-profit">R$ 0,00</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Preço Médio BTC</div>
+          <div class="card-value" id="dca-avg-price">R$ 350.000,00</div>
+        </div>
+      </div>
+
+      <!-- Purchase History Table -->
+      <div class="table-container">
+        <div class="table-header">
+          <h3>Histórico de Compras</h3>
+          <div class="table-actions">
+            <button class="btn btn-secondary" onclick="importCSV()">📥 CSV</button>
+            <button class="btn btn-secondary" onclick="exportCSV()">📤 CSV</button>
+            <button class="btn btn-primary" onclick="openModal()">+ Nova Compra</button>
+          </div>
+        </div>
+        
+        <div id="empty-state" class="empty-state">
+          <div class="empty-state-icon">🎯</div>
+          <h3>Nenhuma compra registrada ainda</h3>
+          <p>Comece seu plano DCA em 3 passos simples:</p>
+          <ol>
+            <li>Clique em <strong>"Nova Compra"</strong></li>
+            <li>Informe data, valor e ativo (BTC, ETH, SOL)</li>
+            <li>Acompanhe sua evolução nos cards acima</li>
+          </ol>
+          <button class="btn btn-primary" onclick="openModal()">💡 Registrar Primeira Compra</button>
+        </div>
+        
+        <table id="purchases-table" class="hidden">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Ativo</th>
+              <th>Valor (BRL)</th>
+              <th>Quantidade</th>
+              <th>Preço Unitário</th>
+              <th>Plataforma</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="purchases-body"></tbody>
+        </table>
+      </div>
+
+      <!-- Wallets Section -->
+      <div style="margin-top:2rem">
+        <h3 style="margin-bottom:1rem">🔐 Minhas Carteiras</h3>
+        <p style="color:var(--text-secondary);font-size:0.875rem;margin-bottom:1rem">
+          Clique em "Copiar" para revelar o endereço completo. 
+          <strong>Nunca compartilhe suas chaves privadas.</strong>
+        </p>
+        
+        <div class="wallets-grid">
+          <div class="wallet-card">
+            <div class="wallet-title">₿ Bitcoin (BTC)</div>
+            <div class="wallet-address">bc1q3zf09xtensa5kag3nz6jsvqyle3sgnmns0j9n5</div>
+            <div class="wallet-actions">
+              <button class="btn btn-sm btn-secondary" onclick="copyToClipboard('bc1q3zf09xtensa5kag3nz6jsvqyle3sgnmns0j9n5')">📋 Copiar</button>
+              <button class="btn btn-sm btn-secondary">🔲 QR</button>
             </div>
-            <p>
-                <span data-i18n="footerAttribution">📡 Independent Solana ecosystem directory — data powered by DeFiLlama.</span><br>
-                <span id="dataDisclaimer" style="font-size: 0.8rem; opacity: 0.8;"></span>
-            </p>
-        </footer>
+          </div>
+          <div class="wallet-card">
+            <div class="wallet-title">⚡ Lightning Network</div>
+            <div class="wallet-address">cloggedparrot01@walletofsatoshi.com</div>
+            <div class="wallet-actions">
+              <button class="btn btn-sm btn-secondary" onclick="copyToClipboard('cloggedparrot01@walletofsatoshi.com')">📋 Copiar</button>
+            </div>
+          </div>
+          <div class="wallet-card">
+            <div class="wallet-title">Ξ Ethereum (ETH)</div>
+            <div class="wallet-address">0xAd944bA180610F1Fe43151eD81c0084C918c68e1</div>
+            <div class="wallet-actions">
+              <button class="btn btn-sm btn-secondary" onclick="copyToClipboard('0xAd944bA180610F1Fe43151eD81c0084C918c68e1')">📋 Copiar</button>
+              <button class="btn btn-sm btn-secondary">🔲 QR</button>
+            </div>
+          </div>
+          <div class="wallet-card">
+            <div class="wallet-title">◎ Solana (SOL)</div>
+            <div class="wallet-address">EtSD7W7YG36ZuMAAX6bwJYJ9keciRK7cP7rJiadiZdmm</div>
+            <div class="wallet-actions">
+              <button class="btn btn-sm btn-secondary" onclick="copyToClipboard('EtSD7W7YG36ZuMAAX6bwJYJ9keciRK7cP7rJiadiZdmm')">📋 Copiar</button>
+            </div>
+          </div>
+          <div class="wallet-card">
+            <div class="wallet-title">💠 PIX (UUID)</div>
+            <div class="wallet-address">127d59fc-1f37-4e8e-9fd4-295e1883727b</div>
+            <div class="wallet-actions">
+              <button class="btn btn-sm btn-secondary" onclick="copyToClipboard('127d59fc-1f37-4e8e-9fd4-295e1883727b')">📋 Copiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Backup Section -->
+      <div class="backup-section">
+        <h3 style="margin-bottom:0.5rem">🗄️ Backup & Sincronização</h3>
+        <p style="color:var(--text-secondary);font-size:0.875rem;margin-bottom:1rem">
+          <strong>⚠️ Importante:</strong> Seus dados são armazenados localmente no navegador. 
+          Use o backup para evitar perda de informações. <strong>Nunca compartilhe seu arquivo de backup.</strong>
+        </p>
+        
+        <div class="backup-grid">
+          <div class="backup-card">
+            <h4>📁 Arquivo JSON</h4>
+            <p>Exporte ou importe seus dados manualmente. Opcional: criptografe com senha antes de salvar.</p>
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+              <button class="btn btn-sm btn-secondary" onclick="downloadJSON()">📥 Baixar JSON</button>
+              <button class="btn btn-sm btn-secondary" onclick="document.getElementById('json-input').click()">📤 Restaurar JSON</button>
+              <input type="file" id="json-input" accept=".json" class="hidden" onchange="restoreJSON(event)">
+            </div>
+            <label style="display:flex;align-items:center;gap:0.5rem;margin-top:0.75rem;font-size:0.75rem;color:var(--text-secondary)">
+              <input type="checkbox" id="encrypt-backup"> Criptografar com senha (AES-256)
+            </label>
+          </div>
+          <div class="backup-card">
+            <h4>☁️ Google Drive</h4>
+            <p>Salve seus dados de forma segura na nuvem. Escopo: apenas arquivos criados por este app.</p>
+            <button class="btn btn-sm btn-secondary" disabled>🔗 Conectar ao Drive</button>
+            <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:0.5rem">
+              Status: <span style="color:var(--danger)">Não conectado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education Section -->
+      <div class="education-section">
+        <h3 style="margin-bottom:1rem">📚 Educação & Megatendências</h3>
+        
+        <div class="education-card">
+          <h4>💡 O que é Dollar Cost Averaging (DCA)?</h4>
+          <p>Estratégia de investir valores fixos em intervalos regulares, independentemente do preço do ativo. 
+          Reduz o impacto da volatilidade e elimina a necessidade de "acertar o timing" do mercado.</p>
+        </div>
+        
+        <div class="education-card">
+          <h4>🚀 Carteira Promissora 2030 (Hipotética)</h4>
+          <p><strong>Composição ilustrativa:</strong> 50% BTC, 30% ETH, 20% SOL.</p>
+          <p>Projeção baseada em análise de relatórios públicos (ARK Invest, 2024). 
+          Potencial de valorização: 3x-6x (cenário otimista). <strong>Risco: Alto.</strong></p>
+        </div>
+        
+        <div class="disclaimer">
+          <strong>⚠️ Aviso Legal:</strong> As informações acima são para fins informativos e educacionais. 
+          Não constituem recomendação de investimento. Rentabilidade passada não garante resultados futuros. 
+          Consulte um profissional certificado para orientação personalizada.
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab: Settings -->
+    <section id="settings" class="tab-content">
+      <h2 style="margin-bottom:1.5rem">⚙️ Configurações</h2>
+      <div class="card">
+        <div class="form-group">
+          <label class="form-label">Moeda Principal</label>
+          <select class="form-select" id="currency-select">
+            <option value="BRL">Real Brasileiro (BRL)</option>
+            <option value="USD">Dólar Americano (USD)</option>
+            <option value="EUR">Euro (EUR)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Atualização Automática (segundos)</label>
+          <select class="form-select" id="refresh-interval">
+            <option value="30">30 segundos</option>
+            <option value="60" selected>1 minuto</option>
+            <option value="300">5 minutos</option>
+            <option value="0">Desativado</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">
+            <input type="checkbox" id="notifications-toggle" checked> 
+            Ativar notificações de preço
+          </label>
+        </div>
+        <button class="btn btn-primary" onclick="saveSettings()">💾 Salvar Configurações</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal: Nova Compra -->
+  <div class="modal-overlay" id="purchase-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">➕ Nova Compra DCA</div>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="purchase-form">
+          <div class="form-group">
+            <label class="form-label">Data da Compra *</label>
+            <input type="date" class="form-input" id="purchase-date" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Ativo *</label>
+            <select class="form-select" id="purchase-asset" required>
+              <option value="BTC">₿ Bitcoin (BTC)</option>
+              <option value="ETH">Ξ Ethereum (ETH)</option>
+              <option value="SOL">◎ Solana (SOL)</option>
+              <option value="OUTRO">Outro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Valor Investido (BRL) *</label>
+            <input type="number" step="0.01" class="form-input" id="purchase-value" placeholder="Ex: 100.00" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Quantidade Comprada *</label>
+            <input type="number" step="0.00000001" class="form-input" id="purchase-quantity" placeholder="Ex: 0.00123456" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Preço Unitário (BRL)</label>
+            <input type="number" step="0.01" class="form-input" id="purchase-price" placeholder="Calculado automaticamente">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Plataforma</label>
+            <select class="form-select" id="purchase-platform">
+              <option value="Binance">Binance</option>
+              <option value="Mercado Bitcoin">Mercado Bitcoin</option>
+              <option value="Foxbit">Foxbit</option>
+              <option value="NovaDAX">NovaDAX</option>
+              <option value="Outra">Outra</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Observações</label>
+            <input type="text" class="form-input" id="purchase-notes" placeholder="Opcional">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="savePurchase()">💾 Salvar Compra</button>
+      </div>
     </div>
+  </div>
 
-    <!-- Project Detail Modal -->
-    <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="modal">
-            <div class="modal-header">
-                <div class="modal-title">
-                    <img src="" alt="" class="modal-logo" id="modalLogo">
-                    <div>
-                        <h3 id="modalTitle">Project Name</h3>
-                        <div class="badges" id="modalBadges"></div>
-                    </div>
-                </div>
-                <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
-            </div>
+  <!-- Scripts -->
+  <script>
+    // ==================== CONFIG & STATE ====================
+    const API_BASE = 'https://api.coingecko.com/api/v3';
+    let btcData = null;
+    let purchases = JSON.parse(localStorage.getItem('dca_purchases') || '[]');
+    let refreshInterval = null;
+    
+    // ==================== TAB NAVIGATION ====================
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+        
+        if(btn.dataset.tab === 'bitcoin') fetchBitcoinPrice();
+        if(btn.dataset.tab === 'dca') renderPurchases();
+      });
+    });
+    
+    // ==================== BITCOIN PRICE FETCHER ====================
+    async function fetchBitcoinPrice() {
+      const statusDot = document.getElementById('status-dot');
+      const statusText = document.getElementById('status-text');
+      
+      try {
+        statusDot.classList.remove('error');
+        statusText.textContent = 'Atualizando...';
+        
+        const response = await fetch(`${API_BASE}/simple/price?ids=bitcoin&vs_currencies=brl,usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true`);
+        if(!response.ok) throw new Error('API error');
+        
+        const data = await response.json();
+        btcData = data.bitcoin;
+        
+        // Update BRL
+        document.getElementById('btc-price-brl').textContent = 
+          `R$ ${btcData.brl.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+        document.getElementById('btc-24h').textContent = 
+          `24h: ${btcData.brl_24h_change >= 0 ? '+' : ''}${btcData.brl_24h_change.toFixed(2)}%`;
+        document.getElementById('btc-24h').className = `change-item ${btcData.brl_24h_change >= 0 ? 'up' : 'down'}`;
+        
+        // Update USD
+        document.getElementById('btc-price-usd').textContent = 
+          `$ ${btcData.usd.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+        document.getElementById('usd-24h').textContent = 
+          `24h: ${btcData.usd_24h_change >= 0 ? '+' : ''}${btcData.usd_24h_change.toFixed(2)}%`;
+        document.getElementById('usd-24h').className = `change-item ${btcData.usd_24h_change >= 0 ? 'up' : 'down'}`;
+        
+        // Volume & Market Cap
+        document.getElementById('btc-volume').textContent = 
+          `$ ${(btcData.usd_24h_vol / 1e9).toFixed(2)}B`;
+        document.getElementById('btc-mcap').textContent = 
+          `$ ${(btcData.usd_market_cap / 1e9).toFixed(2)}B`;
+        
+        // Badge
+        const badge = document.getElementById('btc-badge');
+        badge.textContent = btcData.brl_24h_change >= 0 ? '▲ Alta' : '▼ Baixa';
+        badge.className = `price-badge ${btcData.brl_24h_change >= 0 ? 'up' : 'down'}`;
+        
+        // Sparkline (simulated)
+        generateSparkline('sparkline-brl', btcData.brl_24h_change);
+        generateSparkline('sparkline-usd', btcData.usd_24h_change);
+        
+        // History table
+        addToPriceHistory(btcData.brl, btcData.brl_24h_change);
+        
+        // Status
+        statusDot.classList.add('success');
+        statusText.textContent = `Atualizado: ${new Date().toLocaleTimeString('pt-BR')}`;
+        
+      } catch(error) {
+        console.error('Erro ao buscar preço:', error);
+        statusDot.classList.add('error');
+        statusText.textContent = 'Erro na conexão';
+        document.getElementById('btc-badge').textContent = '⚠️ Offline';
+        document.getElementById('btc-badge').className = 'price-badge';
+      }
+    }
+    
+    function generateSparkline(elementId, change) {
+      const container = document.getElementById(elementId);
+      container.innerHTML = '';
+      // Generate 20 random bars with trend based on change
+      const trend = change >= 0 ? 0.6 : 0.4;
+      for(let i=0; i<20; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'sparkline-bar';
+        const height = 10 + Math.random() * 70 + (change >= 0 ? i*1.5 : -i*1.5);
+        bar.style.height = `${Math.max(5, Math.min(100, height))}%`;
+        bar.style.opacity = 0.3 + (i/20)*0.7;
+        container.appendChild(bar);
+      }
+    }
+    
+    function addToPriceHistory(price, change) {
+      const tbody = document.getElementById('price-history');
+      const row = document.createElement('tr');
+      const time = new Date().toLocaleTimeString('pt-BR');
+      row.innerHTML = `
+        <td>${time}</td>
+        <td>R$ ${price.toLocaleString('pt-BR', {minimumFractionDigits:2})}</td>
+        <td class="${change >= 0 ? 'up' : 'down'}">${change >= 0 ? '+' : ''}${change.toFixed(2)}%</td>
+        <td>CoinGecko</td>
+      `;
+      tbody.insertBefore(row, tbody.firstChild);
+      // Keep only last 5
+      while(tbody.children.length > 5) tbody.removeChild(tbody.lastChild);
+    }
+    
+    // ==================== DCA PURCHASES ====================
+    function renderPurchases() {
+      const tbody = document.getElementById('purchases-body');
+      const emptyState = document.getElementById('empty-state');
+      const table = document.getElementById('purchases-table');
+      
+      if(purchases.length === 0) {
+        emptyState.classList.remove('hidden');
+        table.classList.add('hidden');
+        updateSummary();
+        return;
+      }
+      
+      emptyState.classList.add('hidden');
+      table.classList.remove('hidden');
+      tbody.innerHTML = '';
+      
+      purchases.forEach((p, index) => {
+        const row = document.createElement('tr');
+        const unitPrice = p.value / p.quantity;
+        row.innerHTML = `
+          <td>${new Date(p.date).toLocaleDateString('pt-BR')}</td>
+          <td><strong>${p.asset}</strong></td>
+          <td>R$ ${p.value.toLocaleString('pt-BR', {minimumFractionDigits:2})}</td>
+          <td>${p.quantity.toFixed(8)}</td>
+          <td>R$ ${unitPrice.toLocaleString('pt-BR', {minimumFractionDigits:2})}</td>
+          <td>${p.platform}</td>
+          <td class="action-btns">
+            <button class="btn btn-sm btn-secondary" onclick="editPurchase(${index})">✏️</button>
+            <button class="btn btn-sm btn-danger" onclick="deletePurchase(${index})">🗑️</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+      
+      updateSummary();
+    }
+    
+    function updateSummary() {
+      const totalInvested = purchases.reduce((sum, p) => sum + p.value, 0);
+      const totalBTC = purchases.filter(p => p.asset === 'BTC').reduce((sum, p) => sum + p.quantity, 0);
+      const avgPrice = totalBTC > 0 ? totalInvested / totalBTC : 350000;
+      
+      // Simulate current value (in real app, fetch live prices)
+      const currentValue = totalInvested * 1.15; // +15% simulated
+      const profit = currentValue - totalInvested;
+      
+      document.getElementById('dca-total-invested').textContent = 
+        `R$ ${totalInvested.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+      document.getElementById('dca-current-value').textContent = 
+        `R$ ${currentValue.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+      
+      const profitEl = document.getElementById('dca-profit');
+      profitEl.textContent = `R$ ${profit.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+      profitEl.className = `card-value ${profit >= 0 ? 'positive' : 'negative'}`;
+      
+      document.getElementById('dca-avg-price').textContent = 
+        `R$ ${avgPrice.toLocaleString('pt-BR', {minimumFractionDigits:2})}`;
+    }
+    
+    function openModal() {
+      document.getElementById('purchase-date').valueAsDate = new Date();
+      document.getElementById('purchase-form').reset();
+      document.getElementById('purchase-modal').classList.add('active');
+    }
+    
+    function closeModal() {
+      document.getElementById('purchase-modal').classList.remove('active');
+    }
+    
+    function savePurchase() {
+      const form = document.getElementById('purchase-form');
+      if(!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      
+      const purchase = {
+        id: Date.now(),
+        date: document.getElementById('purchase-date').value,
+        asset: document.getElementById('purchase-asset').value,
+        value: parseFloat(document.getElementById('purchase-value').value),
+        quantity: parseFloat(document.getElementById('purchase-quantity').value),
+        price: parseFloat(document.getElementById('purchase-price').value) || 
+               (parseFloat(document.getElementById('purchase-value').value) / 
+                parseFloat(document.getElementById('purchase-quantity').value)),
+        platform: document.getElementById('purchase-platform').value,
+        notes: document.getElementById('purchase-notes').value
+      };
+      
+      purchases.unshift(purchase);
+      localStorage.setItem('dca_purchases', JSON.stringify(purchases));
+      
+      closeModal();
+      renderPurchases();
+      
+      // Show feedback
+      alert('✅ Compra registrada com sucesso!');
+    }
+    
+    function editPurchase(index) {
+      const p = purchases[index];
+      document.getElementById('purchase-date').value = p.date;
+      document.getElementById('purchase-asset').value = p.asset;
+      document.getElementById('purchase-value').value = p.value;
+      document.getElementById('purchase-quantity').value = p.quantity;
+      document.getElementById('purchase-price').value = p.price;
+      document.getElementById('purchase-platform').value = p.platform;
+      document.getElementById('purchase-notes').value = p.notes || '';
+      
+      // Remove old and let user save as new (simplified)
+      purchases.splice(index, 1);
+      localStorage.setItem('dca_purchases', JSON.stringify(purchases));
+      openModal();
+    }
+    
+    function deletePurchase(index) {
+      if(confirm('Tem certeza que deseja excluir esta compra?')) {
+        purchases.splice(index, 1);
+        localStorage.setItem('dca_purchases', JSON.stringify(purchases));
+        renderPurchases();
+      }
+    }
+    
+    // ==================== CSV IMPORT/EXPORT ====================
+    function exportCSV() {
+      if(purchases.length === 0) {
+        alert('Nenhuma compra para exportar.');
+        return;
+      }
+      
+      const headers = ['Data','Ativo','Valor_BRL','Quantidade','Preco_Unitario','Plataforma','Observacoes'];
+      const rows = purchases.map(p => [
+        p.date, p.asset, p.value.toFixed(2), p.quantity.toFixed(8), 
+        p.price.toFixed(2), p.platform, p.notes || ''
+      ]);
+      
+      const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+      const blob = new Blob([csv], {type: 'text/csv'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `dca_compras_${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+    
+    function importCSV() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.csv';
+      input.onchange = (e) => {
+        const file = e.target.files[0];
+        if(!file) return;
+        
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          try {
+            const lines = event.target.result.split('\n').slice(1); // Skip header
+            let imported = 0;
             
-            <div class="modal-body">
-                <section class="modal-section">
-                    <h4 data-i18n="modalDescription">Description</h4>
-                    <p class="modal-description" id="modalDescription"></p>
-                </section>
-                
-                <section class="modal-section">
-                    <h4 data-i18n="modalMetrics">Key Metrics</h4>
-                    <div class="modal-metrics">
-                        <div class="metric-card">
-                            <div class="label" data-i18n="metricTvl">Current TVL</div>
-                            <div class="value" id="modalTvl">$0</div>
-                            <div class="change" id="modalTvlChange"></div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="label" data-i18n="metricChange24h">24h Change</div>
-                            <div class="value" id="modalChange24h">—</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="label" data-i18n="metricFees7d">Fees (7d)</div>
-                            <div class="value" id="modalFees">$0</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="label" data-i18n="metricRevenue7d">Revenue (7d)</div>
-                            <div class="value" id="modalRevenue">$0</div>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="modal-section">
-                    <h4 data-i18n="modalChart">TVL History (7 days)</h4>
-                    <div class="chart-container">
-                        <div class="chart-placeholder" id="chartPlaceholder">
-                            📈 Chart loading...
-                        </div>
-                        <canvas id="tvlChart" style="display: none; width: 100%; height: 120px;"></canvas>
-                    </div>
-                </section>
-                
-                <section class="modal-section">
-                    <h4 data-i18n="modalLinks">Links</h4>
-                    <div class="modal-links" id="modalLinks"></div>
-                </section>
-            </div>
-            
-            <div class="modal-footer">
-                <div class="contract-address" id="contractAddress" style="display: none;">
-                    <span class="sr-only">Contract:</span>
-                    <span id="contractValue">0x...</span>
-                    <button class="copy-btn" id="copyContract" aria-label="Copy contract address">📋</button>
-                </div>
-                <a href="#" target="_blank" rel="noopener" class="btn btn-primary" id="modalVisitBtn">
-                    🚀 <span data-i18n="visitApp">Visit App</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Container -->
-    <div class="toast-container" id="toastContainer"></div>
-
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
-    <script>
-        /**
-         * SOLANA ECOSYSTEM DIRECTORY
-         * Complete implementation with DeFiLlama API integration
-         * 
-         * Features:
-         * - Real-time TVL data from DeFiLlama API
-         * - Caching with localStorage (30min TTL)
-         * - Search, filters, sorting with debounce
-         * - Modal details with sparkline charts
-         * - Dark mode, i18n, responsive design
-         * - Export functionality, analytics hooks
-         */
-
-        // ==================== CONFIGURATION ====================
-        const CONFIG = {
-            API_BASE: 'https://api.llama.fi',
-            CACHE_TTL: 30 * 60 * 1000, // 30 minutes
-            DEBOUNCE_MS: 300,
-            ANIMATION_DELAY_MS: 50,
-            SOLANA_CHAIN: 'Solana',
-            DEFAULT_LANG: 'pt-BR',
-            SUPPORTED_LANGS: ['pt-BR', 'en-US']
-        };
-
-        // ==================== I18N DICTIONARY ====================
-        const I18N = {
-            'pt-BR': {
-                logo: 'Solana Directory',
-                export: 'Exportar',
-                heroTitle: 'DIRETÓRIO DO ECOSISTEMA SOLANA',
-                heroSubtitle: 'Mapeando a infraestrutura financeira construída na Solana com dados de TVL em tempo real via DeFiLlama.',
-                projects: 'Projetos',
-                totalTvl: 'TVL Total',
-                defiProtocols: 'DeFi',
-                categories: 'Categorias',
-                searchPlaceholder: 'Buscar projetos por nome...',
-                filterAll: 'Todos',
-                filterDefi: '📈 DeFi',
-                filterRwa: '🏭 RWA',
-                filterDepin: '📡 DePIN',
-                filterDerivatives: '📊 Derivativos',
-                filterInfra: '🖧 Infra',
-                tvlAll: 'Qualquer TVL',
-                tvl100m: '>$100M',
-                tvl10m100m: '$10M - $100M',
-                tvl1m10m: '$1M - $10M',
-                tvl1m: '<$1M',
-                sortTvlDesc: 'TVL ↓',
-                sortTvlAsc: 'TVL ↑',
-                sortNameAsc: 'Nome A-Z',
-                sortNameDesc: 'Nome Z-A',
-                sortChangeDesc: 'Variação 24h ↓',
-                noResults: 'Nenhum projeto encontrado com esses critérios.',
-                clearFilters: 'Limpar Filtros',
-                submitProject: 'Enviar Projeto',
-                footerAttribution: '📡 Diretório independente do ecossistema Solana — dados via DeFiLlama.',
-                modalDescription: 'Descrição',
-                modalMetrics: 'Métricas Principais',
-                metricTvl: 'TVL Atual',
-                metricChange24h: 'Variação 24h',
-                metricFees7d: 'Taxas (7d)',
-                metricRevenue7d: 'Receita (7d)',
-                modalChart: 'Histórico de TVL (7 dias)',
-                modalLinks: 'Links',
-                visitApp: 'Acessar App',
-                copied: 'Copiado!',
-                error: 'Erro ao carregar dados',
-                offline: 'Modo offline - dados em cache',
-                loading: 'Carregando protocolos...',
-                lastUpdated: 'Atualizado há',
-                minutesAgo: 'minutos',
-                hoursAgo: 'horas',
-                daysAgo: 'dias'
-            },
-            'en-US': {
-                logo: 'Solana Directory',
-                export: 'Export',
-                heroTitle: 'SOLANA ECOSYSTEM DIRECTORY',
-                heroSubtitle: 'Mapping the financial infrastructure built on Solana with real-time TVL data from DeFiLlama.',
-                projects: 'Projects',
-                totalTvl: 'Total TVL',
-                defiProtocols: 'DeFi',
-                categories: 'Categories',
-                searchPlaceholder: 'Search projects by name...',
-                filterAll: 'All',
-                filterDefi: '📈 DeFi',
-                filterRwa: '🏭 RWA',
-                filterDepin: '📡 DePIN',
-                filterDerivatives: '📊 Derivatives',
-                filterInfra: '🖧 Infra',
-                tvlAll: 'Any TVL',
-                tvl100m: '>$100M',
-                tvl10m100m: '$10M - $100M',
-                tvl1m10m: '$1M - $10M',
-                tvl1m: '<$1M',
-                sortTvlDesc: 'TVL ↓',
-                sortTvlAsc: 'TVL ↑',
-                sortNameAsc: 'Name A-Z',
-                sortNameDesc: 'Name Z-A',
-                sortChangeDesc: '24h Change ↓',
-                noResults: 'No projects found matching your criteria.',
-                clearFilters: 'Clear Filters',
-                submitProject: 'Submit Project',
-                footerAttribution: '📡 Independent Solana ecosystem directory — data powered by DeFiLlama.',
-                modalDescription: 'Description',
-                modalMetrics: 'Key Metrics',
-                metricTvl: 'Current TVL',
-                metricChange24h: '24h Change',
-                metricFees7d: 'Fees (7d)',
-                metricRevenue7d: 'Revenue (7d)',
-                modalChart: 'TVL History (7 days)',
-                modalLinks: 'Links',
-                visitApp: 'Visit App',
-                copied: 'Copied!',
-                error: 'Error loading data',
-                offline: 'Offline mode - cached data',
-                loading: 'Loading protocols...',
-                lastUpdated: 'Updated',
-                minutesAgo: 'minutes ago',
-                hoursAgo: 'hours ago',
-                daysAgo: 'days ago'
-            }
-        };
-
-        // ==================== STATIC PROJECTS DATA (Fallback) ====================
-        const STATIC_PROJECTS = [
-            // Stablecoins
-            { slug: 'usd-coin', name: 'USDC', category: 'Stablecoins', tags: ['stablecoin', 'defi'], audit: true, launchDate: '2018-09-26' },
-            { slug: 'tether', name: 'USDT', category: 'Stablecoins', tags: ['stablecoin', 'defi'], audit: true, launchDate: '2014-10-06' },
-            
-            // Lending
-            { slug: 'kamino', name: 'Kamino', category: 'Lending', tags: ['defi', 'lending'], audit: true, launchDate: '2022-08-15' },
-            { slug: 'marginfi', name: 'Marginfi', category: 'Lending', tags: ['defi', 'lending'], audit: true, launchDate: '2023-03-20' },
-            { slug: 'solend', name: 'Solend', category: 'Lending', tags: ['defi', 'lending'], audit: true, launchDate: '2021-10-01' },
-            { slug: 'save', name: 'Save Protocol', category: 'Lending', tags: ['defi', 'lending'], audit: true, launchDate: '2023-11-10' },
-            
-            // DEX & Aggregators
-            { slug: 'jupiter-exchange', name: 'Jupiter', category: 'DEX', tags: ['dex', 'defi', 'popular'], audit: true, launchDate: '2021-11-01' },
-            { slug: 'raydium', name: 'Raydium', category: 'DEX', tags: ['dex', 'defi'], audit: true, launchDate: '2021-02-21' },
-            { slug: 'orca', name: 'Orca', category: 'DEX', tags: ['dex', 'defi'], audit: true, launchDate: '2021-08-01' },
-            { slug: 'meteora', name: 'Meteora', category: 'DEX', tags: ['defi', 'liquidity'], audit: false, launchDate: '2023-09-15' },
-            
-            // Liquid Staking
-            { slug: 'jito', name: 'Jito', category: 'Liquid Staking', tags: ['defi', 'lst', 'popular'], audit: true, launchDate: '2022-12-01' },
-            { slug: 'sanctum', name: 'Sanctum', category: 'Liquid Staking', tags: ['defi', 'lst'], audit: true, launchDate: '2023-06-01' },
-            { slug: 'marinade', name: 'Marinade', category: 'Liquid Staking', tags: ['defi', 'lst', 'popular'], audit: true, launchDate: '2021-08-15' },
-            
-            // Derivatives/Perps
-            { slug: 'drift-protocol', name: 'Drift', category: 'Derivatives', tags: ['defi', 'derivatives'], audit: true, launchDate: '2022-05-01' },
-            { slug: 'zeta', name: 'Zeta Markets', category: 'Derivatives', tags: ['defi', 'derivatives'], audit: true, launchDate: '2022-01-15' },
-            { slug: 'hubble-exchange', name: 'Hubble', category: 'Derivatives', tags: ['defi', 'derivatives'], audit: false, launchDate: '2022-09-01' },
-            
-            // RWA
-            { slug: 'ondo-finance', name: 'Ondo Finance', category: 'RWA', tags: ['rwa', 'defi'], audit: true, launchDate: '2023-04-01' },
-            { slug: 'maple-finance', name: 'Maple Finance', category: 'RWA', tags: ['rwa', 'credit'], audit: true, launchDate: '2021-03-01' },
-            
-            // DePIN
-            { slug: 'helium', name: 'Helium', category: 'DePIN', tags: ['depin', 'iot'], audit: true, launchDate: '2019-07-01' },
-            { slug: 'hivemapper', name: 'Hivemapper', category: 'DePIN', tags: ['depin', 'data'], audit: false, launchDate: '2022-11-01' },
-            { slug: 'grass', name: 'Grass', category: 'DePIN', tags: ['depin', 'data', 'popular'], audit: false, launchDate: '2023-08-01' },
-            
-            // Identity & Names
-            { slug: 'solana-name-service', name: 'SNS', category: 'Identity', tags: ['identity', 'infra'], audit: true, launchDate: '2022-04-01' },
-            { slug: 'alldomains', name: 'AllDomains', category: 'Identity', tags: ['identity'], audit: false, launchDate: '2022-08-01' },
-            
-            // Oracles
-            { slug: 'pyth-network', name: 'Pyth', category: 'Oracles', tags: ['oracle', 'infra', 'popular'], audit: true, launchDate: '2021-06-01' },
-            { slug: 'switchboard', name: 'Switchboard', category: 'Oracles', tags: ['oracle'], audit: true, launchDate: '2021-09-01' },
-            
-            // Infrastructure
-            { slug: 'squads', name: 'Squads', category: 'Infrastructure', tags: ['infra', 'multisig'], audit: true, launchDate: '2022-02-01' },
-            { slug: 'backpack', name: 'Backpack', category: 'Infrastructure', tags: ['infra', 'wallet'], audit: false, launchDate: '2023-05-01' },
-            
-            // Launchpads
-            { slug: 'solanium', name: 'Solanium', category: 'Launchpads', tags: ['launchpad', 'defi'], audit: false, launchDate: '2021-05-01' },
-            { slug: 'fjord-foundry', name: 'Fjord Foundry', category: 'Launchpads', tags: ['launchpad'], audit: true, launchDate: '2023-01-01' },
-            
-            // Bridges
-            { slug: 'wormhole', name: 'Wormhole', category: 'Bridges', tags: ['infra', 'bridge'], audit: true, launchDate: '2021-08-01' },
-            { slug: 'allbridge', name: 'Allbridge', category: 'Bridges', tags: ['infra', 'bridge'], audit: false, launchDate: '2021-10-01' }
-        ];
-
-        // ==================== STATE MANAGEMENT ====================
-        const state = {
-            projects: [],
-            filteredProjects: [],
-            categories: new Map(),
-            filters: {
-                search: '',
-                category: 'all',
-                tvlRange: 'all',
-                sortBy: 'tvl-desc'
-            },
-            lang: CONFIG.DEFAULT_LANG,
-            darkMode: localStorage.getItem('darkMode') === 'true',
-            cache: {
-                lastFetch: null,
-                data: null
-            },
-            chart: null
-        };
-
-        // ==================== API SERVICE ====================
-        const ApiService = {
-            async fetchSolanaProtocols() {
-                try {
-                    // Try to get from cache first
-                    const cached = this.getCachedData();
-                    if (cached) {
-                        console.log('✓ Using cached data');
-                        return cached;
-                    }
-
-                    console.log('🔄 Fetching from DeFiLlama API...');
-                    
-                    // Fetch all protocols and filter for Solana
-                    const response = await fetch(`${CONFIG.API_BASE}/protocols`, {
-                        headers: { 'Accept': 'application/json' }
-                    });
-                    
-                    if (!response.ok) throw new Error(`API Error: ${response.status}`);
-                    
-                    const allProtocols = await response.json();
-                    
-                    // Filter for Solana chain and enrich data
-                    const solanaProtocols = allProtocols
-                        .filter(p => p.chainTvls?.[CONFIG.SOLANA_CHAIN] > 0)
-                        .map(p => ({
-                            slug: p.slug,
-                            name: p.name,
-                            category: this.mapCategory(p.category),
-                            tvl: p.chainTvls?.[CONFIG.SOLANA_CHAIN] || 0,
-                            tvlChange24h: p.chainTvls?.[CONFIG.SOLANA_CHAIN + '_tvlPrevDay'] 
-                                ? ((p.chainTvls[CONFIG.SOLANA_CHAIN] - p.chainTvls[CONFIG.SOLANA_CHAIN + '_tvlPrevDay']) / p.chainTvls[CONFIG.SOLANA_CHAIN + '_tvlPrevDay'] * 100).toFixed(2)
-                                : 0,
-                            tags: this.inferTags(p.category, p.name),
-                            audit: this.isAudited(p.slug),
-                            launchDate: this.estimateLaunchDate(p.slug),
-                            logo: `https://icons.llama.fi/${p.slug}.png`,
-                            url: p.url || `https://defillama.com/protocol/${p.slug}`,
-                            description: p.description || '',
-                            chainTvls: p.chainTvls,
-                            mcap: p.mcap || 0,
-                            fees7d: p.fees?.[CONFIG.SOLANA_CHAIN]?.[7] || 0,
-                            revenue7d: p.revenue?.[CONFIG.SOLANA_CHAIN]?.[7] || 0
-                        }))
-                        .filter(p => p.tvl > 0) // Only show projects with TVL on Solana
-                        .sort((a, b) => b.tvl - a.tvl);
-
-                    // Merge with static data for projects not in DeFiLlama
-                    const merged = this.mergeWithStatic(solanaProtocols);
-                    
-                    // Cache the result
-                    this.setCachedData(merged);
-                    
-                    return merged;
-                    
-                } catch (error) {
-                    console.error('❌ API fetch failed:', error);
-                    // Fallback to static data
-                    Toast.show(I18N[state.lang].offline, 'info');
-                    return this.getStaticWithDefaults();
-                }
-            },
-
-            async fetchProtocolChart(slug, days = 7) {
-                try {
-                    const response = await fetch(`${CONFIG.API_BASE}/api/v2/chart/tvl/protocol/${slug}?chain=${CONFIG.SOLANA_CHAIN}`);
-                    if (!response.ok) return null;
-                    const data = await response.json();
-                    return data.slice(-days).map(d => ({ date: d[0], tvl: d[1] }));
-                } catch {
-                    return null;
-                }
-            },
-
-            getCachedData() {
-                try {
-                    const cached = localStorage.getItem('solanaDirectoryCache');
-                    if (!cached) return null;
-                    
-                    const { timestamp, data } = JSON.parse(cached);
-                    const age = Date.now() - timestamp;
-                    
-                    if (age < CONFIG.CACHE_TTL) {
-                        state.cache.lastFetch = new Date(timestamp);
-                        return data;
-                    }
-                    return null;
-                } catch {
-                    return null;
-                }
-            },
-
-            setCachedData(data) {
-                try {
-                    localStorage.setItem('solanaDirectoryCache', JSON.stringify({
-                        timestamp: Date.now(),
-                        data
-                    }));
-                    state.cache.lastFetch = new Date();
-                } catch (e) {
-                    console.warn('Cache write failed:', e);
-                }
-            },
-
-            mapCategory(apiCategory) {
-                const mapping = {
-                    'Dexes': 'DEX',
-                    'Lending': 'Lending',
-                    'Yield': 'Yield',
-                    'Liquid Staking': 'Liquid Staking',
-                    'Derivatives': 'Derivatives',
-                    'RWA': 'RWA',
-                    'Oracle': 'Oracles',
-                    'Bridge': 'Bridges',
-                    'Wallet': 'Infrastructure',
-                    'Launchpad': 'Launchpads',
-                    'Services': 'Infrastructure',
-                    'Insurance': 'Insurance'
-                };
-                return mapping[apiCategory] || apiCategory || 'Other';
-            },
-
-            inferTags(category, name) {
-                const tags = [];
-                const lowerName = name.toLowerCase();
-                
-                if (['Dexes', 'Lending', 'Yield', 'Liquid Staking', 'Derivatives'].includes(category)) {
-                    tags.push('defi');
-                }
-                if (category === 'RWA' || lowerName.includes('real world')) {
-                    tags.push('rwa');
-                }
-                if (category === 'Services' && (lowerName.includes('helium') || lowerName.includes('data') || lowerName.includes('iot'))) {
-                    tags.push('depin');
-                }
-                if (category === 'Oracle') {
-                    tags.push('oracle');
-                }
-                if (['Bridge', 'Wallet', 'Services'].includes(category) && !tags.includes('depin')) {
-                    tags.push('infra');
-                }
-                if (category === 'Derivatives') {
-                    tags.push('derivatives');
-                }
-                if (category === 'Launchpad') {
-                    tags.push('launchpad');
-                }
-                if (lowerName.includes('popular') || ['jupiter', 'marinade', 'pyth', 'jito', 'grass'].includes(lowerName)) {
-                    tags.push('popular');
-                }
-                
-                return tags.length > 0 ? tags : ['defi'];
-            },
-
-            isAudited(slug) {
-                const audited = [
-                    'jupiter-exchange', 'raydium', 'orca', 'marinade', 'jito', 'sanctum',
-                    'solend', 'kamino', 'marginfi', 'pyth-network', 'switchboard',
-                    'drift-protocol', 'zeta', 'ondo-finance', 'maple-finance',
-                    'usd-coin', 'tether', 'wormhole', 'squads', 'save'
-                ];
-                return audited.includes(slug);
-            },
-
-            estimateLaunchDate(slug) {
-                // Simplified estimation based on known launch dates
-                const dates = {
-                    'jupiter-exchange': '2021-11-01',
-                    'marinade': '2021-08-15',
-                    'pyth-network': '2021-06-01',
-                    'jito': '2022-12-01',
-                    'sanctum': '2023-06-01',
-                    'grass': '2023-08-01',
-                    'save': '2023-11-10'
-                };
-                return dates[slug] || null;
-            },
-
-            mergeWithStatic(apiData) {
-                const apiSlugs = new Set(apiData.map(p => p.slug));
-                
-                // Add static projects not in API response
-                const additional = STATIC_PROJECTS
-                    .filter(p => !apiSlugs.has(p.slug))
-                    .map(p => ({
-                        ...p,
-                        tvl: Math.random() * 50000000, // Mock TVL for static
-                        tvlChange24h: (Math.random() - 0.5) * 10,
-                        logo: `https://icons.llama.fi/${p.slug}.png`,
-                        url: `https://defillama.com/protocol/${p.slug}`,
-                        description: '',
-                        fees7d: 0,
-                        revenue7d: 0
-                    }));
-                
-                return [...apiData, ...additional].sort((a, b) => b.tvl - a.tvl);
-            },
-
-            getStaticWithDefaults() {
-                return STATIC_PROJECTS.map(p => ({
-                    ...p,
-                    tvl: Math.random() * 100000000,
-                    tvlChange24h: (Math.random() - 0.5) * 15,
-                    logo: `https://icons.llama.fi/${p.slug}.png`,
-                    url: `https://defillama.com/protocol/${p.slug}`,
-                    description: '',
-                    fees7d: 0,
-                    revenue7d: 0
-                }));
-            }
-        };
-
-        // ==================== UI RENDERER ====================
-        const Renderer = {
-            init() {
-                this.setupEventListeners();
-                this.applyTheme();
-                this.applyLanguage();
-            },
-
-            setupEventListeners() {
-                // Dark mode toggle
-                document.getElementById('darkModeToggle').addEventListener('click', () => {
-                    state.darkMode = !state.darkMode;
-                    localStorage.setItem('darkMode', state.darkMode);
-                    this.applyTheme();
-                    this.showToast(state.darkMode ? '🌙 Dark mode' : '☀️ Light mode', 'info');
+            lines.forEach(line => {
+              if(!line.trim()) return;
+              const [date, asset, value, quantity, price, platform, notes] = line.split(',');
+              if(date && asset && value && quantity) {
+                purchases.push({
+                  id: Date.now() + Math.random(),
+                  date, asset,
+                  value: parseFloat(value),
+                  quantity: parseFloat(quantity),
+                  price: parseFloat(price) || 0,
+                  platform: platform || 'Importado',
+                  notes: notes || ''
                 });
-
-                // Language toggle
-                document.getElementById('langToggle').addEventListener('click', () => {
-                    state.lang = state.lang === 'pt-BR' ? 'en-US' : 'pt-BR';
-                    this.applyLanguage();
-                    this.render(); // Re-render with new language
-                });
-
-                // Search with debounce
-                let searchTimeout;
-                document.getElementById('searchInput').addEventListener('input', (e) => {
-                    clearTimeout(searchTimeout);
-                    searchTimeout = setTimeout(() => {
-                        state.filters.search = e.target.value.toLowerCase();
-                        this.applyFilters();
-                    }, CONFIG.DEBOUNCE_MS);
-                });
-
-                // Category filters
-                document.getElementById('categoryFilters').addEventListener('click', (e) => {
-                    if (e.target.classList.contains('filter-chip')) {
-                        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-                        e.target.classList.add('active');
-                        state.filters.category = e.target.dataset.filter;
-                        this.applyFilters();
-                    }
-                });
-
-                // TVL and sort filters
-                document.getElementById('tvlFilter').addEventListener('change', (e) => {
-                    state.filters.tvlRange = e.target.value;
-                    this.applyFilters();
-                });
-                document.getElementById('sortSelect').addEventListener('change', (e) => {
-                    state.filters.sortBy = e.target.value;
-                    this.applyFilters();
-                });
-
-                // Clear filters
-                document.getElementById('clearFiltersBtn')?.addEventListener('click', () => {
-                    state.filters = { search: '', category: 'all', tvlRange: 'all', sortBy: 'tvl-desc' };
-                    document.getElementById('searchInput').value = '';
-                    document.querySelectorAll('.filter-chip').forEach((c, i) => c.classList.toggle('active', i === 0));
-                    document.getElementById('tvlFilter').value = 'all';
-                    document.getElementById('sortSelect').value = 'tvl-desc';
-                    this.applyFilters();
-                });
-
-                // Export button
-                document.getElementById('exportBtn').addEventListener('click', () => this.exportData());
-
-                // Modal close
-                document.getElementById('modalClose').addEventListener('click', () => this.closeModal());
-                document.getElementById('projectModal').addEventListener('click', (e) => {
-                    if (e.target.id === 'projectModal') this.closeModal();
-                });
-
-                // Keyboard navigation
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') this.closeModal();
-                    if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
-                        e.preventDefault();
-                        document.getElementById('searchInput').focus();
-                    }
-                });
-
-                // Copy contract
-                document.getElementById('copyContract')?.addEventListener('click', (e) => {
-                    const addr = document.getElementById('contractValue').textContent;
-                    navigator.clipboard.writeText(addr).then(() => {
-                        this.showToast(I18N[state.lang].copied, 'success');
-                    });
-                });
-            },
-
-            applyTheme() {
-                document.body.classList.toggle('dark', state.darkMode);
-                document.getElementById('darkModeToggle').innerHTML = state.darkMode ? '☀️' : '🌙';
-                document.querySelector('meta[name="theme-color"]').content = state.darkMode ? '#0F1419' : '#14F195';
-            },
-
-            applyLanguage() {
-                const dict = I18N[state.lang];
-                // Update text content
-                document.querySelectorAll('[data-i18n]').forEach(el => {
-                    const key = el.dataset.i18n;
-                    if (dict[key]) el.textContent = dict[key];
-                });
-                // Update placeholders
-                document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                    const key = el.dataset.i18nPlaceholder;
-                    if (dict[key]) el.placeholder = dict[key];
-                });
-                // Update search placeholder specifically
-                const search = document.getElementById('searchInput');
-                if (search && dict.searchPlaceholder) search.placeholder = dict.searchPlaceholder;
-            },
-
-            async loadData() {
-                // Show loading state
-                document.getElementById('loadingState').style.display = 'grid';
-                document.getElementById('toolsGrid').innerHTML = '';
-                document.getElementById('noResults').style.display = 'none';
-
-                try {
-                    state.projects = await ApiService.fetchSolanaProtocols();
-                    this.updateStats();
-                    this.updateLastUpdated();
-                    this.applyFilters();
-                } catch (error) {
-                    console.error('Load error:', error);
-                    this.showToast(I18N[state.lang].error, 'error');
-                    // Fallback render
-                    state.projects = ApiService.getStaticWithDefaults();
-                    this.updateStats();
-                    this.applyFilters();
-                } finally {
-                    document.getElementById('loadingState').style.display = 'none';
-                }
-            },
-
-            updateStats() {
-                const total = state.projects.length;
-                const totalTvl = state.projects.reduce((sum, p) => sum + p.tvl, 0);
-                const defi = state.projects.filter(p => p.tags.includes('defi')).length;
-                const categories = new Set(state.projects.map(p => p.category)).size;
-
-                document.getElementById('totalProjects').textContent = total.toLocaleString();
-                document.getElementById('totalTvl').textContent = this.formatCurrency(totalTvl);
-                document.getElementById('defiCount').textContent = defi;
-                document.getElementById('categoriesCount').textContent = categories;
-            },
-
-            updateLastUpdated() {
-                const el = document.getElementById('lastUpdated');
-                const last = state.cache.lastFetch;
-                if (!last) {
-                    el.textContent = '';
-                    return;
-                }
-                
-                const minutes = Math.floor((Date.now() - last) / 60000);
-                const dict = I18N[state.lang];
-                
-                if (minutes < 1) {
-                    el.textContent = `${dict.lastUpdated} just now`;
-                } else if (minutes < 60) {
-                    el.textContent = `${dict.lastUpdated} ${minutes} ${dict.minutesAgo}`;
-                } else if (minutes < 1440) {
-                    const hours = Math.floor(minutes / 60);
-                    el.textContent = `${dict.lastUpdated} ${hours} ${dict.hoursAgo}`;
-                } else {
-                    const days = Math.floor(minutes / 1440);
-                    el.textContent = `${dict.lastUpdated} ${days} ${dict.daysAgo}`;
-                }
-            },
-
-            applyFilters() {
-                const { search, category, tvlRange, sortBy } = state.filters;
-                
-                let filtered = state.projects.filter(p => {
-                    // Search filter
-                    if (search && !p.name.toLowerCase().includes(search)) return false;
-                    // Category filter
-                    if (category !== 'all' && !p.tags.includes(category)) return false;
-                    // TVL range filter
-                    if (tvlRange !== 'all') {
-                        const tvl = p.tvl;
-                        if (tvlRange === '100m+' && tvl < 100_000_000) return false;
-                        if (tvlRange === '10m-100m' && (tvl < 10_000_000 || tvl >= 100_000_000)) return false;
-                        if (tvlRange === '1m-10m' && (tvl < 1_000_000 || tvl >= 10_000_000)) return false;
-                        if (tvlRange === '<1m' && tvl >= 1_000_000) return false;
-                    }
-                    return true;
-                });
-
-                // Sorting
-                switch (sortBy) {
-                    case 'tvl-asc': filtered.sort((a, b) => a.tvl - b.tvl); break;
-                    case 'name-asc': filtered.sort((a, b) => a.name.localeCompare(b.name)); break;
-                    case 'name-desc': filtered.sort((a, b) => b.name.localeCompare(a.name)); break;
-                    case 'change-desc': filtered.sort((a, b) => b.tvlChange24h - a.tvlChange24h); break;
-                    default: filtered.sort((a, b) => b.tvl - a.tvl); // tvl-desc
-                }
-
-                state.filteredProjects = filtered;
-                this.render();
-            },
-
-            render() {
-                const grid = document.getElementById('toolsGrid');
-                const noResults = document.getElementById('noResults');
-                
-                if (state.filteredProjects.length === 0) {
-                    grid.innerHTML = '';
-                    noResults.style.display = 'block';
-                    return;
-                }
-                
-                noResults.style.display = 'none';
-                
-                // Group by category
-                const grouped = new Map();
-                for (const p of state.filteredProjects) {
-                    if (!grouped.has(p.category)) grouped.set(p.category, []);
-                    grouped.get(p.category).push(p);
-                }
-                
-                // Sort categories by total TVL
-                const sortedCategories = Array.from(grouped.entries())
-                    .sort((a, b) => {
-                        const tvlA = a[1].reduce((s, p) => s + p.tvl, 0);
-                        const tvlB = b[1].reduce((s, p) => s + p.tvl, 0);
-                        return tvlB - tvlA;
-                    });
-
-                let html = '';
-                let animationDelay = 0;
-                
-                for (const [category, projects] of sortedCategories) {
-                    html += `
-                        <article class="card" style="animation-delay: ${animationDelay}ms">
-                            <div class="card-header">
-                                <h2>${this.escapeHtml(category)} <span class="count">${projects.length}</span></h2>
-                            </div>
-                            <div class="tools-list">
-                    `;
-                    
-                    for (const p of projects) {
-                        html += this.renderProjectChip(p);
-                        animationDelay += CONFIG.ANIMATION_DELAY_MS;
-                    }
-                    
-                    html += `</div></article>`;
-                }
-                
-                grid.innerHTML = html;
-                
-                // Add click handlers to project chips
-                grid.querySelectorAll('.tool-chip[data-slug]').forEach(chip => {
-                    chip.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const slug = chip.dataset.slug;
-                        const project = state.projects.find(p => p.slug === slug);
-                        if (project) this.openModal(project);
-                    });
-                });
-            },
-
-            renderProjectChip(p) {
-                const tvlFormatted = this.formatCurrency(p.tvl);
-                const change = parseFloat(p.tvlChange24h);
-                const changeClass = change > 0 ? 'positive' : change < 0 ? 'negative' : '';
-                const changeText = change !== 0 ? `${change > 0 ? '+' : ''}${change.toFixed(1)}%` : '—';
-                
-                // Sparkline data (mock for now, could fetch real)
-                const sparklineData = this.generateSparkline(change);
-                
-                const badges = this.renderBadges(p);
-                const auditBadge = p.audit 
-                    ? `<span class="badge audited" title="Audited">✓ Audit</span>` 
-                    : `<span class="badge unaudited" title="Not audited">⚠</span>`;
-                
-                // Check if new (launched in last 90 days)
-                const isNew = p.launchDate && (Date.now() - new Date(p.launchDate)) < 90 * 24 * 60 * 60 * 1000;
-                const newBadge = isNew ? `<span class="badge new">✨ New</span>` : '';
-                
-                return `
-                    <a href="${p.url}" target="_blank" rel="noopener" 
-                       class="tool-chip" data-slug="${p.slug}"
-                       title="${this.escapeHtml(p.description || p.name)}">
-                        <img src="${p.logo}" alt="${p.name}" class="logo" 
-                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>◎</text></svg>'">
-                        <div class="info">
-                            <span class="name">${this.escapeHtml(p.name)}</span>
-                            <div class="meta">
-                                <span class="tvl">${tvlFormatted}</span>
-                                <span class="change ${changeClass}">${changeText}</span>
-                                <div class="sparkline ${change > 0 ? 'up' : change < 0 ? 'down' : ''}">
-                                    ${sparklineData}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="badges">
-                            ${badges}
-                            ${auditBadge}
-                            ${newBadge}
-                            <span class="badge solana">◎</span>
-                        </div>
-                    </a>
-                `;
-            },
-
-            renderBadges(project) {
-                const badgeMap = {
-                    defi: '<span class="badge defi">DeFi</span>',
-                    rwa: '<span class="badge rwa">RWA</span>',
-                    depin: '<span class="badge depin">DePIN</span>',
-                    infra: '<span class="badge infra">Infra</span>',
-                    oracle: '<span class="badge oracle">Oracle</span>',
-                    derivatives: '<span class="badge derivatives">Deriv</span>',
-                    launchpad: '<span class="badge launchpad">Launch</span>',
-                    popular: '<span class="badge popular">⭐</span>'
-                };
-                
-                return (project.tags || [])
-                    .filter(t => badgeMap[t])
-                    .map(t => badgeMap[t])
-                    .join('');
-            },
-
-            generateSparkline(change) {
-                // Generate 10 bars with random heights based on change direction
-                const bars = [];
-                const baseHeight = change > 0 ? 60 : change < 0 ? 30 : 45;
-                
-                for (let i = 0; i < 10; i++) {
-                    const variance = (Math.random() - 0.5) * 30;
-                    const height = Math.max(10, Math.min(100, baseHeight + variance + (i * (change > 0 ? 3 : -3))));
-                    bars.push(`<span style="height: ${height}%"></span>`);
-                }
-                return bars.join('');
-            },
-
-            formatCurrency(value) {
-                if (value >= 1_000_000_000) return `$${(value / 1e9).toFixed(2)}B`;
-                if (value >= 1_000_000) return `$${(value / 1e6).toFixed(2)}M`;
-                if (value >= 1_000) return `$${(value / 1e3).toFixed(1)}K`;
-                return `$${value.toFixed(0)}`;
-            },
-
-            formatPercent(value) {
-                const num = parseFloat(value);
-                if (isNaN(num)) return '—';
-                const sign = num > 0 ? '+' : '';
-                return `${sign}${num.toFixed(2)}%`;
-            },
-
-            escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            },
-
-            async openModal(project) {
-                const modal = document.getElementById('projectModal');
-                
-                // Populate basic info
-                document.getElementById('modalLogo').src = project.logo;
-                document.getElementById('modalLogo').alt = project.name;
-                document.getElementById('modalTitle').textContent = project.name;
-                document.getElementById('modalDescription').textContent = project.description || 'No description available.';
-                document.getElementById('modalBadges').innerHTML = this.renderBadges(project) + 
-                    `<span class="badge solana">◎ Solana</span>`;
-                
-                // Populate metrics
-                document.getElementById('modalTvl').textContent = this.formatCurrency(project.tvl);
-                document.getElementById('modalTvlChange').textContent = this.formatPercent(project.tvlChange24h);
-                document.getElementById('modalTvlChange').className = `change ${parseFloat(project.tvlChange24h) > 0 ? 'positive' : parseFloat(project.tvlChange24h) < 0 ? 'negative' : ''}`;
-                document.getElementById('modalChange24h').textContent = this.formatPercent(project.tvlChange24h);
-                document.getElementById('modalFees').textContent = this.formatCurrency(project.fees7d);
-                document.getElementById('modalRevenue').textContent = this.formatCurrency(project.revenue7d);
-                
-                // Links
-                const links = document.getElementById('modalLinks');
-                links.innerHTML = `
-                    <a href="${project.url}" target="_blank" rel="noopener" class="btn btn-primary">🌐 Website</a>
-                    <a href="https://defillama.com/protocol/${project.slug}" target="_blank" rel="noopener" class="btn">📊 DeFiLlama</a>
-                    <a href="https://twitter.com/search?q=${encodeURIComponent(project.name)}" target="_blank" rel="noopener" class="btn">🐦 Twitter</a>
-                `;
-                
-                // Contract address (mock for demo)
-                const contractEl = document.getElementById('contractAddress');
-                if (project.slug === 'usd-coin' || project.slug === 'tether') {
-                    contractEl.style.display = 'flex';
-                    document.getElementById('contractValue').textContent = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
-                } else {
-                    contractEl.style.display = 'none';
-                }
-                
-                // Visit button
-                document.getElementById('modalVisitBtn').href = project.url;
-                
-                // Show modal
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Load chart
-                await this.loadChart(project.slug);
-            },
-
-            async loadChart(slug) {
-                const canvas = document.getElementById('tvlChart');
-                const placeholder = document.getElementById('chartPlaceholder');
-                
-                // Destroy existing chart
-                if (state.chart) {
-                    state.chart.destroy();
-                    state.chart = null;
-                }
-                
-                // Try to fetch real data
-                const data = await ApiService.fetchProtocolChart(slug);
-                
-                if (data && data.length >= 2) {
-                    placeholder.style.display = 'none';
-                    canvas.style.display = 'block';
-                    
-                    const ctx = canvas.getContext('2d');
-                    state.chart = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: data.map(d => new Date(d.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })),
-                            datasets: [{
-                                label: 'TVL',
-                                data: data.map(d => d.tvl),
-                                borderColor: '#14F195',
-                                backgroundColor: 'rgba(20, 241, 149, 0.1)',
-                                borderWidth: 2,
-                                fill: true,
-                                tension: 0.4,
-                                pointRadius: 0
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: { legend: { display: false }, tooltip: {
-                                callbacks: {
-                                    label: ctx => `TVL: ${this.formatCurrency(ctx.parsed.y)}`
-                                }
-                            }},
-                            scales: {
-                                x: { display: true, grid: { display: false }, ticks: { font: { size: 9 } } },
-                                y: { display: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: {
-                                    callback: value => this.formatCurrency(value),
-                                    font: { size: 9 }
-                                }}
-                            }
-                        }
-                    });
-                } else {
-                    // Show placeholder with mock data
-                    placeholder.style.display = 'flex';
-                    placeholder.innerHTML = `📈 ${I18N[state.lang].modalChart}`;
-                    canvas.style.display = 'none';
-                }
-            },
-
-            closeModal() {
-                document.getElementById('projectModal').classList.remove('active');
-                document.body.style.overflow = '';
-                if (state.chart) {
-                    state.chart.destroy();
-                    state.chart = null;
-                }
-            },
-
-            exportData() {
-                const data = state.filteredProjects.map(p => ({
-                    name: p.name,
-                    category: p.category,
-                    tvl: p.tvl,
-                    tvlChange24h: p.tvlChange24h,
-                    tags: p.tags.join(','),
-                    url: p.url
-                }));
-                
-                const csv = [
-                    ['Name', 'Category', 'TVL (USD)', '24h Change (%)', 'Tags', 'URL'].join(','),
-                    ...data.map(row => [
-                        `"${row.name}"`,
-                        `"${row.category}"`,
-                        row.tvl,
-                        row.tvlChange24h,
-                        `"${row.tags}"`,
-                        `"${row.url}"`
-                    ].join(','))
-                ].join('\n');
-                
-                const blob = new Blob([csv], { type: 'text/csv' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `solana-projects-${new Date().toISOString().split('T')[0]}.csv`;
-                a.click();
-                URL.revokeObjectURL(url);
-                
-                this.showToast('📥 CSV exported!', 'success');
-                
-                // Analytics hook
-                this.trackEvent('export_csv', { count: data.length, lang: state.lang });
-            },
-
-            showToast(message, type = 'info') {
-                const container = document.getElementById('toastContainer');
-                const toast = document.createElement('div');
-                toast.className = `toast ${type}`;
-                toast.innerHTML = `<span>${message}</span>`;
-                container.appendChild(toast);
-                
-                // Auto-remove after 4 seconds
-                setTimeout(() => {
-                    toast.style.animation = 'slideIn 0.3s ease reverse';
-                    setTimeout(() => toast.remove(), 300);
-                }, 4000);
-            },
-
-            trackEvent(name, params = {}) {
-                // Placeholder for analytics (GA4, Plausible, etc.)
-                console.log(`📊 Event: ${name}`, params);
-                // Example: gtag('event', name, params);
-            }
-        };
-
-        // ==================== TOAST UTILITY ====================
-        const Toast = {
-            show(message, type = 'info') {
-                Renderer.showToast(message, type);
-            }
-        };
-
-        // ==================== INITIALIZATION ====================
-        function init() {
-            Renderer.init();
-            Renderer.loadData();
-            
-            // Update data every 30 minutes if tab is active
-            setInterval(() => {
-                if (document.visibilityState === 'visible') {
-                    Renderer.loadData();
-                }
-            }, CONFIG.CACHE_TTL);
-            
-            // Handle visibility change to refresh when returning
-            document.addEventListener('visibilitychange', () => {
-                if (document.visibilityState === 'visible') {
-                    const cached = ApiService.getCachedData();
-                    if (cached) {
-                        Renderer.updateStats();
-                        Renderer.updateLastUpdated();
-                    }
-                }
+                imported++;
+              }
             });
             
-            console.log('✅ Solana Directory initialized');
-            console.log(`🌐 Language: ${state.lang} | 🌓 Dark: ${state.darkMode}`);
-        }
-
-        // Start when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', init);
-        } else {
-            init();
-        }
-    </script>
-
-    <!-- Structured Data for SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Solana Ecosystem Directory",
-        "description": "Professional directory of Solana projects: DeFi, RWA, DePIN, infrastructure and more with real-time TVL metrics.",
-        "url": "https://marcoscleber10.github.io/Ferramentas-solana/",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://marcoscleber10.github.io/Ferramentas-solana/?search={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
+            localStorage.setItem('dca_purchases', JSON.stringify(purchases));
+            renderPurchases();
+            alert(`✅ ${imported} compras importadas com sucesso!`);
+          } catch(err) {
+            alert('❌ Erro ao importar CSV: ' + err.message);
+          }
+        };
+        reader.readAsText(file);
+      };
+      input.click();
     }
-    </script>
+    
+    // ==================== JSON BACKUP ====================
+    function downloadJSON() {
+      const data = {
+        purchases,
+        exportedAt: new Date().toISOString(),
+        version: '1.0'
+      };
+      
+      const encrypt = document.getElementById('encrypt-backup').checked;
+      let content = JSON.stringify(data, null, 2);
+      
+      if(encrypt) {
+        const password = prompt('Digite uma senha para criptografar:');
+        if(!password) return;
+        // Simple obfuscation (NOT real encryption - for demo only)
+        content = btoa(unescape(encodeURIComponent(content + '|CRYPT:' + password)));
+      }
+      
+      const blob = new Blob([content], {type: 'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `scalp3_backup_${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+    
+    function restoreJSON(event) {
+      const file = event.target.files[0];
+      if(!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          let content = e.target.result;
+          
+          // Check if encrypted
+          if(content.includes('|CRYPT:')) {
+            const password = prompt('Digite a senha para descriptografar:');
+            const decoded = decodeURIComponent(escape(atob(content.split('|CRYPT:')[0])));
+            if(!decoded.endsWith('|CRYPT:' + password)) {
+              alert('❌ Senha incorreta!');
+              return;
+            }
+            content = decoded.replace('|CRYPT:' + password, '');
+          }
+          
+          const data = JSON.parse(content);
+          if(data.purchases) {
+            purchases = data.purchases;
+            localStorage.setItem('dca_purchases', JSON.stringify(purchases));
+            renderPurchases();
+            alert('✅ Backup restaurado com sucesso!');
+          } else {
+            throw new Error('Formato inválido');
+          }
+        } catch(err) {
+          alert('❌ Erro ao restaurar backup: ' + err.message);
+        }
+        event.target.value = ''; // Reset input
+      };
+      reader.readAsText(file);
+    }
+    
+    // ==================== UTILITIES ====================
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('📋 Endereço copiado para a área de transferência!');
+      }).catch(() => {
+        // Fallback
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        alert('📋 Endereço copiado!');
+      });
+    }
+    
+    function saveSettings() {
+      const settings = {
+        currency: document.getElementById('currency-select').value,
+        refreshInterval: parseInt(document.getElementById('refresh-interval').value),
+        notifications: document.getElementById('notifications-toggle').checked
+      };
+      localStorage.setItem('scalp3_settings', JSON.stringify(settings));
+      
+      // Apply refresh interval
+      if(refreshInterval) clearInterval(refreshInterval);
+      if(settings.refreshInterval > 0) {
+        refreshInterval = setInterval(fetchBitcoinPrice, settings.refreshInterval * 1000);
+      }
+      
+      alert('✅ Configurações salvas!');
+    }
+    
+    // ==================== INIT ====================
+    document.addEventListener('DOMContentLoaded', () => {
+      // Load settings
+      const settings = JSON.parse(localStorage.getItem('scalp3_settings') || '{}');
+      if(settings.currency) document.getElementById('currency-select').value = settings.currency;
+      if(settings.refreshInterval) document.getElementById('refresh-interval').value = settings.refreshInterval;
+      if(settings.notifications !== undefined) document.getElementById('notifications-toggle').checked = settings.notifications;
+      
+      // Auto-fetch Bitcoin price if on that tab
+      if(document.querySelector('[data-tab="bitcoin"].active')) {
+        fetchBitcoinPrice();
+        if(!settings.refreshInterval || settings.refreshInterval > 0) {
+          refreshInterval = setInterval(fetchBitcoinPrice, (settings.refreshInterval || 60) * 1000);
+        }
+      }
+      
+      // Render DCA purchases
+      renderPurchases();
+      
+      // Close modal on outside click
+      document.getElementById('purchase-modal').addEventListener('click', (e) => {
+        if(e.target.id === 'purchase-modal') closeModal();
+      });
+      
+      // Auto-calculate unit price
+      document.getElementById('purchase-value').addEventListener('input', calculateUnitPrice);
+      document.getElementById('purchase-quantity').addEventListener('input', calculateUnitPrice);
+    });
+    
+    function calculateUnitPrice() {
+      const value = parseFloat(document.getElementById('purchase-value').value);
+      const quantity = parseFloat(document.getElementById('purchase-quantity').value);
+      if(value && quantity && !isNaN(value/quantity)) {
+        document.getElementById('purchase-price').value = (value/quantity).toFixed(2);
+      }
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') closeModal();
+    });
+  </script>
 </body>
 </html>
